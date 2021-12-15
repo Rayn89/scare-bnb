@@ -5,14 +5,13 @@ spot_routes = Blueprint("spots", __name__)
 
 @spot_routes.route("/")
 def view_spots():
-    spots = (Spot.query.join(Image, Image.spotId == Spot.id)
-    .add_columns(Image.url).all()
-    )
+    spots = Spot.query.all()
+    
     returnList = []
     for spot in spots:
-        print("**********************", spot)
-        newDict = spot[0].to_dict()
-        newDict["url"] = spot[1]
-        print("==================>", newDict)
+        print("========>", spot)
+        newDict = spot.to_dict()
+        image = Image.query.filter(Image.spotId == spot.id).all()
+        newDict["images"] = [img.to_dict() for img in image]
         returnList.append(newDict)
     return jsonify(returnList)

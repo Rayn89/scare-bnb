@@ -11,6 +11,7 @@ function ViewSpots() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const spots = useSelector((state) => state.spotReducer.allSpots);
+
 //   let allSpotsArr;
   console.log(spots)
 //   if (!user) {
@@ -31,9 +32,15 @@ function ViewSpots() {
     <div>
       <h1>HEY</h1>
       {spots?.map((spot) => (
+        <div>
           <p>{spot.name}</p>
+          <img src={spot.images[0].url} alt="" />
+          <ul>
+            <li>{"$" + spot.price}</li>
+            <li></li>
+          </ul>
+        </div>
       ))}
-      
     </div>
   );
 }
