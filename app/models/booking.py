@@ -6,8 +6,8 @@ class Booking(db.Model):
     __tablename__ = 'bookings'
 
     id = db.Column(db.Integer, primary_key=True)
-    startDate = db.Column()
-    endDate = db.Column()
+    startDate = db.Column(db.String)
+    endDate = db.Column(db.String)
     created_at = db.Column(DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(DateTime, default=datetime.datetime.utcnow)
 
