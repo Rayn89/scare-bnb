@@ -22,7 +22,7 @@ def seed_spots():
         city='Ghoul Town',
         state='AR',
         country='USA',
-        userId=1
+        userId=2
         )
 
 

@@ -37,7 +37,7 @@ function ViewSpots() {
           <img src={spot.images[0].url} alt="" />
           <ul>
             <li>{"$" + spot.price}</li>
-            <li></li>
+            <li>Hosted by: {spot.User}</li>
           </ul>
         </div>
       ))}
