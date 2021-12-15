@@ -14,8 +14,20 @@ def seed_spots():
         userId=1
         )
 
+    demoSpotTwo = Spot(
+        name='Demo Spot Two',
+        haunting='Ghoul',
+        price=150,
+        address='1000 Ghoul St.',
+        city='Ghoul Town',
+        state='AR',
+        country='USA',
+        userId=1
+        )
+
 
     db.session.add(demoSpot)
+    db.session.add(demoSpotTwo)
     db.session.commit()
 
 

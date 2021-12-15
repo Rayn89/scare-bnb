@@ -22,5 +22,4 @@ class Review(db.Model):
             "spotId": self.spotId,
             "review": self.review,
             "userId": self.userId
-            # "comments": [comment.to_dict() for comment in self.comments],
         }
