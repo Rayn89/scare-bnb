@@ -11,7 +11,7 @@ class Image(db.Model):
     updated_at = db.Column(DateTime, default=datetime.datetime.utcnow)
  
     spotId = db.Column(db.Integer, db.ForeignKey('spots.id'))
-    spot = db.relationship("Spot", back_populates="images")
+    spots = db.relationship("Spot", back_populates="images")
 
     def to_dict(self):
         return {

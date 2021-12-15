@@ -11,10 +11,10 @@ class Review(db.Model):
     updated_at = db.Column(DateTime, default=datetime.datetime.utcnow)
 
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
-    user = db.relationship("User", back_populates="spots")
+    user = db.relationship("User", back_populates="reviews")
     
     spotId = db.Column(db.Integer, db.ForeignKey('spots.id'))
-    spot = db.relationship("Spot", back_populates="reviews")
+    spots = db.relationship("Spot", back_populates="reviews")
 
     def to_dict(self):
         return {

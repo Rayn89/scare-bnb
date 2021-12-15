@@ -15,7 +15,7 @@ class Booking(db.Model):
     user = db.relationship("User", back_populates="bookings")
  
     spotId = db.Column(db.Integer, db.ForeignKey('spots.id'))
-    spot = db.relationship("Spot", back_populates="bookings")
+    spots = db.relationship("Spot", back_populates="bookings")
 
     def to_dict(self):
         return {
