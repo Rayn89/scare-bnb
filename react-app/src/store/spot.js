@@ -12,10 +12,6 @@ const addSpot = (payload) => ({
     payload
 })
 
-const addImages = (payload) => ({
-    type: ADD_IMAGE,
-    payload
-})
 
 
 //GET ALL SPOTS
@@ -32,7 +28,7 @@ export const thunk_getAllSpots = () => async (dispatch) => {
 
 //ADD A SPOT
 export const thunk_addSpot =
-  ({ userId, city, country, haunting, price, state, images, address, name }) =>
+  ({ userId, city, country, haunting, price, state, images, address, name, url }) =>
   async (dispatch) => {
     const res = await fetch("/api/spots/new", {
       method: "POST",
@@ -49,6 +45,7 @@ export const thunk_addSpot =
         images,
         address,
         name,
+        url,
       }),
     });
 
@@ -58,6 +55,28 @@ export const thunk_addSpot =
       return spot;
     }
   };
+
+  //UPDATE SPOT
+  export const thunk_updatePost =
+    ({ userId, caption, spotId }) =>
+    async (dispatch) => {
+      const res = await fetch(`/api/spots/${spotId}/edit`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId,
+          caption,
+        }),
+      });
+
+      if (res.ok) {
+        const spot = await res.json();
+        dispatch(addSpot(spot));
+        return spot;
+      }
+    };
 
 
 //SPOT REDUCER

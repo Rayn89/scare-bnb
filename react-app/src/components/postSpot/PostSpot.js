@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 // import "./CreatePostForm.css";
-
+import * as spotStore from "../../store/spot"
 import * as postActions from "../../store/spot";
 
 const CreateSpotForm = () => {
@@ -13,23 +13,25 @@ const CreateSpotForm = () => {
   const [haunting, setHaunting] = useState("");
   const [price, setPrice] = useState("");
   const [state, setState] = useState("");
-  const [images, setImages] = useState("");
   const [address, setAddress] = useState("");
   const [name, setName] = useState("");
+  const [url, setUrl] = useState();
+  const [image1, setImage1] = useState("")
+  const [image2, setImage2] = useState("");
+  const [image3, setImage3] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
-
-
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const userId = user.id;
+    setUrl({"1":image1, "2":image2, "3":image3})
+    console.log("URL =======>", url)
 
-    // value={this.state.value} onChange={this.handleChange}
 
-    return dispatch(
+    await dispatch(
       postActions.thunk_addSpot({
         userId,
         city,
@@ -37,17 +39,22 @@ const CreateSpotForm = () => {
         haunting,
         price,
         state,
-        images,
         address,
         name,
+        url,
       })
     )
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       })
-      .then((res) => res && history.push("/"));
+      .then((res) => res && history.push("/spots"));
   };
+    
+  useEffect(() => {
+      dispatch(spotStore.thunk_getAllSpots());
+      setUrl({ 1: image1, 2: image2, 3: image3 });
+    }, [dispatch, image1, image2, image3]);
 
   return (
     <>
@@ -136,17 +143,44 @@ const CreateSpotForm = () => {
                 </select>
               </label>
             </div>
-            {/* <div>
+            <div>
+              <p>Please select main image:</p>
+              <img src={image1} />
               <input
-                id="file-upload"
-                type="file"
-                // data-buttonText="Upload Photo"
+                type="url"
+                placeholder="https://"
                 onChange={(e) => {
-                  setImages(e.target.files[0]);;
+                  setImage1(e.target.value);
+                  console.log(url);
                 }}
                 required
               />
-            </div> */}
+            </div>
+            <div>
+              <p>Please select two additional images:</p>
+              <img src={image2} />
+              <input
+                type="url"
+                placeholder="https://"
+                onChange={(e) => {
+                  setImage2(e.target.value);
+                  console.log(url);
+                }}
+                required
+              />
+            </div>
+            <div>
+              <img src={image3} />
+              <input
+                type="url"
+                placeholder="https://"
+                onChange={(e) => {
+                  setImage3(e.target.value);
+                  console.log(url);
+                }}
+                required
+              />
+            </div>
             <button className="login-form-button" type="submit">
               Submit Post
             </button>
