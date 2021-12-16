@@ -33,5 +33,6 @@ class Spot(db.Model):
             "city": self.city,
             "state": self.state,
             "country": self.country,
+            "address": self.address
             # "comments": [comment.to_dict() for comment in self.comments],
         }

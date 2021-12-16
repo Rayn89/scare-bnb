@@ -21,8 +21,8 @@ def view_spots():
 
 
 # POST NEW SPOT
-@spot_routes.route("/new", methods=["POST"])
-def new_spot():
+@spot_routes.route("/new/", methods=["POST"])
+def new_spot_post():
     new_spot = Spot(
         userId=request.json["userId"],
         city=request.json["city"],
@@ -31,13 +31,14 @@ def new_spot():
         price=request.json["price"],
         state=request.json["state"],
         haunting=request.json["haunting"],
+        address=request.json["address"]
     )
 
-    new_images = Image(
-        image=request.json["image"]
-    )
-    db.session.add(new_images)
+    # new_images = Image(
+    #     image=request.json["images"]
+    # )
+    
+    # db.session.add(new_images)
     db.session.add(new_spot)
     db.session.commit()
-
     return new_spot.to_dict()

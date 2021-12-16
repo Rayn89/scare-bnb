@@ -101,6 +101,18 @@ const CreateSpotForm = () => {
               ></input>
             </div>
             <div>
+              <input
+                className=""
+                name="price"
+                type="number"
+                placeholder="Price"
+                min="1"
+                max="10000"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              ></input>
+            </div>
+            <div>
               <label>
                 Select type of Haunting:
                 <select
@@ -113,6 +125,17 @@ const CreateSpotForm = () => {
                   <option value="bladefingers">BladeFingers</option>
                 </select>
               </label>
+            </div>
+            <div>
+              <input
+                id="file-upload"
+                type="file"
+                // data-buttonText="Upload Photo"
+                onChange={(e) => {
+                  setImages(e.target.files[0]);;
+                }}
+                required
+              />
             </div>
             <button className="login-form-button" type="submit">
               Submit Post
