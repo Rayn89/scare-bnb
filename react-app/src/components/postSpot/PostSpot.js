@@ -4,7 +4,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 // import "./CreatePostForm.css";
 
-// import * as postActions from "../../store/post";
+import * as postActions from "../../store/spot";
 
 const CreateSpotForm = () => {
   const [errors, setErrors] = useState([]);
@@ -29,14 +29,24 @@ const CreateSpotForm = () => {
 
     // value={this.state.value} onChange={this.handleChange}
 
-    // return dispatch(
-    //   postActions.thunk_addPost({ userId, caption, photoURL, s3Name })
-    // )
-    //   .catch(async (res) => {
-    //     const data = await res.json();
-    //     if (data && data.errors) setErrors(data.errors);
-    //   })
-    //   .then((res) => res && history.push("/"));
+    return dispatch(
+      postActions.thunk_addSpot({
+        userId,
+        city,
+        country,
+        haunting,
+        price,
+        state,
+        images,
+        address,
+        name,
+      })
+    )
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      })
+      .then((res) => res && history.push("/"));
   };
 
   return (
@@ -126,7 +136,7 @@ const CreateSpotForm = () => {
                 </select>
               </label>
             </div>
-            <div>
+            {/* <div>
               <input
                 id="file-upload"
                 type="file"
@@ -136,7 +146,7 @@ const CreateSpotForm = () => {
                 }}
                 required
               />
-            </div>
+            </div> */}
             <button className="login-form-button" type="submit">
               Submit Post
             </button>

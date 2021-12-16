@@ -35,7 +35,8 @@ def new_spot_post():
     )
 
     # new_images = Image(
-    #     image=request.json["images"]
+    #     url=request.json["url"],
+    #     spotId = request.json["spotId"]
     # )
     
     # db.session.add(new_images)

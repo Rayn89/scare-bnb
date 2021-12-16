@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import ViewSpots from './components/viewSpots/ViewSpots'
 import CreateSpotForm from './components/postSpot/PostSpot'
+import SplashPage from './components/splashPage/SplashPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,7 +50,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          <h1>My Home Page</h1>
+          <SplashPage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
