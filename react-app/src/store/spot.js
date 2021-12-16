@@ -1,5 +1,6 @@
 const ALL_SPOTS = "spot/ALL_SPOTS"
 const ADD_SPOT = "spot/ADD_SPOT"
+const ADD_IMAGE = "spot/ADD_IMAGE"
 
 const allSpots = (payload) => ({
     type: ALL_SPOTS,
@@ -8,6 +9,11 @@ const allSpots = (payload) => ({
 
 const addSpot = (payload) => ({
     type: ADD_SPOT,
+    payload
+})
+
+const addImages = (payload) => ({
+    type: ADD_IMAGE,
     payload
 })
 
