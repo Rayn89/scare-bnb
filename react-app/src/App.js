@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import ViewSpots from './components/viewSpots/ViewSpots'
+import CreateSpotForm from './components/postSpot/PostSpot'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,6 +38,9 @@ function App() {
         </Route>
         <Route path="/spots/" exact={true}>
           <ViewSpots />
+        </Route>
+        <Route path="/spots/new" exact={true}>
+          <CreateSpotForm />
         </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />

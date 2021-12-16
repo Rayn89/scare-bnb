@@ -7,9 +7,14 @@ def seed_images():
         url="https://images.unsplash.com/photo-1602769921397-e870d926e1e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=865&q=80",
         spotId=1
         )
+    demoImageTwo = Image(
+        url="https://images.unsplash.com/photo-1481018085669-2bc6e4f00eed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aGF1bnRlZCUyMGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
+        spotId=2
+        )
 
 
     db.session.add(demoImage)
+    db.session.add(demoImageTwo)
     db.session.commit()
 
 
