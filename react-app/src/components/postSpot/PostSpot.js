@@ -15,26 +15,23 @@ const CreateSpotForm = () => {
   const [state, setState] = useState("");
   const [address, setAddress] = useState("");
   const [name, setName] = useState("");
-  // const [spotId, setSpotId] = useState("");
-  const [url, setUrl] = useState(
-    "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-  );
+  const [url, setUrl] = useState();
+  const [image1, setImage1] = useState("")
+  const [image2, setImage2] = useState("");
+  const [image3, setImage3] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
-  // const spotIdSelect = useSelector((state) => state.spotReducer.allSpots[0].id)
-  // console.log(spotIdSelect + 1)
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const userId = user.id;
-    // setSpotId(5)
-    console.log(url)
-    
-    // value={this.state.value} onChange={this.handleChange}
+    setUrl({"1":image1, "2":image2, "3":image3})
+    console.log("URL =======>", url)
 
-    return dispatch(
+
+    await dispatch(
       postActions.thunk_addSpot({
         userId,
         city,
@@ -42,11 +39,9 @@ const CreateSpotForm = () => {
         haunting,
         price,
         state,
-        // images,
         address,
         name,
         url,
-        // spotId
       })
     )
       .catch(async (res) => {
@@ -58,7 +53,8 @@ const CreateSpotForm = () => {
     
   useEffect(() => {
       dispatch(spotStore.thunk_getAllSpots());
-    }, [dispatch]);
+      setUrl({ 1: image1, 2: image2, 3: image3 });
+    }, [dispatch, image1, image2, image3]);
 
   return (
     <>
@@ -147,18 +143,44 @@ const CreateSpotForm = () => {
                 </select>
               </label>
             </div>
-            {/* <div>
+            <div>
+              <p>Please select main image:</p>
+              <img src={image1} />
               <input
-                id="file-upload"
-                type="file"
-                data-buttonText="Upload Photo"
+                type="url"
+                placeholder="https://"
                 onChange={(e) => {
-                  setUrl(e.target.files[0].name);
-                  setSpotId(e.target.value)
+                  setImage1(e.target.value);
+                  console.log(url);
                 }}
                 required
               />
-            </div> */}
+            </div>
+            <div>
+              <p>Please select two additional images:</p>
+              <img src={image2} />
+              <input
+                type="url"
+                placeholder="https://"
+                onChange={(e) => {
+                  setImage2(e.target.value);
+                  console.log(url);
+                }}
+                required
+              />
+            </div>
+            <div>
+              <img src={image3} />
+              <input
+                type="url"
+                placeholder="https://"
+                onChange={(e) => {
+                  setImage3(e.target.value);
+                  console.log(url);
+                }}
+                required
+              />
+            </div>
             <button className="login-form-button" type="submit">
               Submit Post
             </button>

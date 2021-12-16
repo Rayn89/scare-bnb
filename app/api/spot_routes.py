@@ -36,11 +36,21 @@ def new_spot_post():
     db.session.add(new_spot)
     db.session.commit()
 
-    new_images = Image(
-        url=request.json["url"],
+    new_images1 = Image(
+        url=request.json["url"]["1"],
         spotId=new_spot.to_dict()["id"]
     )
-    db.session.add(new_images)
+    new_images2 = Image(
+        url=request.json["url"]["2"],
+        spotId=new_spot.to_dict()["id"]
+    )
+    new_images3 = Image(
+        url=request.json["url"]["3"],
+        spotId=new_spot.to_dict()["id"]
+    )
+    db.session.add(new_images1)
+    db.session.add(new_images2)
+    db.session.add(new_images3)
     db.session.commit()
     
     return new_spot.to_dict()
