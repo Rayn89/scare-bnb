@@ -32,7 +32,7 @@ export const thunk_getAllSpots = () => async (dispatch) => {
 
 //ADD A SPOT
 export const thunk_addSpot =
-  ({ userId, city, country, haunting, price, state, images, address, name }) =>
+  ({ userId, city, country, haunting, price, state, images, address, name, url, spotId }) =>
   async (dispatch) => {
     const res = await fetch("/api/spots/new", {
       method: "POST",
@@ -49,6 +49,8 @@ export const thunk_addSpot =
         images,
         address,
         name,
+        url,
+        spotId
       }),
     });
 

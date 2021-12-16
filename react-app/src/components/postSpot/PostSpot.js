@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 // import "./CreatePostForm.css";
-
+import * as spotStore from "../../store/spot"
 import * as postActions from "../../store/spot";
 
 const CreateSpotForm = () => {
@@ -13,20 +13,25 @@ const CreateSpotForm = () => {
   const [haunting, setHaunting] = useState("");
   const [price, setPrice] = useState("");
   const [state, setState] = useState("");
-  const [images, setImages] = useState("");
   const [address, setAddress] = useState("");
   const [name, setName] = useState("");
+  // const [spotId, setSpotId] = useState("");
+  const [url, setUrl] = useState(
+    "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+  );
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
-
-
+  // const spotIdSelect = useSelector((state) => state.spotReducer.allSpots[0].id)
+  // console.log(spotIdSelect + 1)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const userId = user.id;
-
+    // setSpotId(5)
+    console.log(url)
+    
     // value={this.state.value} onChange={this.handleChange}
 
     return dispatch(
@@ -37,17 +42,23 @@ const CreateSpotForm = () => {
         haunting,
         price,
         state,
-        images,
+        // images,
         address,
         name,
+        url,
+        // spotId
       })
     )
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       })
-      .then((res) => res && history.push("/"));
+      .then((res) => res && history.push("/spots"));
   };
+    
+  useEffect(() => {
+      dispatch(spotStore.thunk_getAllSpots());
+    }, [dispatch]);
 
   return (
     <>
@@ -140,9 +151,10 @@ const CreateSpotForm = () => {
               <input
                 id="file-upload"
                 type="file"
-                // data-buttonText="Upload Photo"
+                data-buttonText="Upload Photo"
                 onChange={(e) => {
-                  setImages(e.target.files[0]);;
+                  setUrl(e.target.files[0].name);
+                  setSpotId(e.target.value)
                 }}
                 required
               />

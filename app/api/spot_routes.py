@@ -11,7 +11,6 @@ def view_spots():
     )
     returnList = []
     for spot in spots:
-        print("========>", spot)
         newDict = spot[0].to_dict()
         newDict["User"] = spot[1]
         image = Image.query.filter(Image.spotId == spot[0].id).all()
@@ -34,12 +33,14 @@ def new_spot_post():
         address=request.json["address"]
     )
 
-    # new_images = Image(
-    #     url=request.json["url"],
-    #     spotId = request.json["spotId"]
-    # )
-    
-    # db.session.add(new_images)
     db.session.add(new_spot)
     db.session.commit()
+
+    new_images = Image(
+        url=request.json["url"],
+        spotId=new_spot.to_dict()["id"]
+    )
+    db.session.add(new_images)
+    db.session.commit()
+    
     return new_spot.to_dict()
