@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import ViewSpots from './components/viewSpots/ViewSpots'
 import CreateSpotForm from './components/postSpot/PostSpot'
 import SplashPage from './components/splashPage/SplashPage';
+import SingleSpot from './components/singleSpot/SingleSpot';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,10 +44,13 @@ function App() {
         <Route path="/spots/new" exact={true}>
           <CreateSpotForm />
         </Route>
+        <Route path="/spots/:id" exact={true}>
+          <SingleSpot />
+        </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
+        <ProtectedRoute path="/users/:id" exact={true}>
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>

@@ -54,3 +54,32 @@ def new_spot_post():
     db.session.commit()
     
     return new_spot.to_dict()
+
+#Get spot by ID
+@spot_routes.route("/<int:id>")
+def one_spot(id):
+    oneSpot = Spot.query.get(id).to_dict()
+    user = User.query.filter(User.id == oneSpot["userId"])
+    images = Image.query.filter(Image.spotId == id)
+    oneSpot["images"] = [image.to_dict() for image in images]
+    oneSpot["user"] = [one.to_dict() for one in user]
+    return oneSpot
+
+# Update Post
+# @post_routes.route("/<int:id>/edit", methods=["GET", "POST"])
+# def updatePost(id):
+#     postToUpdate = Post.query.get(id)
+#     postToUpdate.caption = request.json["caption"]
+
+#     db.session.commit()
+#     updatedPost = Post.query.get(id)
+#     return jsonify(updatedPost.to_dict())
+
+# DELETE /posts/:id/
+# @post_routes.route("/<int:id>", methods=["DELETE"])
+# def deletePost(id):
+#     postToDelete = Post.query.get(id)
+
+#     db.session.delete(postToDelete)
+#     db.session.commit()
+#     return jsonify(postToDelete.to_dict())
