@@ -15,7 +15,7 @@ function SingleSpot() {
   const [editedComment, setEditedComment] = useState("");
   const [editedCommentId, setEditedCommentId] = useState("");
   const user = useSelector((state) => state.session.user);
-  const spot = useSelector((state) => state.spotReducer.oneSpot)
+  const spot = useSelector((state) => state.spotReducer?.oneSpot)
   const userId = user.id;
   
   // const allPosts = useSelector((state) => state.postStore.allPosts);
@@ -94,17 +94,27 @@ function SingleSpot() {
     <div className="single-post-container">
       <h2>Single Post</h2>
       <div className="spot-name">{spot?.name}</div>
+      <ul>
+        <li>{spot?.address}</li>
+        <li>{spot?.city}</li>
+        <li>{spot?.state}</li>
+        <li>{spot?.country}</li>
+      </ul>
       <div className="images-container">
-        <img className="main-image" src={spot?.images[0].url} />
-        <img className="small-image" src={spot?.images[1].url} />
-        <img className="small-image" src={spot?.images[2].url} />
+        <div className="main-image-container">
+          <img className="main-image" src={spot?.images[0].url} />
+        </div>
+        <div className="small-images-container">
+          <img className="small-image" src={spot?.images[1].url} />
+          <img className="small-image" src={spot?.images[2].url} />
+        </div>
       </div>
       <div className="host-and-price-container">
         <div>Entire house hosted by: {spot?.user[0].username}</div>
         <div>Price: ${spot?.price}/night</div>
       </div>
       <div>
-        <div>This home is haunted by a: {spot.haunting}</div>
+        <div>This home is haunted by a: {spot?.haunting}</div>
       </div>
     </div>
   );
