@@ -1,6 +1,7 @@
 const ALL_SPOTS = "spot/ALL_SPOTS"
 const ADD_SPOT = "spot/ADD_SPOT"
 const ONE_SPOT = "spot/ONE_SPOT"
+const DELETE_SPOT = "post/DELETE_SPOT";
 
 const allSpots = (payload) => ({
     type: ALL_SPOTS,
@@ -14,6 +15,11 @@ const addSpot = (payload) => ({
 
 const singleSpot = (payload) => ({
   type: ONE_SPOT,
+  payload,
+});
+
+const deleteSpot = (payload) => ({
+  type: DELETE_SPOT,
   payload,
 });
 
@@ -73,26 +79,48 @@ export const thunk_addSpot =
   };
 
   //UPDATE SPOT
-  // export const thunk_updatePost =
-  //   ({ userId, caption, spotId }) =>
-  //   async (dispatch) => {
-  //     const res = await fetch(`/api/spots/${spotId}/edit`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         userId,
-  //         caption,
-  //       }),
-  //     });
+  export const thunk_updateSpot =
+    ({ id, userId, price, name, haunting }) =>
+    async (dispatch) => {
+      const res = await fetch(`/api/spots/${id}/edit`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId,
+          price,
+          name,
+          haunting,
+        }),
+      });
 
-  //     if (res.ok) {
-  //       const spot = await res.json();
-  //       dispatch(addSpot(spot));
-  //       return spot;
-  //     }
-  //   };
+      if (res.ok) {
+        const spot = await res.json();
+        dispatch(addSpot(spot));
+        return spot;
+      }
+    };
+
+  // DELETE SPOT
+  export const thunk_deleteSpot = ({ id }) => async (dispatch) => {
+    const res = await fetch(`/api/spots/${id}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id
+      })
+    });
+
+    if (res.ok) {
+      const deletedSpot = await res.json();
+      console.log("=============>", deletedSpot)
+      dispatch(deleteSpot(deletedSpot));
+      return "Deletion successful";
+    }
+  };
 
 
 //SPOT REDUCER
@@ -106,6 +134,11 @@ const spotReducer = (state = {}, action) => {
     case ONE_SPOT: {
       const newState = { ...state };
       newState["oneSpot"] = action.payload;
+      return newState;
+    }
+    case DELETE_SPOT: {
+      const newState = { ...state };
+      delete newState[action.payload];
       return newState;
     }
     default:

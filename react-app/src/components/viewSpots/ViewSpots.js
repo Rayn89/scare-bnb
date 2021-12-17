@@ -30,9 +30,10 @@ function ViewSpots() {
 
   return (
     <div className="feed-main-container">
-      {spots?.map((spot) => (
-        <div className="spot-feed-container">
+      {spots?.map((spot, key) => (
+        <div className="spot-feed-container" key={key}>
           <img
+            
             className="feed-image"
             onClick={() => history.push(`/spots/${spot.id}`)}
             src={spot.images[0]?.url}

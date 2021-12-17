@@ -24,7 +24,9 @@ const CreateSpotForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   
-
+  if(!user) {
+    history.push('/spots')
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userId = user.id;

@@ -3,6 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import LoginFormModal from './LoginFormModal';
+import SignUpFormModal from "./SignUpFormModal";
 import "./NavBar.css"
 
 const NavBar = ({isLoaded}) => {
@@ -11,25 +12,23 @@ const NavBar = ({isLoaded}) => {
   if(!user) {
     sessionLinks = (
       <div className="logged-out-navbar">
-        <li>
-          <LoginFormModal />
-        </li>
-        <li>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
-          </NavLink>
-        </li>
+          <li>
+            <LoginFormModal />
+          </li>
+          <li>
+            <SignUpFormModal />
+          </li>
       </div>
     );
   }else{
     sessionLinks = (
       <div className="logged-in-navbar">
-        <li>
-          <NavLink to="/spots/new">Become a Host</NavLink>
-        </li>
-        <li>
-          <LogoutButton />
-        </li>
+          <li>
+            <NavLink to="/spots/new">Become a Host</NavLink>
+          </li>
+          <li>
+            <LogoutButton />
+          </li>
       </div>
     );
   }
@@ -52,7 +51,7 @@ const NavBar = ({isLoaded}) => {
             </NavLink>
           </li>
         </div>
-        <li className="sessionLinks">{sessionLinks}</li>
+        <div className="sessionLinks">{sessionLinks}</div>
       </ul>
     </nav>
   );
