@@ -23,12 +23,14 @@ const NavBar = ({isLoaded}) => {
   }else{
     sessionLinks = (
       <div className="logged-in-navbar">
-          <li>
-            <NavLink to="/spots/new">Become a Host</NavLink>
-          </li>
-          <li>
-            <LogoutButton />
-          </li>
+        <li>
+          <NavLink className="navlinks" to="/spots/new">
+            Become a Host
+          </NavLink>
+        </li>
+        <li>
+          <LogoutButton />
+        </li>
       </div>
     );
   }
@@ -38,15 +40,15 @@ const NavBar = ({isLoaded}) => {
     <nav className="navbar-container">
       <ul className="navbar-ul">
         <div className="navbar-home">
-          <li>
-            <NavLink to="/" exact={true} activeClassName="active">
-              Home
+          <li className="home-li">
+            <NavLink className="navlinks" to="/" exact={true} activeClassName="active">
+              <span className="home-title">scarebnb</span>
             </NavLink>
           </li>
         </div>
         <div className="navbar-browse">
           <li>
-            <NavLink to="/spots" exact={true} activeClassName="active">
+            <NavLink className="navlinks" to="/spots" exact={true} activeClassName="active">
               Browse Spots
             </NavLink>
           </li>

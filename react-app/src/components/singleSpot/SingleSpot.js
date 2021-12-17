@@ -44,24 +44,6 @@ function SingleSpot() {
     history.push('/spots')
   };
 
-  // let post;
-  // let postComments;
-
-  // if (allPosts) {
-  //   post = allPosts.filter((post) => post["id"] == id)[0];
-  //   if (!post) {
-  //     history.push("/");
-  //   }
-  //   postComments = post?.comments;
-  // }
-
-
-  //   Delete post function
-  // const deletePost = async (postId) => {
-  //   window.location.reload(false)
-  //   await dispatch(postStore.thunk_deleteSpot({ postId }));
-  //   await dispatch(postStore.thunk_getPosts());
-  // };
 
   useEffect(() => {
     dispatch(spotStore.thunk_getOneSpot(id));

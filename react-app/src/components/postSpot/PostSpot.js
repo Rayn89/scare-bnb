@@ -34,6 +34,7 @@ const CreateSpotForm = () => {
     console.log("URL =======>", url)
 
 
+
     await dispatch(
       postActions.thunk_addSpot({
         userId,
@@ -59,11 +60,27 @@ const CreateSpotForm = () => {
       setUrl({ 1: image1, 2: image2, 3: image3 });
     }, [dispatch, image1, image2, image3]);
 
+  let content;
+  let content2;
+  let content3;
+
+  if (image1) {
+    content = <img alt="" className="post-image-preview" src={image1} />;
+  }
+
+  if (image2) {
+    content2 = <img alt="" className="post-image-preview" src={image2} />;
+  }
+
+  if (image3) {
+    content3 = <img alt="" className="post-image-preview" src={image3} />;
+  }
+
   return (
     <>
       <section>
-        <div>
-          <form onSubmit={handleSubmit}>
+        <div className="form-container">
+          <form className="main-form-container"onSubmit={handleSubmit}>
             <h3>Add a Spot!</h3>
             <div>
               {errors.map((error, ind) => (
@@ -146,43 +163,42 @@ const CreateSpotForm = () => {
                 </select>
               </label>
             </div>
-            <div>
-              <p>Please select main image:</p>
-              <img className="post-image-preview" src={image1} />
-              <input
-                type="url"
-                placeholder="https://"
-                onChange={(e) => {
-                  setImage1(e.target.value);
-                  console.log(url);
-                }}
-                required
-              />
-            </div>
-            <div>
-              <p>Please select two additional images:</p>
-              <img className="post-image-preview" src={image2} />
-              <input
-                type="url"
-                placeholder="https://"
-                onChange={(e) => {
-                  setImage2(e.target.value);
-                  console.log(url);
-                }}
-                required
-              />
-            </div>
-            <div>
-              <img className="post-image-preview" src={image3} />
-              <input
-                type="url"
-                placeholder="https://"
-                onChange={(e) => {
-                  setImage3(e.target.value);
-                  console.log(url);
-                }}
-                required
-              />
+            <div className="new-post-photo-container">
+              <div className="content1-container">
+                {content}
+                <input
+                  type="url"
+                  placeholder="Main image URL"
+                  onChange={(e) => {
+                    setImage1(e.target.value);
+                  }}
+                  required
+                />
+              </div>
+              <div className="content1-container">
+                {content2}
+                <input
+                  type="url"
+                  placeholder="Additional Image"
+                  onChange={(e) => {
+                    setImage2(e.target.value);
+                    console.log(url);
+                  }}
+                  required
+                />
+              </div>
+              <div className="content1-container">
+                {content3}
+                <input
+                  type="url"
+                  placeholder="Additional Image"
+                  onChange={(e) => {
+                    setImage3(e.target.value);
+                    console.log(url);
+                  }}
+                  required
+                />
+              </div>
             </div>
             <button className="login-form-button" type="submit">
               Submit Post

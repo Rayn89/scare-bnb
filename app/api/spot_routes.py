@@ -66,7 +66,7 @@ def one_spot(id):
     return oneSpot
 
 #Update Post
-@spot_routes.route("/<int:id>/edit", methods=["GET", "POST"])
+@spot_routes.route("/<int:id>/edit", methods=["POST"])
 def updateSpot(id):
     spotToUpdate = Spot.query.get(id)
     spotToUpdate.price = request.json["price"]

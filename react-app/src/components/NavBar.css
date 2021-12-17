@@ -1,5 +1,20 @@
 .navbar-container{
-    
+
+}
+
+.navlinks {
+    text-decoration: none;
+}
+
+.home-title{
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+}
+
+.home-li{
+    text-decoration: none;
 }
 
 .navbar-ul{

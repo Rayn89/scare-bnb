@@ -31,7 +31,6 @@ export const thunk_getAllSpots = () => async (dispatch) => {
 
   if (res.ok) {
     const spots = await res.json();
-    console.log("YOU ARE IN SPOTS ---> ", spots);
     dispatch(allSpots(spots));
     return spots;
   }
@@ -39,10 +38,10 @@ export const thunk_getAllSpots = () => async (dispatch) => {
 
 export const thunk_getOneSpot = (id) => async (dispatch) => {
   const res = await fetch(`/api/spots/${id}`);
+  console.log("ID ==============>", id);
 
   if (res.ok) {
     const spot = await res.json();
-    console.log("SPOT ==========>", spot)
     dispatch(singleSpot(spot));
     return spot;
   }
@@ -82,6 +81,7 @@ export const thunk_addSpot =
   export const thunk_updateSpot =
     ({ id, userId, price, name, haunting }) =>
     async (dispatch) => {
+      
       const res = await fetch(`/api/spots/${id}/edit`, {
         method: "POST",
         headers: {

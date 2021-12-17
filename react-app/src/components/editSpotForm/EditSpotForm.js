@@ -31,9 +31,6 @@ const EditSpotForm = () => {
       .then((res) => res && history.push(`/spots`));
   };
 
-  useEffect(() => {
-    dispatch(spotActions.thunk_getOneSpot());
-  }, [dispatch]);
 
   return (
     <>
