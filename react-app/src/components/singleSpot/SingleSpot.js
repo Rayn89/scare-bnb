@@ -16,7 +16,7 @@ function SingleSpot() {
   const [editedCommentId, setEditedCommentId] = useState("");
   const user = useSelector((state) => state.session.user);
   const spot = useSelector((state) => state.spotReducer?.oneSpot)
-  const userId = user.id;
+  const userId = user?.id;
   
   // const allPosts = useSelector((state) => state.postStore.allPosts);
 
