@@ -1,6 +1,6 @@
 const ALL_SPOTS = "spot/ALL_SPOTS"
 const ADD_SPOT = "spot/ADD_SPOT"
-const ADD_IMAGE = "spot/ADD_IMAGE"
+const ONE_SPOT = "spot/ONE_SPOT"
 
 const allSpots = (payload) => ({
     type: ALL_SPOTS,
@@ -11,6 +11,11 @@ const addSpot = (payload) => ({
     type: ADD_SPOT,
     payload
 })
+
+const singleSpot = (payload) => ({
+  type: ONE_SPOT,
+  payload,
+});
 
 
 
@@ -23,6 +28,17 @@ export const thunk_getAllSpots = () => async (dispatch) => {
     console.log("YOU ARE IN SPOTS ---> ", spots);
     dispatch(allSpots(spots));
     return spots;
+  }
+};
+
+export const thunk_getOneSpot = (id) => async (dispatch) => {
+  const res = await fetch(`/api/spots/${id}`);
+
+  if (res.ok) {
+    const spot = await res.json();
+    console.log("SPOT ==========>", spot)
+    dispatch(singleSpot(spot));
+    return spot;
   }
 };
 
@@ -57,34 +73,39 @@ export const thunk_addSpot =
   };
 
   //UPDATE SPOT
-  export const thunk_updatePost =
-    ({ userId, caption, spotId }) =>
-    async (dispatch) => {
-      const res = await fetch(`/api/spots/${spotId}/edit`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId,
-          caption,
-        }),
-      });
+  // export const thunk_updatePost =
+  //   ({ userId, caption, spotId }) =>
+  //   async (dispatch) => {
+  //     const res = await fetch(`/api/spots/${spotId}/edit`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         userId,
+  //         caption,
+  //       }),
+  //     });
 
-      if (res.ok) {
-        const spot = await res.json();
-        dispatch(addSpot(spot));
-        return spot;
-      }
-    };
+  //     if (res.ok) {
+  //       const spot = await res.json();
+  //       dispatch(addSpot(spot));
+  //       return spot;
+  //     }
+  //   };
 
 
 //SPOT REDUCER
 const spotReducer = (state = {}, action) => {
   switch (action.type) {
     case ALL_SPOTS: {
-      const newState = { ...state }
+      const newState = { ...state };
       newState["allSpots"] = action.payload;
+      return newState;
+    }
+    case ONE_SPOT: {
+      const newState = { ...state };
+      newState["oneSpot"] = action.payload;
       return newState;
     }
     default:

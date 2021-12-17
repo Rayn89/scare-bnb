@@ -34,7 +34,11 @@ function ViewSpots() {
       {spots?.map((spot) => (
         <div>
           <p>{spot.name}</p>
-          <img src={spot.images[0]?.url} alt="" />
+          <img
+            onClick={() => history.push(`/spots/${spot.id}`)}
+            src={spot.images[0]?.url}
+            alt=""
+          />
           <ul>
             <li>{"$" + spot.price}</li>
             <li>Hosted by: {spot.User}</li>
