@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 // import NavBar from "../NavBar.js";
-// import "./ViewSpots.css";
+import "./SplashPage.css";
 // import * as spotStore from "../../store/spot";
 
 function SplashPage() {
@@ -26,8 +26,8 @@ function SplashPage() {
 //   }, [dispatch]);
 
   return (
-    <div>
-      <h1>HEY</h1>
+    <div className="splash-page-container">
+      <h1 className="splash-page">HEY</h1>
     </div>
   );
 }

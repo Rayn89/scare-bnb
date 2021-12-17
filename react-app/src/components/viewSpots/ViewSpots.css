@@ -1,0 +1,29 @@
+.feed-main-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:50px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 25px;
+}
+
+.spot-feed-container{
+    width: 75%;
+    height: 250px;
+    margin-top: 50px;
+    display: flex;
+    border: 1px solid black
+}
+
+.feed-image{
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+.feed-image:hover {
+    cursor: pointer;
+}

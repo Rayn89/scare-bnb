@@ -105,8 +105,16 @@ function SingleSpot() {
           <img className="main-image" src={spot?.images[0].url} />
         </div>
         <div className="small-images-container">
-          <img className="small-image" src={spot?.images[1].url} />
-          <img className="small-image" src={spot?.images[2].url} />
+          <img
+            className="small-image"
+            id="little-image-top"
+            src={spot?.images[1].url}
+          />
+          <img
+            className="small-image"
+            id="little-image-bottom"
+            src={spot?.images[2].url}
+          />
         </div>
       </div>
       <div className="host-and-price-container">

@@ -5,6 +5,7 @@ import { login } from "../../store/session";
 // import "./CreatePostForm.css";
 import * as spotStore from "../../store/spot"
 import * as postActions from "../../store/spot";
+import "./PostSpot.css"
 
 const CreateSpotForm = () => {
   const [errors, setErrors] = useState([]);
@@ -136,16 +137,16 @@ const CreateSpotForm = () => {
                   value={haunting}
                   onChange={(e) => setHaunting(e.target.value)}
                 >
-                  <option value="ghoul">Ghoul</option>
-                  <option value="demon">Demon</option>
-                  <option value="spirit">Spirit</option>
-                  <option value="bladefingers">BladeFingers</option>
+                  <option value="Ghoul">Ghoul</option>
+                  <option value="Demon">Demon</option>
+                  <option value="Spirit">Spirit</option>
+                  <option value="Bladefingers">BladeFingers</option>
                 </select>
               </label>
             </div>
             <div>
               <p>Please select main image:</p>
-              <img src={image1} />
+              <img className="post-image-preview" src={image1} />
               <input
                 type="url"
                 placeholder="https://"
@@ -158,7 +159,7 @@ const CreateSpotForm = () => {
             </div>
             <div>
               <p>Please select two additional images:</p>
-              <img src={image2} />
+              <img className="post-image-preview" src={image2} />
               <input
                 type="url"
                 placeholder="https://"
@@ -170,7 +171,7 @@ const CreateSpotForm = () => {
               />
             </div>
             <div>
-              <img src={image3} />
+              <img className="post-image-preview" src={image3} />
               <input
                 type="url"
                 placeholder="https://"

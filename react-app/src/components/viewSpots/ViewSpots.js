@@ -29,18 +29,19 @@ function ViewSpots() {
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>HEY</h1>
+    <div className="feed-main-container">
       {spots?.map((spot) => (
-        <div>
-          <p>{spot.name}</p>
+        <div className="spot-feed-container">
           <img
+            className="feed-image"
             onClick={() => history.push(`/spots/${spot.id}`)}
             src={spot.images[0]?.url}
             alt=""
           />
+          <p>{spot.name}</p>
           <ul>
             <li>{"$" + spot.price}</li>
+            <li>Haunted by: {spot.haunting}</li>
             <li>Hosted by: {spot.User}</li>
           </ul>
         </div>

@@ -1,0 +1,23 @@
+.navbar-container{
+    
+}
+
+.navbar-ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sessionLinks{
+    display: flex;
+}
+
+.logged-in-navbar{
+    display: flex;
+    margin-right: 10px;
+}
+
+.logged-out-navbar{
+    display: flex;
+    margin-right: 10px;
+}

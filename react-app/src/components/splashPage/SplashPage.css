@@ -1,0 +1,13 @@
+* {
+    margin: 0px;
+}
+
+.splash-page-container{
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+}
+
+.splash-page {
+    color: #FF5A5F
+}
