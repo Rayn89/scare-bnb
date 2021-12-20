@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { useParams } from "react-router";
 // import NavBar from "../navBar/NavBar.js";
+import EditSpotModal from "../EditSpotModal"
 import * as spotStore from "../../store/spot";
 import "./SingleSpot.css";
 
@@ -16,75 +17,33 @@ function SingleSpot() {
   const [editedCommentId, setEditedCommentId] = useState("");
   const user = useSelector((state) => state.session.user);
   const spot = useSelector((state) => state.spotReducer?.oneSpot)
-  const userId = user.id;
+  const userId = user?.id;
+  if(!spot){
+    history.push('/spots')
+  }
+  console.log(id)
   
+
+  let content;
   // const allPosts = useSelector((state) => state.postStore.allPosts);
+  if(userId === spot?.userId){
+    content = (
+      <div>
+        <div>
+          <EditSpotModal />
+        </div>
+        <div>
+          <button onClick={() => deleteSpot(id)}>Delete</button>
+        </div>
+      </div>
+    );
+  }
 
-  // let content = (
-  //   <div className="edit-comment-container">
-  //     <textarea
-  //       id="comment-edit-input"
-  //       type="text"
-  //       value={editedComment}
-  //       onChange={(e) => setEditedComment(e.target.value)}
-  //       placeholder=""
-  //     ></textarea>
-  //     <span>
-  //       <button
-  //         id="edit-comment-submit"
-  //         onClick={() => editComment(editedCommentId, editedComment)}
-  //       >
-  //         Update
-  //       </button>
-  //     </span>
-  //   </div>
-  // );
+  const deleteSpot = async (id) => {
+    await dispatch(spotStore.thunk_deleteSpot({ id }));
+    history.push('/spots')
+  };
 
-  // let post;
-  // let postComments;
-
-  // if (allPosts) {
-  //   post = allPosts.filter((post) => post["id"] == id)[0];
-  //   if (!post) {
-  //     history.push("/");
-  //   }
-  //   postComments = post?.comments;
-  // }
-
-  //   Post comment function
-  // const postComment = async (postId) => {
-    // window.location.reload(false)
-  //   if (comment) {
-  //     await dispatch(postStore.thunk_postComment({ comment, userId, postId }));
-  //     await dispatch(postStore.thunk_getPosts());
-  //   }
-  //   setComment("");
-  // };
-
-  //   Edit comment function
-  // const editComment = async (commentId, comment) => {
-    // window.location.reload(false)
-  //   if (editedComment) {
-  //     await dispatch(postStore.thunk_editComment({ commentId, comment }));
-  //     await dispatch(postStore.thunk_getPosts());
-  //   }
-  //   setEditSelected([false, null]);
-  // };
-
-  //   Delete post function
-  // const deleteComment = async (commentId) => {
-    // window.location.reload(false)
-    // console.log(commentId)
-  //   await dispatch(postStore.thunk_deleteComment({ commentId }));
-  //   await dispatch(postStore.thunk_getPosts());
-  // };
-
-  //   Delete post function
-  // const deletePost = async (postId) => {
-    // window.location.reload(false)
-  //   await dispatch(postStore.thunk_deleteSpot({ postId }));
-  //   await dispatch(postStore.thunk_getPosts());
-  // };
 
   useEffect(() => {
     dispatch(spotStore.thunk_getOneSpot(id));
@@ -93,6 +52,9 @@ function SingleSpot() {
   return (
     <div className="single-post-container">
       <h2>Single Post</h2>
+      <div>
+        {content}
+      </div>
       <div className="spot-name">{spot?.name}</div>
       <ul>
         <li>{spot?.address}</li>
@@ -102,11 +64,21 @@ function SingleSpot() {
       </ul>
       <div className="images-container">
         <div className="main-image-container">
-          <img className="main-image" src={spot?.images[0].url} />
+          <img className="main-image" src={spot?.images[0].url} alt="" />
         </div>
         <div className="small-images-container">
-          <img className="small-image" src={spot?.images[1].url} />
-          <img className="small-image" src={spot?.images[2].url} />
+          <img
+            className="small-image"
+            id="little-image-top"
+            src={spot?.images[1].url}
+            alt=""
+          />
+          <img
+            className="small-image"
+            id="little-image-bottom"
+            src={spot?.images[2].url}
+            alt=""
+          />
         </div>
       </div>
       <div className="host-and-price-container">

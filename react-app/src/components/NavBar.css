@@ -1,0 +1,93 @@
+.navbar-container{
+    background-color: black;
+    height: 10vh;
+    position: fixed;
+    width: 100vw;
+    /* box-shadow: 0 5px 5px -2px rgb(233, 233, 233); */
+}
+
+.navbar-container-change{
+    background-color: rgb(255, 255, 255);
+    height: 10vh;
+    position: fixed;
+    width: 100vw;
+    box-shadow: 0 5px 5px -2px rgb(233, 233, 233);
+    transition: all 0.5s linear;
+}
+
+.navbar-home{
+    display: flex;
+
+}
+
+.navlinks {
+    text-decoration: none;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+}
+
+.navlinks-change {
+    text-decoration: none;
+    color: #FF585D;
+    font-family: 'Raleway', sans-serif;
+}
+
+.home-title{
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+    color: #FF585D;
+    font-size: 25px;
+    font-weight: bolder;
+    /* margin-left: 25px; */
+}
+
+.home-title-change{
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: bolder;
+    transition: all 0.1s linear;
+    /* margin-left: 25px; */
+}
+
+.skull{
+    color: #FF5A5F;
+    width: 50px;
+    height: 50px;
+}
+
+.home-li{
+    text-decoration: none;
+}
+
+.navbar-ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    /* margin: 15px; */
+}
+
+.sessionLinks{
+    display: flex;
+}
+
+.logged-in-navbar{
+    display: flex;
+    margin-right: 35px;
+}
+
+.logged-out-navbar{
+    display: flex;
+    margin-right: 35px;
+}
+
+.navbar-host{
+    padding-right: 25px;
+}
+
+.navbar-browse{
+    margin-left: 55px;
+}

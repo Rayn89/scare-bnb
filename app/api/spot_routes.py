@@ -65,21 +65,23 @@ def one_spot(id):
     oneSpot["user"] = [one.to_dict() for one in user]
     return oneSpot
 
-# Update Post
-# @post_routes.route("/<int:id>/edit", methods=["GET", "POST"])
-# def updatePost(id):
-#     postToUpdate = Post.query.get(id)
-#     postToUpdate.caption = request.json["caption"]
+#Update Post
+@spot_routes.route("/<int:id>/edit", methods=["POST"])
+def updateSpot(id):
+    spotToUpdate = Spot.query.get(id)
+    spotToUpdate.price = request.json["price"]
+    spotToUpdate.haunting = request.json["haunting"]
+    spotToUpdate.name = request.json["name"]
 
-#     db.session.commit()
-#     updatedPost = Post.query.get(id)
-#     return jsonify(updatedPost.to_dict())
+    db.session.commit()
+    updatedSpot = Spot.query.get(id)
+    return jsonify(updatedSpot.to_dict())
 
-# DELETE /posts/:id/
-# @post_routes.route("/<int:id>", methods=["DELETE"])
-# def deletePost(id):
-#     postToDelete = Post.query.get(id)
+#DELETE /posts/:id/
+@spot_routes.route("/<int:id>", methods=["GET", "DELETE"])
+def deletePost(id):
+    spotToDelete = Spot.query.get(id)
 
-#     db.session.delete(postToDelete)
-#     db.session.commit()
-#     return jsonify(postToDelete.to_dict())
+    db.session.delete(spotToDelete)
+    db.session.commit()
+    return jsonify(spotToDelete.to_dict())

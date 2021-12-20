@@ -19,7 +19,7 @@ class Spot(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship("User", back_populates="spots")
 
-    images = db.relationship("Image", back_populates="spots")
+    images = db.relationship("Image", back_populates="spots", cascade="all,delete")
     reviews = db.relationship("Review", back_populates="spots")
     bookings = db.relationship("Booking", back_populates="spots")
     

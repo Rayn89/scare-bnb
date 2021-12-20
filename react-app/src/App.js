@@ -12,6 +12,7 @@ import ViewSpots from './components/viewSpots/ViewSpots'
 import CreateSpotForm from './components/postSpot/PostSpot'
 import SplashPage from './components/splashPage/SplashPage';
 import SingleSpot from './components/singleSpot/SingleSpot';
+import EditSpotForm from './components/editSpotForm/EditSpotForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,15 +48,18 @@ function App() {
         <Route path="/spots/:id" exact={true}>
           <SingleSpot />
         </Route>
+        <Route path="/spots/:id/edit" exact={true}>
+          <EditSpotForm />
+        </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:id" exact={true}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
+        <Route path="/" exact={true}>
           <SplashPage />
-        </ProtectedRoute>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

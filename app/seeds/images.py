@@ -9,12 +9,47 @@ def seed_images():
         )
     demoImageTwo = Image(
         url="https://images.unsplash.com/photo-1481018085669-2bc6e4f00eed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aGF1bnRlZCUyMGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
+        spotId=1
+        )
+    demoImageThree = Image(
+        url="https://images.unsplash.com/photo-1481018085669-2bc6e4f00eed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aGF1bnRlZCUyMGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
+        spotId=1
+        )
+    demoImageFour = Image(
+        url="https://images.unsplash.com/photo-1588841854694-b9f3fe51e979?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80",
         spotId=2
+        )
+    demoImageFive = Image(
+        url="https://images.unsplash.com/photo-1494376877685-d3d2559d4f82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        spotId=2
+        )
+    demoImageSix = Image(
+        url="https://images.unsplash.com/photo-1494376877685-d3d2559d4f82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        spotId=2
+        )
+    demoImageSeven = Image(
+        url="https://images.unsplash.com/photo-1494376877685-d3d2559d4f82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        spotId=3
+        )
+    demoImageEight = Image(
+        url="https://images.unsplash.com/photo-1494376877685-d3d2559d4f82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        spotId=3
+        )
+    demoImageNine = Image(
+        url="https://images.unsplash.com/photo-1494376877685-d3d2559d4f82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        spotId=3
         )
 
 
     db.session.add(demoImage)
     db.session.add(demoImageTwo)
+    db.session.add(demoImageThree)
+    db.session.add(demoImageFour)
+    db.session.add(demoImageFive)
+    db.session.add(demoImageSix)
+    db.session.add(demoImageSeven)
+    db.session.add(demoImageEight)
+    db.session.add(demoImageNine)
     db.session.commit()
 
 

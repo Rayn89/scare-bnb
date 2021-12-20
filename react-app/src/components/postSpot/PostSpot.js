@@ -5,6 +5,7 @@ import { login } from "../../store/session";
 // import "./CreatePostForm.css";
 import * as spotStore from "../../store/spot"
 import * as postActions from "../../store/spot";
+import "./PostSpot.css"
 
 const CreateSpotForm = () => {
   const [errors, setErrors] = useState([]);
@@ -23,12 +24,15 @@ const CreateSpotForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   
-
+  if(!user) {
+    history.push('/spots')
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userId = user.id;
     setUrl({"1":image1, "2":image2, "3":image3})
     console.log("URL =======>", url)
+
 
 
     await dispatch(
@@ -56,11 +60,27 @@ const CreateSpotForm = () => {
       setUrl({ 1: image1, 2: image2, 3: image3 });
     }, [dispatch, image1, image2, image3]);
 
+  let content;
+  let content2;
+  let content3;
+
+  if (image1) {
+    content = <img alt="" className="post-image-preview" src={image1} />;
+  }
+
+  if (image2) {
+    content2 = <img alt="" className="post-image-preview" src={image2} />;
+  }
+
+  if (image3) {
+    content3 = <img alt="" className="post-image-preview" src={image3} />;
+  }
+
   return (
-    <>
-      <section>
-        <div>
-          <form onSubmit={handleSubmit}>
+    
+      <section className="section-container">
+        <div className="form-container">
+          <form className="main-form-container"onSubmit={handleSubmit}>
             <h3>Add a Spot!</h3>
             <div>
               {errors.map((error, ind) => (
@@ -136,50 +156,49 @@ const CreateSpotForm = () => {
                   value={haunting}
                   onChange={(e) => setHaunting(e.target.value)}
                 >
-                  <option value="ghoul">Ghoul</option>
-                  <option value="demon">Demon</option>
-                  <option value="spirit">Spirit</option>
-                  <option value="bladefingers">BladeFingers</option>
+                  <option value="Ghoul">Ghoul</option>
+                  <option value="Demon">Demon</option>
+                  <option value="Spirit">Spirit</option>
+                  <option value="Bladefingers">BladeFingers</option>
                 </select>
               </label>
             </div>
-            <div>
-              <p>Please select main image:</p>
-              <img src={image1} />
-              <input
-                type="url"
-                placeholder="https://"
-                onChange={(e) => {
-                  setImage1(e.target.value);
-                  console.log(url);
-                }}
-                required
-              />
-            </div>
-            <div>
-              <p>Please select two additional images:</p>
-              <img src={image2} />
-              <input
-                type="url"
-                placeholder="https://"
-                onChange={(e) => {
-                  setImage2(e.target.value);
-                  console.log(url);
-                }}
-                required
-              />
-            </div>
-            <div>
-              <img src={image3} />
-              <input
-                type="url"
-                placeholder="https://"
-                onChange={(e) => {
-                  setImage3(e.target.value);
-                  console.log(url);
-                }}
-                required
-              />
+            <div className="new-post-photo-container">
+              <div className="content1-container">
+                {content}
+                <input
+                  type="url"
+                  placeholder="Main image URL"
+                  onChange={(e) => {
+                    setImage1(e.target.value);
+                  }}
+                  required
+                />
+              </div>
+              <div className="content1-container">
+                {content2}
+                <input
+                  type="url"
+                  placeholder="Additional Image"
+                  onChange={(e) => {
+                    setImage2(e.target.value);
+                    console.log(url);
+                  }}
+                  required
+                />
+              </div>
+              <div className="content1-container">
+                {content3}
+                <input
+                  type="url"
+                  placeholder="Additional Image"
+                  onChange={(e) => {
+                    setImage3(e.target.value);
+                    console.log(url);
+                  }}
+                  required
+                />
+              </div>
             </div>
             <button className="login-form-button" type="submit">
               Submit Post
@@ -187,7 +206,7 @@ const CreateSpotForm = () => {
           </form>
         </div>
       </section>
-    </>
+    
   );
 };
 
