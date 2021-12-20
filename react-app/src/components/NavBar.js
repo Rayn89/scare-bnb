@@ -33,8 +33,11 @@ const NavBar = ({isLoaded}) => {
   }else{
     sessionLinks = (
       <div className="logged-in-navbar">
-        <li>
-          <NavLink className="navlinks navbar-host" to="/spots/new">
+        <li className="navbar-host">
+          <NavLink
+            className={changeNavBar ? "navlinks-change" : "navlinks"}
+            to="/spots/new"
+          >
             Become a Host
           </NavLink>
         </li>
@@ -73,7 +76,7 @@ const NavBar = ({isLoaded}) => {
         <div className="navbar-browse">
           <li>
             <NavLink
-              className="navlinks"
+              className={changeNavBar ? "navlinks-change" : "navlinks"}
               to="/spots"
               exact={true}
               activeClassName="active"
