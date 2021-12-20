@@ -1,11 +1,16 @@
+.section-container{
+    /* margin-top: 150px; */
+}
+
 .form-container{
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 
 .main-form-container{
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 100px;
 }
 
 .post-image-preview{

@@ -1,3 +1,7 @@
+.single-post-container{
+    padding-top: 100px;
+}
+
 .images-container{
     display: flex;
     height: 50vh;

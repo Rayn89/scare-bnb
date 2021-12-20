@@ -77,8 +77,8 @@ const CreateSpotForm = () => {
   }
 
   return (
-    <>
-      <section>
+    
+      <section className="section-container">
         <div className="form-container">
           <form className="main-form-container"onSubmit={handleSubmit}>
             <h3>Add a Spot!</h3>
@@ -206,7 +206,7 @@ const CreateSpotForm = () => {
           </form>
         </div>
       </section>
-    </>
+    
   );
 };
 

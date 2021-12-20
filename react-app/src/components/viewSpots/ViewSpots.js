@@ -13,7 +13,6 @@ function ViewSpots() {
   const spots = useSelector((state) => state.spotReducer.allSpots);
 
 //   let allSpotsArr;
-  console.log(spots)
 //   if (!user) {
 //     history.push("/login");
 //   }
@@ -28,6 +27,7 @@ function ViewSpots() {
     dispatch(spotStore.thunk_getAllSpots());
   }, [dispatch]);
 
+  
   return (
     <div className="feed-main-container">
       {spots?.map((spot, key) => (
