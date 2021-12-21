@@ -1,3 +1,10 @@
+html {
+  overflow-y: overlay;
+}
+
+* {
+    font-family: 'Raleway', sans-serif;
+}
 
 
 .feed-main-container{
@@ -17,18 +24,62 @@
     height: 250px;
     margin-top: 50px;
     display: flex;
-    border-radius: 10px;
-    border: 1px solid black
+    /* border-radius: 10px; */
+    border-top: 1px solid #FF585D;
+    padding-top: 45px;
 }
 
 .feed-image{
     width: 50%;
     height: auto;
     object-fit: cover;
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
+    border-radius: 10px;
 }
 
 .feed-image:hover {
     cursor: pointer;
+}
+
+.spot-name{
+    /* background-color: black; */
+    font-size: 30px;
+    margin-left: 30px;
+}
+
+.feed-buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-guy{
+    margin-top: 30px;
+    color: black;
+    width: 150px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 15px;
+    box-shadow: 0 5px 5px -2px rgb(233, 233, 233);
+}
+
+.button-guy:hover{
+    cursor: pointer;
+}
+
+.button-guy:focus{
+    color:#FF585D;
+}
+
+.buttons-header{
+    margin-top: 50px;
+}
+
+.buttons-container{
+    width: 70vw;
+    justify-content: space-evenly;
+    display: flex;
 }

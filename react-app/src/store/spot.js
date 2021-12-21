@@ -36,6 +36,8 @@ export const thunk_getAllSpots = () => async (dispatch) => {
   }
 };
 
+
+//GET ONE SPOT
 export const thunk_getOneSpot = (id) => async (dispatch) => {
   const res = await fetch(`/api/spots/${id}`);
   console.log("ID ==============>", id);

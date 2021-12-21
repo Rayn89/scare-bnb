@@ -15,13 +15,6 @@ function SplashPage() {
   
   //   let allSpotsArr;
   console.log(spots);
-  //   if (!user) {
-  //     history.push("/login");
-  //   }
-  //   if(spots){
-  //       allSpotsArr = Object.values(spots)
-  //       console.log("All spots arr ---->", allSpotsArr)
-  //   }
 
   useEffect(() => {
     dispatch(spotStore.thunk_getAllSpots());
