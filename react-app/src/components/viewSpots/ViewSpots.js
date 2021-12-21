@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import NavBar from "../NavBar.js";
@@ -10,7 +10,9 @@ function ViewSpots() {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const spots = useSelector((state) => state.spotReducer.allSpots);
+  const spotReducer = useSelector((state) => state.spotReducer);
+  let spots = spotReducer?.allSpots
+  const [spotState, setSpotState] = useState(spots);
 
   let ghoulArray = [];
   let demonArray = [];
@@ -34,36 +36,82 @@ function ViewSpots() {
     });
   }
 
-  useEffect(() => {
-    dispatch(spotStore.thunk_getAllSpots());
-  }, [dispatch]);
-
-  console.log(spots)
-  let spotreturn = spots?.map((spot) => checkHaunting(spot))
-  console.log(spots)
-  console.log("GHOUL", ghoulArray)
-  console.log("DEMON", demonArray);
-
+  // const clickImage = async (spotId) => {
+  //   await dispatch(spotStore.thunk_getAllSpots())
+  //   await dispatch(spotStore.thunk_getOneSpot(spotId))
+  //   .then(history.push(`/spots/${spotId}`))
+  // }
   
+
+  if(!spots){
+    dispatch(spotStore.thunk_getAllSpots());
+  }
+
+
+  useEffect(() => {
+    // dispatch(spotStore.thunk_getAllSpots());
+    // dispatch(spotStore.thunk_getOneSpot());
+    setSpotState(spots)
+  }, [spots]);
+
+  let spotreturn = spots?.map((spot) => checkHaunting(spot));
+
   return (
     <div className="feed-main-container">
-      {spots?.map((spot, key) => (
-        <div className="spot-feed-container" key={key}>
-          <img
-            
-            className="feed-image"
-            onClick={() => history.push(`/spots/${spot.id}`)}
-            src={spot.images[0]?.url}
-            alt=""
-          />
-          <p>{spot.name}</p>
-          <ul>
-            <li>{"$" + spot.price}</li>
-            <li>Haunted by: {spot.haunting}</li>
-            <li>Hosted by: {spot.User}</li>
-          </ul>
+      <div className="feed-buttons">
+        <div className="buttons-header">Please choose your haunting:</div>
+        <div className="buttons-container">
+          <button
+            className="button-guy"
+            onClick={() => setSpotState(spotReducer?.allSpots)}
+          >
+            All
+          </button>
+          <button
+            className="button-guy"
+            onClick={() => setSpotState(demonArray)}
+          >
+            <span className="button-haunting-text">Demons</span>
+          </button>
+          <button
+            className="button-guy"
+            onClick={() => setSpotState(ghoulArray)}
+          >
+            Ghouls
+          </button>
+          <button
+            className="button-guy"
+            onClick={() => setSpotState(spiritArray)}
+          >
+            Spirits
+          </button>
+          <button
+            className="button-guy"
+            onClick={() => setSpotState(bladefingersArray)}
+          >
+            Bladefingers
+          </button>
         </div>
-      ))}
+      </div>
+      {spotState &&
+        spotState.map((spot, key) => (
+          <div className="spot-feed-container" key={key}>
+            <img
+              className="feed-image"
+              onClick={() => history.push(`/spots/${spot.id}`)}
+              src={spot.images[0]?.url}
+              alt=""
+            />
+            <div className="spot-details">
+              <span className="spot-name">{spot.name}</span>
+              <ul>
+                <li>Haunted by: {spot.haunting}</li>
+                <li>Entire home hosted by: {spot.User}</li>
+                <li>{"$" + spot.price}/night</li>
+              </ul>
+            </div>
+          </div>
+        ))}
     </div>
   );
 }

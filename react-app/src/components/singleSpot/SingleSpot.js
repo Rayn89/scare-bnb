@@ -11,18 +11,16 @@ function SingleSpot() {
   const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
-  const [comment, setComment] = useState("");
-  const [editSelected, setEditSelected] = useState([false, null]);
-  const [editedComment, setEditedComment] = useState("");
-  const [editedCommentId, setEditedCommentId] = useState("");
   const user = useSelector((state) => state.session.user);
   const spot = useSelector((state) => state.spotReducer?.oneSpot)
   const userId = user?.id;
   if(!spot){
     history.push('/spots')
   }
-  console.log(id)
   
+  if(!spot){
+    
+  }
 
   let content;
   // const allPosts = useSelector((state) => state.postStore.allPosts);
@@ -47,18 +45,18 @@ function SingleSpot() {
 
   useEffect(() => {
     dispatch(spotStore.thunk_getOneSpot(id));
+    // dispatch(spotStore.thunk_getAllSpots());
   }, [dispatch, id]);
 
   return (
     <div className="single-post-container">
-      <h2>Single Post</h2>
       <div>
         {content}
       </div>
-      <div className="spot-name">{spot?.name}</div>
-      <ul>
-        <li>{spot?.address}</li>
-        <li>{spot?.city}</li>
+      <div className="single-spot-name">{spot?.name}</div>
+      <ul className="spot-location">
+        <li>{spot?.address} </li>
+        <li>{spot?.city},</li>
         <li>{spot?.state}</li>
         <li>{spot?.country}</li>
       </ul>

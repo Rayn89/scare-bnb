@@ -4,13 +4,14 @@
 
 .images-container{
     display: flex;
-    height: 50vh;
+    height: 60vh;
     width: 100%;
     justify-content: center;
     margin: 0px;
     box-sizing: border-box;
     border-radius: 10px;
-    border: 1px solid red;
+    background-color: #fff;
+    /* border: 1px solid red; */
 }
 
 .small-image{
@@ -42,7 +43,7 @@
 .main-image-container{
     display: flex;
     /* border: 1px solid blue; */
-    width: 50%;
+    width: 60%;
     height: auto;
     padding-right: 5px;
 }
@@ -54,4 +55,16 @@
     justify-content: center;
     width: 25%;
     height: auto;
+}
+
+.single-spot-name{
+    font-size: 45px;
+    margin-left: 7vw;
+}
+
+.spot-location{
+    display: flex;
+    list-style-type: none;
+    margin-left: 4.5vw;
+
 }

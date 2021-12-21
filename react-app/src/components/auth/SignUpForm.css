@@ -1,9 +1,9 @@
-.login-form{
+.signup-form{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 35vw;
-    height: 25vh;
+    height: 35vh;
     justify-content: center;
     background-color: white;
     color: black;
@@ -11,19 +11,20 @@
     
 }
 
-.login-email{
+.signup-email{
     margin: 10px;
 }
 
-.login-password{
+.signup-password{
     margin-bottom: 10px;
 }
 
-.login-header{
+.signup-header{
     border-bottom: 1px solid #FF585D;
+    margin-bottom:15px;
 }
 
-.login-form-button{
+.signup-form-button{
     color: black;
     width: 150px;
     height: 50px;
@@ -32,9 +33,9 @@
     border: none;
     font-size: 20px;
     font-family: 'Raleway', sans-serif;
-    margin-top: 5px;
+    margin-top: 15px;
 }
 
-.login-form-button:hover{
+.signup-form-button:hover{
     cursor: pointer;
 }
