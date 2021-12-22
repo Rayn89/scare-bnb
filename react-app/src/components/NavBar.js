@@ -64,7 +64,9 @@ const NavBar = ({isLoaded}) => {
               exact={true}
               activeClassName="active"
             >
-              <span className="skull">&#9760;</span>
+              <i
+                className={changeNavBar ? "fas fa-ghost ghost-after" : "fas fa-ghost"}
+              ></i>
               <span
                 className={changeNavBar ? "home-title" : "home-title-change"}
               >
@@ -76,7 +78,7 @@ const NavBar = ({isLoaded}) => {
         <div className="navbar-browse">
           <li>
             <NavLink
-              className={changeNavBar ? "navlinks-change" : "navlinks"}
+              className={changeNavBar ? "navlinks-change no-blood" : "navlinks blood"}
               to="/spots"
               exact={true}
               activeClassName="active"

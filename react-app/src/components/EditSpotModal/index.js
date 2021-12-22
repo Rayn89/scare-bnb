@@ -7,7 +7,9 @@ function SignUpFormModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Edit Spot</button>
+      <button className="single-spot-button" onClick={() => setShowModal(true)}>
+        <i class="far fa-edit"></i>Edit Spot
+      </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditSpotForm />
