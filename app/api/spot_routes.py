@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.models import Spot, Image, User, db
+from app.models import Spot, Image, User, Review, db
 
 spot_routes = Blueprint("spots", __name__)
 
@@ -15,6 +15,8 @@ def view_spots():
         newDict["User"] = spot[1]
         image = Image.query.filter(Image.spotId == spot[0].id).all()
         newDict["images"] = [img.to_dict() for img in image]
+        review = Review.query.filter(Review.spotId == spot[0].id).all()
+        newDict["reviews"] = [rev.to_dict() for rev in review]
         returnList.append(newDict)
     return jsonify(returnList)
 
@@ -61,6 +63,8 @@ def one_spot(id):
     oneSpot = Spot.query.get(id).to_dict()
     user = User.query.filter(User.id == oneSpot["userId"])
     images = Image.query.filter(Image.spotId == id)
+    review = Review.query.filter(Review.spotId == id)
+    oneSpot["reviews"] = [rev.to_dict() for rev in review]
     oneSpot["images"] = [image.to_dict() for image in images]
     oneSpot["user"] = [one.to_dict() for one in user]
     return oneSpot

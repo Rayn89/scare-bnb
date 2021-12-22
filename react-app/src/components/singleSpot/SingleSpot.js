@@ -12,54 +12,72 @@ function SingleSpot() {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const spot = useSelector((state) => state.spotReducer?.oneSpot)
+  const spots = useSelector((state) => state.spotReducer.allSpots)
   const userId = user?.id;
-  if(!spot){
-    history.push('/spots')
+
+  // const reviews = spot?.reviews
+  // console.log(reviews)
+  // if(!spot){
+  //   history.push('/spots')
+  // }
+
+  let spot;
+  let spotReviews;
+  if(spots){
+    spot = spots.filter((spot) => spot["id"] == id)[0];
+    spotReviews = spot?.reviews
+    console.log(spotReviews)
   }
   
-  if(!spot){
-    
-  }
+  // if(spot){
+  //   const reviews = spot?.reviews;
+  //   console.log(reviews);
+  // }
 
   let content;
-  // const allPosts = useSelector((state) => state.postStore.allPosts);
   if(userId === spot?.userId){
     content = (
-      <div>
+      <div className="edit-delete">
         <div>
           <EditSpotModal />
         </div>
         <div>
-          <button onClick={() => deleteSpot(id)}>Delete</button>
+          <button className="single-spot-button" onClick={() => deleteSpot(id)}>
+            <i class="far fa-trash-alt"></i>Delete
+          </button>
         </div>
       </div>
     );
   }
 
+  // let reviewPost;
+  // if(user) {
+  //   reviewPost = ();
+  // }
+
   const deleteSpot = async (id) => {
     await dispatch(spotStore.thunk_deleteSpot({ id }));
+    await dispatch(spotStore.thunk_getAllSpots());
     history.push('/spots')
   };
 
 
   useEffect(() => {
-    dispatch(spotStore.thunk_getOneSpot(id));
-    // dispatch(spotStore.thunk_getAllSpots());
+    dispatch(spotStore.thunk_getAllSpots());
   }, [dispatch, id]);
 
   return (
     <div className="single-post-container">
-      <div>
-        {content}
-      </div>
       <div className="single-spot-name">{spot?.name}</div>
-      <ul className="spot-location">
-        <li>{spot?.address} </li>
-        <li>{spot?.city},</li>
-        <li>{spot?.state}</li>
-        <li>{spot?.country}</li>
-      </ul>
+      <div className="spot-edit-delete">
+        <ul className="spot-location">
+          <li>{spot?.address} </li>
+          <li>{spot?.city},</li>
+          <li>{spot?.state}</li>
+          <li>{spot?.country}</li>
+        </ul>
+        <div>{content}</div>
+      </div>
       <div className="images-container">
         <div className="main-image-container">
           <img className="main-image" src={spot?.images[0].url} alt="" />
@@ -80,12 +98,18 @@ function SingleSpot() {
         </div>
       </div>
       <div className="host-and-price-container">
-        <div>Entire house hosted by: {spot?.user[0].username}</div>
+        <div>Entire house hosted by: {spot?.User}</div>
         <div>Price: ${spot?.price}/night</div>
       </div>
       <div>
         <div>This home is haunted by a: {spot?.haunting}</div>
       </div>
+      {spotReviews &&
+        spotReviews?.map((spot, key) => (
+          <div className="review-container" key={key}>
+            <p>{spot?.review}</p>
+          </div>
+        ))}
     </div>
   );
 }

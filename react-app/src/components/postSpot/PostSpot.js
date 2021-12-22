@@ -52,6 +52,7 @@ const CreateSpotForm = () => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       })
+      await dispatch(spotStore.thunk_getAllSpots())
       .then((res) => res && history.push("/spots"));
   };
     

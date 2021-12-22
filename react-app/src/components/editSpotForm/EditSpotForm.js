@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { useParams } from "react-router";
 import "./EditSpotForm.css";
-// import * as spotStore from "../../store/spot";
 
 import * as spotActions from "../../store/spot";
 
@@ -13,8 +12,11 @@ const EditSpotForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
-  let currentSpot = useSelector((state) => state?.spotReducer.oneSpot)
-
+  let currentSpots = useSelector((state) => state?.spotReducer.allSpots)
+  let currentSpot;
+  if (currentSpots) {
+    currentSpot = currentSpots.filter((spot) => spot["id"] == id)[0];
+  }
   const [price, setPrice] = useState(currentSpot?.price);
   const [name, setName] = useState(currentSpot?.name);
   const [haunting, setHaunting] = useState(currentSpot?.haunting)
@@ -28,7 +30,6 @@ const EditSpotForm = () => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       })
-      // .then((res) => res && history.push(`/spots`));
     await dispatch(spotActions.thunk_getAllSpots())
     .then(history.push('/spots'))
   };

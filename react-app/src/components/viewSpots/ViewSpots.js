@@ -41,18 +41,19 @@ function ViewSpots() {
   //   await dispatch(spotStore.thunk_getOneSpot(spotId))
   //   .then(history.push(`/spots/${spotId}`))
   // }
-  
+
 
   if(!spots){
     dispatch(spotStore.thunk_getAllSpots());
+    // setSpotState(spots)
   }
 
 
   useEffect(() => {
-    // dispatch(spotStore.thunk_getAllSpots());
+    dispatch(spotStore.thunk_getAllSpots());
     // dispatch(spotStore.thunk_getOneSpot());
-    setSpotState(spots)
-  }, [spots]);
+    // setSpotState(spots)
+  }, [dispatch]);
 
   let spotreturn = spots?.map((spot) => checkHaunting(spot));
 
@@ -108,6 +109,7 @@ function ViewSpots() {
                 <li>Haunted by: {spot.haunting}</li>
                 <li>Entire home hosted by: {spot.User}</li>
                 <li>{"$" + spot.price}/night</li>
+                <li>{spot.reviews.length} review(s)</li>
               </ul>
             </div>
           </div>

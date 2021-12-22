@@ -1,5 +1,14 @@
+*{
+    margin: 0px;
+}
+
 .single-post-container{
     padding-top: 100px;
+    /* width: 80vw; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-right: 0px; */
 }
 
 .images-container{
@@ -58,13 +67,39 @@
 }
 
 .single-spot-name{
-    font-size: 45px;
-    margin-left: 7vw;
+    font-size: 35px;
+    align-self: flex-start;
+    margin-left: 8%;
 }
 
 .spot-location{
     display: flex;
     list-style-type: none;
-    margin-left: 4.5vw;
+    padding-left:0px;
+    align-self:flex-start;
+    /* margin-left: 8%; */
+}
 
+.edit-delete{
+    display: flex;
+}
+
+.spot-edit-delete{
+    display: flex;
+    width: 85vw;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.single-spot-button{
+    color: rgb(126, 126, 126);
+    background-color: transparent;
+    text-decoration: underline;
+    border:none;
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.single-spot-button:hover{
+    cursor: pointer;
 }

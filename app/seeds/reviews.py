@@ -3,14 +3,38 @@ from app.models import db, Review
 
 # Adds a demo user, you can add other users here if you want
 def seed_reviews():
-    demoReview = Review(
+    demoReview1 = Review(
         review='This spot was scary!',
         userId=1,
         spotId=1
-        )
+    )
+    demoReview2 = Review(
+        review='This spot was scary!',
+        userId=1,
+        spotId=2
+    )
+    demoReview3 = Review(
+        review='This spot was scary!',
+        userId=1,
+        spotId=1
+    )
+    demoReview4 = Review(
+        review='This spot was scary!',
+        userId=1,
+        spotId=1
+    )
+    demoReview5 = Review(
+        review='This spot was scary!',
+        userId=1,
+        spotId=1
+    )
 
 
-    db.session.add(demoReview)
+    db.session.add(demoReview1)
+    db.session.add(demoReview2)
+    db.session.add(demoReview3)
+    db.session.add(demoReview4)
+    db.session.add(demoReview5)
     db.session.commit()
 
 

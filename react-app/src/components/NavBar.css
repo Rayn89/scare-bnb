@@ -3,7 +3,6 @@
     height: 10vh;
     position: fixed;
     width: 100vw;
-    /* box-shadow: 0 5px 5px -2px rgb(233, 233, 233); */
 }
 
 .navbar-container-change{
@@ -17,13 +16,32 @@
 
 .navbar-home{
     display: flex;
+    align-items: center;
+}
 
+.home-li {
+    display: flex;
+    align-items: center;
 }
 
 .navlinks {
     text-decoration: none;
     color: white;
     font-family: 'Raleway', sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.blood {
+    background-image: url(https://wallpapercave.com/wp/wp9614661.jpg);
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 22px;
+}
+
+.no-blood{
+    font-size: 22px;
 }
 
 .navlinks-change {
@@ -38,6 +56,8 @@
     color: #FF585D;
     font-size: 25px;
     font-weight: bolder;
+    display: flex;
+    align-items: center;
     /* margin-left: 25px; */
 }
 
@@ -51,10 +71,18 @@
     /* margin-left: 25px; */
 }
 
-.skull{
-    color: #FF5A5F;
-    width: 50px;
-    height: 50px;
+.fa-ghost{
+    color: #ffffff;
+    font-size: 35px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.ghost-after{
+    color: #FF585D;
+    font-size: 35px;
+    text-align: center;
+    margin-right: 10px;
 }
 
 .home-li{
@@ -91,3 +119,4 @@
 .navbar-browse{
     margin-left: 55px;
 }
+
