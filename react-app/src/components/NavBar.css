@@ -46,14 +46,14 @@
 
 .navlinks-change {
     text-decoration: none;
-    color: #FF585D;
+    color: #FF385C;
     font-family: 'Raleway', sans-serif;
 }
 
 .home-title{
     font-family: 'Raleway', sans-serif;
     text-decoration: none;
-    color: #FF585D;
+    color: #FF385C;
     font-size: 25px;
     font-weight: bolder;
     display: flex;
@@ -79,7 +79,7 @@
 }
 
 .ghost-after{
-    color: #FF585D;
+    color: #FF385C;
     font-size: 35px;
     text-align: center;
     margin-right: 10px;

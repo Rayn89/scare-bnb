@@ -124,6 +124,73 @@ export const thunk_addSpot =
     }
   };
 
+  //POST REVIEW
+  export const thunk_postReview =
+    ({ spotId, userId, review }) =>
+    async (dispatch) => {
+      const res = await fetch(`/api/reviews/new/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          spotId,
+          userId,
+          review,
+        }),
+      });
+
+      if (res.ok) {
+        const res = await fetch(`/api/posts/`);
+
+        if (res.ok) {
+          const spots = await res.json();
+          dispatch(allSpots(spots));
+          return spots;
+        }
+      }
+    };
+
+//DELETE REVIEW
+export const thunk_deleteReview =
+  ({ reviewId }) =>
+  async (dispatch) => {
+    const res = await fetch(`/api/reviews/${reviewId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        reviewId,
+      }),
+    });
+
+    if (res.ok) {
+      const deletedReview = await res.json();
+      return "Deletion successful";
+    }
+  };
+
+//EDIT REVIEW
+export const thunk_editReview =
+  ({ reviewId, review }) =>
+    async (dispatch) => {
+      const res = await fetch(`/api/reviews/${reviewId}/edit`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          reviewId,
+          review,
+        }),
+      });
+
+      if (res.ok) {
+        return "Update successful"
+      }
+    }
+
 
 //SPOT REDUCER
 const spotReducer = (state = {}, action) => {

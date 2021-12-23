@@ -13,6 +13,7 @@ function SingleSpot() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const spots = useSelector((state) => state.spotReducer.allSpots)
+  const [review, setReview] = useState('');
   const userId = user?.id;
 
   // const reviews = spot?.reviews
@@ -50,16 +51,29 @@ function SingleSpot() {
     );
   }
 
-  // let reviewPost;
-  // if(user) {
-  //   reviewPost = ();
-  // }
+  const postReview = async (spotId) => {
+    if (review) {
+      await dispatch(spotStore.thunk_postReview({ review, userId, spotId }));
+      await dispatch(spotStore.thunk_getAllSpots());
+    }
+    setReview("");
+  };
 
   const deleteSpot = async (id) => {
     await dispatch(spotStore.thunk_deleteSpot({ id }));
     await dispatch(spotStore.thunk_getAllSpots());
     history.push('/spots')
   };
+
+  const editReview = async (reviewId) => {
+    await dispatch(spotStore.thunk_editReview({id}))
+    await dispatch(spotStore.thunk_getAllSpots());
+  }
+
+  const deleteReview = async (reviewId) => {
+    await dispatch(spotStore.thunk_deleteReview({reviewId}))
+    await dispatch(spotStore.thunk_getAllSpots());
+  }
 
 
   useEffect(() => {
@@ -69,6 +83,9 @@ function SingleSpot() {
   return (
     <div className="single-post-container">
       <div className="single-spot-name">{spot?.name}</div>
+      <div className="review-count">
+        <i class="fas fa-star">{spot?.reviews.length} reviews</i>
+      </div>
       <div className="spot-edit-delete">
         <ul className="spot-location">
           <li>{spot?.address} </li>
@@ -104,12 +121,40 @@ function SingleSpot() {
       <div>
         <div>This home is haunted by a: {spot?.haunting}</div>
       </div>
-      {spotReviews &&
-        spotReviews?.map((spot, key) => (
-          <div className="review-container" key={key}>
-            <p>{spot?.review}</p>
-          </div>
-        ))}
+      {user && (
+        <div className="post-reviews">
+          <ul className="review-input">
+            <li>
+              <input
+                type="text"
+                className="review-box"
+                value={review}
+                onChange={(e) => setReview(e.target.value)}
+                placeholder="Leave a review"
+              ></input>
+            </li>
+            <li>
+              <button
+                className="submit-review-button"
+                onClick={() => postReview(spot.id)}
+              >
+                Submit
+              </button>
+            </li>
+          </ul>
+        </div>
+      )}
+      <div className="main-review-container">
+        {spotReviews &&
+          spotReviews?.map((spot, key) => (
+            <div className="review-container" key={key}>
+              <p className="posted-by">{spot?.user.username}</p>
+              <p className="review-contents">{spot?.review}</p>
+              <button onClick={() => editReview(spot.id)}>Edit</button>
+              <button onClick={() => deleteReview(spot.id)}>Delete</button>
+            </div>
+          ))}
+      </div>
     </div>
   );
 }
