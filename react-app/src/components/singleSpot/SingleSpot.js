@@ -115,8 +115,8 @@ function SingleSpot() {
         </div>
       </div>
       <div className="host-and-price-container">
-        <div>Entire house hosted by: {spot?.User}</div>
-        <div>Price: ${spot?.price}/night</div>
+        <div className="host-spot-small">Entire house hosted by: {spot?.User}</div>
+        <div className="spot-price">Price: ${spot?.price}/night</div>
       </div>
       <div>
         <div>This home is haunted by a: {spot?.haunting}</div>

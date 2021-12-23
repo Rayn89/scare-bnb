@@ -178,3 +178,20 @@
     padding: 0px;
     margin-top: 40px;
 }
+
+.host-spot-small{
+    font-size: 20px;
+    color: rgb(140, 140, 140)
+}
+
+.spot-price{
+    font-size: 20px;
+    color: rgb(140, 140, 140)
+}
+
+.host-and-price-container{
+    display: flex;
+    justify-content: space-between;
+    width: 85vw;
+    margin-top: 10px;
+}
