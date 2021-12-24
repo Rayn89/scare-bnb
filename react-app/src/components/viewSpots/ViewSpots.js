@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import NavBar from "../NavBar.js";
 import "./ViewSpots.css";
 import * as spotStore from "../../store/spot";
+import MapContainer from "../MapContainer.js";
 
 
 function ViewSpots() {
@@ -94,6 +95,7 @@ function ViewSpots() {
           </button>
         </div>
       </div>
+      {/* <MapContainer /> */}
       {spotState &&
         spotState.map((spot, key) => (
           <div className="spot-feed-container" key={key}>
