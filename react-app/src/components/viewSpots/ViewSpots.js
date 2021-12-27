@@ -106,13 +106,17 @@ function ViewSpots() {
               alt=""
             />
             <div className="spot-details">
+              <div>
               <span className="spot-name">{spot.name}</span>
-              <ul>
-                <li>Haunted by: {spot.haunting}</li>
-                <li>Entire home hosted by: {spot.User}</li>
-                <li>{"$" + spot.price}/night</li>
-                <li>{spot.reviews.length} review(s)</li>
-              </ul>
+              {/* <ul> */}
+                <p><i className="fas fa-star">{spot.reviews.length} review(s)</i></p>
+                <p>Haunted by: {spot.haunting}</p>
+              {/* </ul> */}
+              </div>
+              <div className="host-and-price">
+                <p>Hosted by: {spot.User}</p>
+                <p>{"$" + spot.price}/night</p>
+              </div>
             </div>
           </div>
         ))}

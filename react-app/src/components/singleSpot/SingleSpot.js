@@ -50,6 +50,27 @@ function SingleSpot() {
       </div>
     );
   }
+  
+  
+  let reviewEdit = (
+    <div className="edit-comment-container">
+      <textarea
+        id="comment-edit-input"
+        type="text"
+        // value={editedComment}
+        // onChange={(e) => setEditedComment(e.target.value)}
+        placeholder=""
+      ></textarea>
+      <span>
+        <button
+          id="edit-comment-submit"
+          // onClick={() => editComment(editedCommentId, editedComment)}
+        >
+          Update
+        </button>
+      </span>
+    </div>
+  );
 
   const postReview = async (spotId) => {
     if (review) {
@@ -115,7 +136,9 @@ function SingleSpot() {
         </div>
       </div>
       <div className="host-and-price-container">
-        <div className="host-spot-small">Entire house hosted by: {spot?.User}</div>
+        <div className="host-spot-small">
+          Entire house hosted by: {spot?.User}
+        </div>
         <div className="spot-price">Price: ${spot?.price}/night</div>
       </div>
       <div>
@@ -148,10 +171,26 @@ function SingleSpot() {
         {spotReviews &&
           spotReviews?.map((spot, key) => (
             <div className="review-container" key={key}>
-              <p className="posted-by">{spot?.user.username}</p>
-              <p className="review-contents">{spot?.review}</p>
-              <button onClick={() => editReview(spot.id)}>Edit</button>
-              <button onClick={() => deleteReview(spot.id)}>Delete</button>
+              <div className="posted-review-container">
+                <p className="posted-by">{spot?.user.username}</p>
+                <p className="review-contents">{spot?.review}</p>
+              </div>
+              {user?.id == spot?.userId && (
+                <div className="edit-delete-button-review">
+                  <button
+                    className="single-spot-button"
+                     onClick={() => reviewEdit}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="single-spot-button"
+                    onClick={() => deleteReview(spot.id)}
+                  >
+                    <i className="far fa-trash-alt"></i>Delete
+                  </button>
+                </div>
+              )}
             </div>
           ))}
       </div>

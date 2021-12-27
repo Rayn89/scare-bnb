@@ -22,7 +22,7 @@ def view_spots():
 
 
 # POST NEW SPOT
-@spot_routes.route("/new", methods=["POST"])
+@spot_routes.route("/new/", methods=["POST"])
 def new_spot_post():
     new_spot = Spot(
         userId=request.json["userId"],
