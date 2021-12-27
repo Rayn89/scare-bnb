@@ -78,136 +78,138 @@ const CreateSpotForm = () => {
   }
 
   return (
-    
-      <section className="section-container">
-        <div className="form-container">
-          <form className="main-form-container"onSubmit={handleSubmit}>
-            <h3>Add a Spot!</h3>
-            <div>
-              {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
-              ))}
-            </div>
-            <div>
+    <section className="section-container">
+      <div className="form-container">
+        <form className="main-form-container" onSubmit={handleSubmit}>
+          <h3 className="new-spot-header">Add a Spot</h3>
+          <div>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
+          <div>
+            <input
+              className="new-spot-input"
+              name="name"
+              type="input"
+              placeholder="Spot Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            ></input>
+          </div>
+          <div>
+            <input
+              className="new-spot-input"
+              name="city"
+              type="input"
+              placeholder="City"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            ></input>
+          </div>
+          <div>
+            <input
+              className="new-spot-input"
+              name="state"
+              type="input"
+              placeholder="State"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+            ></input>
+          </div>
+          <div>
+            <input
+              className="new-spot-input"
+              name="address"
+              type="input"
+              placeholder="Address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            ></input>
+          </div>
+          <div>
+            <input
+              className="new-spot-input"
+              name="country"
+              type="input"
+              placeholder="Country"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+            ></input>
+          </div>
+          <div>
+            <input
+              className=""
+              name="price"
+              type="number"
+              placeholder="Price"
+              min="1"
+              max="10000"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            ></input>
+          </div>
+          <div>
+            <label>
+              Select type of Haunting:
+              <select
+                value={haunting}
+                onChange={(e) => setHaunting(e.target.value)}
+              >
+                <option value="Ghoul">Ghoul</option>
+                <option value="Demon">Demon</option>
+                <option value="Spirit">Spirit</option>
+                <option value="Bladefingers">BladeFingers</option>
+              </select>
+            </label>
+          </div>
+          <h2>Please add three images:</h2>
+          <div className="new-post-photo-container">
+            <div className="content1-container">
+              {content}
               <input
-                className=""
-                name="name"
-                type="input"
-                placeholder="Spot Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></input>
+                type="url"
+                placeholder="Main image URL"
+                className="new-spot-input"
+                onChange={(e) => {
+                  setImage1(e.target.value);
+                }}
+                required
+              />
             </div>
-            <div>
+            <div className="content1-container">
+              {content2}
               <input
-                className=""
-                name="city"
-                type="input"
-                placeholder="City"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-              ></input>
+                type="url"
+                className="new-spot-input"
+                placeholder="Additional Image"
+                onChange={(e) => {
+                  setImage2(e.target.value);
+                  console.log(url);
+                }}
+                required
+              />
             </div>
-            <div>
+            <div className="content1-container">
+              {content3}
               <input
-                className=""
-                name="state"
-                type="input"
-                placeholder="State"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-              ></input>
+                type="url"
+                className="new-spot-input"
+                placeholder="Additional Image"
+                onChange={(e) => {
+                  setImage3(e.target.value);
+                  console.log(url);
+                }}
+                required
+              />
             </div>
-            <div>
-              <input
-                className=""
-                name="address"
-                type="input"
-                placeholder="Address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              ></input>
-            </div>
-            <div>
-              <input
-                className=""
-                name="country"
-                type="input"
-                placeholder="Country"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-              ></input>
-            </div>
-            <div>
-              <input
-                className=""
-                name="price"
-                type="number"
-                placeholder="Price"
-                min="1"
-                max="10000"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-              ></input>
-            </div>
-            <div>
-              <label>
-                Select type of Haunting:
-                <select
-                  value={haunting}
-                  onChange={(e) => setHaunting(e.target.value)}
-                >
-                  <option value="Ghoul">Ghoul</option>
-                  <option value="Demon">Demon</option>
-                  <option value="Spirit">Spirit</option>
-                  <option value="Bladefingers">BladeFingers</option>
-                </select>
-              </label>
-            </div>
-            <div className="new-post-photo-container">
-              <div className="content1-container">
-                {content}
-                <input
-                  type="url"
-                  placeholder="Main image URL"
-                  onChange={(e) => {
-                    setImage1(e.target.value);
-                  }}
-                  required
-                />
-              </div>
-              <div className="content1-container">
-                {content2}
-                <input
-                  type="url"
-                  placeholder="Additional Image"
-                  onChange={(e) => {
-                    setImage2(e.target.value);
-                    console.log(url);
-                  }}
-                  required
-                />
-              </div>
-              <div className="content1-container">
-                {content3}
-                <input
-                  type="url"
-                  placeholder="Additional Image"
-                  onChange={(e) => {
-                    setImage3(e.target.value);
-                    console.log(url);
-                  }}
-                  required
-                />
-              </div>
-            </div>
-            <button className="login-form-button" type="submit">
-              Submit Post
-            </button>
-          </form>
-        </div>
-      </section>
-    
+          </div>
+          <button className="post-spot-form-button" type="submit">
+            Submit Spot
+          </button>
+        </form>
+      </div>
+    </section>
   );
 };
 

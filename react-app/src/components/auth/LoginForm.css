@@ -20,7 +20,7 @@
 }
 
 .login-header{
-    border-bottom: 1px solid #FF585D;
+    border-bottom: 1px solid #FF385C;
 }
 
 .login-form-button{
@@ -28,7 +28,7 @@
     width: 150px;
     height: 50px;
     border-radius: 25px;
-    background-color: #FF585D;
+    background-color: #FF385C;
     border: none;
     font-size: 20px;
     font-family: 'Raleway', sans-serif;
