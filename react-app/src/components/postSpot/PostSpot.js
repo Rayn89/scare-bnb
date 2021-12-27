@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../../store/session";
-// import "./CreatePostForm.css";
 import * as spotStore from "../../store/spot"
 import * as postActions from "../../store/spot";
+import isURL from "validator/lib/isURL";
+import isCurrency from "validator/lib/isCurrency";
 import "./PostSpot.css"
 
 const CreateSpotForm = () => {
@@ -32,28 +33,59 @@ const CreateSpotForm = () => {
     const userId = user.id;
     setUrl({"1":image1, "2":image2, "3":image3})
     console.log("URL =======>", url)
+    const validationErrors = []
+
+    if(!name || name.length > 40){
+      validationErrors.push("Spot name must be between 1 and 40 characters.")
+    }
+    if (!address || address.length > 40) {
+      validationErrors.push("Address must be between 1 and 40 characters.");
+    }
+    if(!city || city.length > 20) {
+      validationErrors.push("City must be between 1 and 20 characters.");
+    }
+    if(!state || state.length > 2){
+      validationErrors.push("Please enter valid state abbreviation.");
+    }
+    if (!country || country.length > 20) {
+      validationErrors.push("Country must be between 1 and 20 characters.");
+    }
+    if(haunting.length < 2){
+      validationErrors.push("Please select a valid haunting.")
+    }
+    if (!price || !isCurrency(price) || price > 1000) {
+      validationErrors.push(
+        "Please enter a valid price between $1 and $1,000"
+      );
+    }
+    if(!isURL(image1) || !isURL(image2) || !isURL(image3)){
+      validationErrors.push("Please input a valid image URL.")
+    }
 
 
+    setErrors(validationErrors);
 
-    await dispatch(
-      postActions.thunk_addSpot({
-        userId,
-        city,
-        country,
-        haunting,
-        price,
-        state,
-        address,
-        name,
-        url,
-      })
-    )
-      .catch(async (res) => {
+    if (!validationErrors.length) {
+      await dispatch(
+        postActions.thunk_addSpot({
+          userId,
+          city,
+          country,
+          haunting,
+          price,
+          state,
+          address,
+          name,
+          url,
+        })
+      ).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
-      })
-      await dispatch(spotStore.thunk_getAllSpots())
-      .then((res) => res && history.push("/spots"));
+      });
+      await dispatch(spotStore.thunk_getAllSpots()).then(
+        (res) => res && history.push("/spots")
+      );
+    }
   };
     
   useEffect(() => {
@@ -84,7 +116,7 @@ const CreateSpotForm = () => {
           <h3 className="new-spot-header">Add a Spot</h3>
           <div>
             {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
+              <div className="errors" key={ind}>{error}</div>
             ))}
           </div>
           <div className="input-field-new">
@@ -95,6 +127,16 @@ const CreateSpotForm = () => {
               placeholder="Spot Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+            ></input>
+          </div>
+          <div className="input-field-new">
+            <input
+              className="new-spot-input"
+              name="address"
+              type="input"
+              placeholder="Address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
             ></input>
           </div>
           <div className="input-field-new">
@@ -117,16 +159,7 @@ const CreateSpotForm = () => {
               onChange={(e) => setState(e.target.value)}
             ></input>
           </div>
-          <div className="input-field-new">
-            <input
-              className="new-spot-input"
-              name="address"
-              type="input"
-              placeholder="Address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            ></input>
-          </div>
+
           <div className="input-field-new">
             <input
               className="new-spot-input"
@@ -146,7 +179,7 @@ const CreateSpotForm = () => {
                 type="number"
                 placeholder="Price"
                 min="1"
-                max="10000"
+                max="1000"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               ></input>
@@ -160,6 +193,7 @@ const CreateSpotForm = () => {
                 value={haunting}
                 onChange={(e) => setHaunting(e.target.value)}
               >
+                <option value=""> </option>
                 <option value="Ghoul">Ghoul</option>
                 <option value="Demon">Demon</option>
                 <option value="Spirit">Spirit</option>

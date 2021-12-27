@@ -77,4 +77,13 @@
 
 .price-per-night{
     margin-left: 10px;
+    margin-top: 15px;
+}
+
+.errors{
+    /* border: 1px solid red; */
+    background-color: rgba(255, 0, 0, 0.372);
+    margin-bottom: 10px;
+    border-radius: 15px;
+    padding: 10px;
 }
