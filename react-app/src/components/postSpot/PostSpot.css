@@ -21,22 +21,28 @@
 
 .new-post-photo-container{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: flex-end;
-    height: 50vh;
+    height: 35vh;
+    width: 80vw;
     margin-bottom: 20px;
 }
 
 .content1-container{
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-items: center;
     justify-content: space-evenly;
+    
+}
+
+.new-post-photo-header{
+    margin-top: 15px;
 }
 
 .new-spot-input{
     margin: 0px;
-    width: 38vw;
+    width: 20vw;
     border: none;
     box-shadow: 0 5px 15px -2px rgb(201, 201, 201);
     height: 40px;
@@ -49,7 +55,7 @@
 }
 
 .post-spot-form-button{
-        color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     width: 150px;
     height: 50px;
     border-radius: 25px;
@@ -63,4 +69,12 @@
 
 .post-spot-form-button:hover{
     cursor: pointer;
+}
+
+.input-field-new{
+    margin-top:5px;
+}
+
+.price-per-night{
+    margin-left: 10px;
 }

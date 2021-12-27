@@ -87,7 +87,7 @@ const CreateSpotForm = () => {
               <div key={ind}>{error}</div>
             ))}
           </div>
-          <div>
+          <div className="input-field-new">
             <input
               className="new-spot-input"
               name="name"
@@ -97,7 +97,7 @@ const CreateSpotForm = () => {
               onChange={(e) => setName(e.target.value)}
             ></input>
           </div>
-          <div>
+          <div className="input-field-new">
             <input
               className="new-spot-input"
               name="city"
@@ -107,7 +107,7 @@ const CreateSpotForm = () => {
               onChange={(e) => setCity(e.target.value)}
             ></input>
           </div>
-          <div>
+          <div className="input-field-new">
             <input
               className="new-spot-input"
               name="state"
@@ -117,7 +117,7 @@ const CreateSpotForm = () => {
               onChange={(e) => setState(e.target.value)}
             ></input>
           </div>
-          <div>
+          <div className="input-field-new">
             <input
               className="new-spot-input"
               name="address"
@@ -127,7 +127,7 @@ const CreateSpotForm = () => {
               onChange={(e) => setAddress(e.target.value)}
             ></input>
           </div>
-          <div>
+          <div className="input-field-new">
             <input
               className="new-spot-input"
               name="country"
@@ -138,21 +138,25 @@ const CreateSpotForm = () => {
             ></input>
           </div>
           <div>
-            <input
-              className=""
-              name="price"
-              type="number"
-              placeholder="Price"
-              min="1"
-              max="10000"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-            ></input>
+            <label>
+              Please select price per night:
+              <input
+                className="price-per-night"
+                name="price"
+                type="number"
+                placeholder="Price"
+                min="1"
+                max="10000"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              ></input>
+            </label>
           </div>
           <div>
             <label>
               Select type of Haunting:
               <select
+                className="price-per-night"
                 value={haunting}
                 onChange={(e) => setHaunting(e.target.value)}
               >
@@ -163,7 +167,7 @@ const CreateSpotForm = () => {
               </select>
             </label>
           </div>
-          <h2>Please add three images:</h2>
+          <h2 className="new-post-photo-header">Please add three images:</h2>
           <div className="new-post-photo-container">
             <div className="content1-container">
               {content}
