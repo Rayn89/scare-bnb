@@ -11,7 +11,7 @@ class Review(db.Model):
     updated_at = db.Column(DateTime, default=datetime.datetime.utcnow)
 
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
-    user = db.relationship("User", back_populates="reviews")
+    user = db.relationship("User", back_populates="reviews", lazy='subquery')
     
     spotId = db.Column(db.Integer, db.ForeignKey('spots.id'))
     spots = db.relationship("Spot", back_populates="reviews")
