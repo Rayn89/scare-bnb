@@ -27,7 +27,7 @@ function SingleSpot() {
   if(spots){
     spot = spots.filter((spot) => spot["id"] == id)[0];
     spotReviews = spot?.reviews
-    console.log(spotReviews)
+
   }
   
   // if(spot){
@@ -65,7 +65,7 @@ function SingleSpot() {
     history.push('/spots')
   };
 
-  const editReview = async (reviewId) => {
+  const editReview = async (id) => {
     await dispatch(spotStore.thunk_editReview({id}))
     await dispatch(spotStore.thunk_getAllSpots());
   }

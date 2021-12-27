@@ -53,7 +53,7 @@ export const thunk_getOneSpot = (id) => async (dispatch) => {
 export const thunk_addSpot =
   ({ userId, city, country, haunting, price, state, images, address, name, url }) =>
   async (dispatch) => {
-    const res = await fetch("/api/spots/new", {
+    const res = await fetch("/api/spots/new/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -141,7 +141,7 @@ export const thunk_addSpot =
       });
 
       if (res.ok) {
-        const res = await fetch(`/api/posts/`);
+        const res = await fetch(`/api/spots/`);
 
         if (res.ok) {
           const spots = await res.json();
