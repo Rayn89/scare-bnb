@@ -25,7 +25,7 @@ html {
     margin-top: 50px;
     display: flex;
     /* border-radius: 10px; */
-    border-top: 1px solid #FF585D;
+    border-top: 1px solid #FF385C;
     padding-top: 45px;
 }
 
@@ -71,7 +71,7 @@ html {
 }
 
 .button-guy:focus{
-    color:#FF585D;
+    color:#FF385C;
 }
 
 .buttons-header{
