@@ -44,7 +44,7 @@ function SingleSpot() {
         </div>
         <div>
           <button className="single-spot-button" onClick={() => deleteSpot(id)}>
-            <i class="far fa-trash-alt"></i>Delete
+            <i className="far fa-trash-alt"></i>Delete
           </button>
         </div>
       </div>
@@ -84,7 +84,7 @@ function SingleSpot() {
     <div className="single-post-container">
       <div className="single-spot-name">{spot?.name}</div>
       <div className="review-count">
-        <i class="fas fa-star">{spot?.reviews.length} reviews</i>
+        <i className="fas fa-star">{spot?.reviews.length} reviews</i>
       </div>
       <div className="spot-edit-delete">
         <ul className="spot-location">
