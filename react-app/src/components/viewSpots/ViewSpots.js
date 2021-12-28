@@ -59,68 +59,74 @@ function ViewSpots() {
   let spotreturn = spots?.map((spot) => checkHaunting(spot));
 
   return (
-    <div className="feed-main-container">
-      <div className="feed-buttons">
-        <div className="buttons-header">Please choose your haunting:</div>
-        <div className="buttons-container">
-          <button
-            className="button-guy"
-            onClick={() => setSpotState(spotReducer?.allSpots)}
-          >
-            All Spots
-          </button>
-          <button
-            className="button-guy"
-            onClick={() => setSpotState(demonArray)}
-          >
-            <span className="button-haunting-text">Demons</span>
-          </button>
-          <button
-            className="button-guy"
-            onClick={() => setSpotState(ghoulArray)}
-          >
-            Ghouls
-          </button>
-          <button
-            className="button-guy"
-            onClick={() => setSpotState(spiritArray)}
-          >
-            Spirits
-          </button>
-          <button
-            className="button-guy"
-            onClick={() => setSpotState(bladefingersArray)}
-          >
-            Bladefingers
-          </button>
+    <section className="background-container">
+      <div className="feed-main-container">
+        <div className="feed-buttons">
+          <div className="buttons-header">Please choose your haunting:</div>
+          <div className="buttons-container">
+            <button
+              className="button-guy"
+              onClick={() => setSpotState(spotReducer?.allSpots)}
+            >
+              All Spots
+            </button>
+            <button
+              className="button-guy"
+              onClick={() => setSpotState(demonArray)}
+            >
+              <span className="button-haunting-text">Demons</span>
+            </button>
+            <button
+              className="button-guy"
+              onClick={() => setSpotState(ghoulArray)}
+            >
+              Ghouls
+            </button>
+            <button
+              className="button-guy"
+              onClick={() => setSpotState(spiritArray)}
+            >
+              Spirits
+            </button>
+            <button
+              className="button-guy"
+              onClick={() => setSpotState(bladefingersArray)}
+            >
+              Bladefingers
+            </button>
+          </div>
         </div>
-      </div>
-      {/* <MapContainer /> */}
-      {spotState &&
-        spotState.map((spot, key) => (
-          <div className="spot-feed-container" key={key}>
-            <img
-              className="feed-image"
-              onClick={() => history.push(`/spots/${spot.id}`)}
-              src={spot.images[0]?.url}
-              alt=""
-            />
-            <div className="spot-details">
-              <div>
-              <span className="spot-name">{spot.name}</span>
-              {/* <ul> */}
-                <p><i className="fas fa-star">{spot.reviews.length} review(s)</i></p>
-                <p>Haunted by: {spot.haunting}</p>
-              {/* </ul> */}
-              </div>
-              <div className="host-and-price">
-                <p>Hosted by: {spot.User}</p>
-                <p>{"$" + spot.price}/night</p>
+        {/* <MapContainer /> */}
+        {spotState &&
+          spotState.map((spot, key) => (
+            <div className="spot-feed-container" key={key}>
+              <img
+                className="feed-image"
+                onClick={() => history.push(`/spots/${spot.id}`)}
+                src={spot.images[0]?.url}
+                alt=""
+              />
+              <div className="spot-details">
+                <div>
+                  <span className="spot-name">{spot.name}</span>
+                  {/* <ul> */}
+                  <p>
+                    <i className="fas fa-star">
+                      {spot.reviews.length} review(s)
+                    </i>
+                  </p>
+                  <p>Haunted by: {spot.haunting}</p>
+                  {/* </ul> */}
+                </div>
+                <div className="host-and-price">
+                  <p>Hosted by: {spot.User}</p>
+                  <p>{"$" + spot.price}/night</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-    </div>
+          ))}
+      </div>
+    </section>
   );
 }
 
