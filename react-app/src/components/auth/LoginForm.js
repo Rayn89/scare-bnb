@@ -43,6 +43,7 @@ const LoginForm = () => {
       <div className="login-email">
         {/* <label htmlFor="email">Email</label> */}
         <input
+          className="new-spot-input"
           name="email"
           type="text"
           placeholder="Email"
@@ -53,6 +54,7 @@ const LoginForm = () => {
       <div className="login-password">
         {/* <label htmlFor="password">Password</label> */}
         <input
+          className="new-spot-input"
           name="password"
           type="password"
           placeholder="Password"

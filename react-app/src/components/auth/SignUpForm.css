@@ -3,12 +3,12 @@
     flex-direction: column;
     align-items: center;
     width: 35vw;
-    height: 35vh;
+    height: 45vh;
     justify-content: center;
     background-color: white;
     color: black;
     border-radius: 10px;
-    
+    transition: ease-in-out .5s;
 }
 
 .signup-email{

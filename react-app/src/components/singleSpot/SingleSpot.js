@@ -108,12 +108,9 @@ function SingleSpot() {
         <i className="fas fa-star">{spot?.reviews.length} reviews</i>
       </div>
       <div className="spot-edit-delete">
-        <ul className="spot-location">
-          <li>{spot?.address} </li>
-          <li>{spot?.city},</li>
-          <li>{spot?.state}</li>
-          <li>{spot?.country}</li>
-        </ul>
+        <div>
+          {spot?.address} {spot?.city}, {spot?.state}
+        </div>
         <div>{content}</div>
       </div>
       <div className="images-container">
@@ -179,7 +176,7 @@ function SingleSpot() {
                 <div className="edit-delete-button-review">
                   <button
                     className="single-spot-button"
-                     onClick={() => reviewEdit}
+                    onClick={() => reviewEdit}
                   >
                     Edit
                   </button>

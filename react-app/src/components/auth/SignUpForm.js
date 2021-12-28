@@ -54,6 +54,7 @@ const SignUpForm = () => {
       <div className="signup-username">
         {/* <label>User Name</label> */}
         <input
+          className="new-spot-input"
           type="text"
           name="username"
           placeholder="User Name"
@@ -64,6 +65,7 @@ const SignUpForm = () => {
       <div className="signup-email">
         {/* <label>Email</label> */}
         <input
+          className="new-spot-input"
           type="text"
           name="email"
           placeholder="Email"
@@ -74,6 +76,7 @@ const SignUpForm = () => {
       <div className="signup-password">
         {/* <label>Password</label> */}
         <input
+          className="new-spot-input"
           type="password"
           name="password"
           placeholder="Password"
@@ -84,6 +87,7 @@ const SignUpForm = () => {
       <div className="signup-username">
         {/* <label>Repeat Password</label> */}
         <input
+          className="new-spot-input"
           type="password"
           name="repeat_password"
           placeholder="Confirm Password"
@@ -92,7 +96,9 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
-      <button className="signup-form-button"type="submit">Sign Up</button>
+      <button className="signup-form-button" type="submit">
+        Sign Up
+      </button>
     </form>
   );
 };

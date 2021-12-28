@@ -67,7 +67,7 @@ function ViewSpots() {
             className="button-guy"
             onClick={() => setSpotState(spotReducer?.allSpots)}
           >
-            All
+            All Spots
           </button>
           <button
             className="button-guy"
