@@ -8,6 +8,7 @@ import "./NavBar.css"
 
 const NavBar = ({isLoaded}) => {
   const user = useSelector((state) => state.session.user)
+  const [searchTerm, setSearchTerm] = useState('')
   let sessionLinks;
   const [changeNavBar, setChangeNavBar] = useState(false)
   const navBarChange = () => {
@@ -65,7 +66,9 @@ const NavBar = ({isLoaded}) => {
               activeClassName="active"
             >
               <i
-                className={changeNavBar ? "fas fa-ghost ghost-after" : "fas fa-ghost"}
+                className={
+                  changeNavBar ? "fas fa-ghost ghost-after" : "fas fa-ghost"
+                }
               ></i>
               <span
                 className={changeNavBar ? "home-title" : "home-title-change"}
@@ -78,7 +81,9 @@ const NavBar = ({isLoaded}) => {
         <div className="navbar-browse">
           <li>
             <NavLink
-              className={changeNavBar ? "navlinks-change no-blood" : "navlinks blood"}
+              className={
+                changeNavBar ? "navlinks-change no-blood" : "navlinks blood"
+              }
               to="/spots"
               exact={true}
               activeClassName="active"

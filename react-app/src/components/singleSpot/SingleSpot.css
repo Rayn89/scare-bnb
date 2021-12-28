@@ -130,6 +130,11 @@
     padding: 5px;
     margin-top: 15px;
     box-shadow: 0 5px 15px -2px rgb(201, 201, 201);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.317);
+
 }
 
 .posted-by{
@@ -172,6 +177,10 @@
     box-shadow: 0 5px 15px -2px rgb(140, 140, 140);
 }
 
+.submit-review-button:hover{
+    cursor: pointer;
+}
+
 .review-input{
     display: flex;
     list-style-type: none;
@@ -194,4 +203,10 @@
     justify-content: space-between;
     width: 85vw;
     margin-top: 10px;
+}
+
+.edit-delete-button-review{
+    /* position:relative;
+    bottom: 0px; */
+    align-self: flex-end;
 }

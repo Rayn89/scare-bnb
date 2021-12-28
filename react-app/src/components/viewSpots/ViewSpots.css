@@ -17,6 +17,9 @@ html {
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 25px;
+    height: 100%;
+    /* position:relative;
+    z-index:-1; */
 }
 
 .spot-feed-container{
@@ -24,9 +27,19 @@ html {
     height: 250px;
     margin-top: 50px;
     display: flex;
-    /* border-radius: 10px; */
-    border-top: 1px solid #FF385C;
-    padding-top: 45px;
+    border-radius: 10px;
+    /* border-top: 1px solid #FF385C; */
+    /* padding-top: 45px; */
+    /* border: 1px solid black; */
+    box-shadow: 0 5px 15px -2px rgb(201, 201, 201);
+    transition: transform .5s;
+
+}
+
+.spot-feed-container:hover{
+    /* opacity: 0.8; */
+    transform: scale(1.05);
+    /* z-index: 1; */
 }
 
 .feed-image{
@@ -42,14 +55,17 @@ html {
 
 .spot-name{
     /* background-color: black; */
-    font-size: 30px;
-    margin-left: 30px;
+    font-size: 1.5rem;
+    /* margin-left: 30px; */
 }
 
 .feed-buttons{
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 5px solid #FF385C;
+    width: 100%;
 }
 
 .button-guy{
@@ -82,4 +98,23 @@ html {
     width: 70vw;
     justify-content: space-evenly;
     display: flex;
+}
+
+.host-and-price{
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    /* justify-self: flex-end; */
+    /* padding: 10px; */
+}
+
+.spot-details{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    /* align-items: */
+    box-sizing: border-box;
 }
