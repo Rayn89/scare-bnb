@@ -44,8 +44,8 @@ const CreateSpotForm = () => {
     if(!city || city.length > 20) {
       validationErrors.push("City must be between 1 and 20 characters.");
     }
-    if(!state || state.length > 2){
-      validationErrors.push("Please enter valid state abbreviation.");
+    if(!state || state.length > 20){
+      validationErrors.push("Please enter valid state.");
     }
     if (!country || country.length > 20) {
       validationErrors.push("Country must be between 1 and 20 characters.");

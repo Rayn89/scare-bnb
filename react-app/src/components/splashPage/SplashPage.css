@@ -5,7 +5,7 @@
 .splash-page-container{
     background-color: black;
     width: 100vw;
-    height: 1000px;
+    height: 1250px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -17,7 +17,7 @@
 }
 
 .splash-page-image-container{
-    margin-top: -150px;
+    margin-top: -20px;
 }
 
 .splash-page-image{
@@ -67,4 +67,46 @@
 .haunting-header{
     color: white;
     font-family: 'Raleway', sans-serif;
+    margin-top: 50px;
+}
+
+.splash-page-haunts{
+    display:flex;
+    color: white;
+    list-style-type: none;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px;
+    margin-top: 25px;
+}
+
+.haunter{
+    width: 20vw;
+    height: 350px;
+    border: 1px solid white;
+    /* margin-left: 10px; */
+    border-radius: 15px;
+    margin: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.demon {
+    background-image: url("https://japantruly.com/wp-content/uploads/2020/07/best-demon-anime-scaled.jpg");
+    background-size: 100% 100%;
+}
+
+.spirit {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDO2Kra-TdLEsj_vZ-sTvQXig5N1Eni5d2CQ&usqp=CAU");
+    background-size: 100% 100%;
+}
+
+.ghoul {
+    background-image: url("https://ibart.b-cdn.net/images/Contest/40/80_HOLx7BAOaXkjGBYY_081220225743.jpg");
+    background-size: 100% 100%;
+}
+
+.bladefingers {
+    background-image: url("https://i.kym-cdn.com/photos/images/newsfeed/001/855/660/ca9.jpeg");
+    background-size: 100% 100%;
 }

@@ -83,7 +83,7 @@
 .errors{
     /* border: 1px solid red; */
     background-color: rgba(255, 0, 0, 0.372);
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     border-radius: 15px;
-    padding: 10px;
+    padding: 5px;
 }

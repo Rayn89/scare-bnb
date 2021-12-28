@@ -34,13 +34,24 @@ function SplashPage() {
       <div className="splash-page-image-container">
         <div className="splash-page-image">
           <h1 className="splash-page-span">Not sure where to go? Perfect</h1>
-          <button className="flexible-button" onClick={() => history.push(`/spots/${randomNumber}`)}>
+          <button
+            className="flexible-button"
+            onClick={() => history.push(`/spots/${randomNumber}`)}
+          >
             <span className="button-text">I'm Flexible</span>
           </button>
         </div>
       </div>
       <div className="splash-page-haunting-container">
         <h1 className="haunting-header">Choose your perfect haunting!</h1>
+        <div>
+          <ul className="splash-page-haunts">
+            <li className="haunter ghoul">Ghouls</li>
+            <li className="haunter spirit">Spirits</li>
+            <li className="haunter demon">Demons</li>
+            <li className="haunter bladefingers">Bladefingers</li>
+          </ul>
+        </div>
       </div>
     </div>
   );
