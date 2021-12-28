@@ -82,7 +82,9 @@ const NavBar = ({isLoaded}) => {
           <li>
             <NavLink
               className={
-                changeNavBar ? "navlinks-change no-blood" : "navlinks blood"
+                changeNavBar
+                  ? "navlinks-change no-blood"
+                  : "navlinks blood"
               }
               to="/spots"
               exact={true}

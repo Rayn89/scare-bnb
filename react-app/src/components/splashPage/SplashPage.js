@@ -46,10 +46,44 @@ function SplashPage() {
         <h1 className="haunting-header">Choose your perfect haunting!</h1>
         <div>
           <ul className="splash-page-haunts">
-            <li className="haunter ghoul">Ghouls</li>
-            <li className="haunter spirit">Spirits</li>
-            <li className="haunter demon">Demons</li>
-            <li className="haunter bladefingers">Bladefingers</li>
+            <li className="haunter ghoul">
+              Ghouls
+              <Link
+                to={{ pathname: "https://en.wikipedia.org/wiki/Ghoul" }}
+                target="_blank"
+              >
+                <button className="learnmore">Learn More</button>
+              </Link>
+            </li>
+            <li className="haunter spirit">
+              Spirits
+              <Link
+                to={{ pathname: "https://en.wikipedia.org/wiki/Spirit" }}
+                target="_blank"
+              >
+                <button className="learnmore">Learn More</button>
+              </Link>
+            </li>
+            <li className="haunter demon">
+              Demons
+              <Link
+                to={{ pathname: "https://en.wikipedia.org/wiki/Demon" }}
+                target="_blank"
+              >
+                <button className="learnmore">Learn More</button>
+              </Link>
+            </li>
+            <li className="haunter bladefingers">
+              Bladefingers
+              <Link
+                to={{
+                  pathname: "https://en.wikipedia.org/wiki/Freddy_Krueger",
+                }}
+                target="_blank"
+              >
+                <button className="learnmore">Learn More</button>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

@@ -92,6 +92,10 @@
     padding: 10px;
     box-sizing: border-box;
     box-shadow: 0 5px 5px -2px rgb(58, 58, 58);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .demon {
@@ -145,4 +149,18 @@
 
 .footer-name{
     color: #FF385C;
+}
+
+.learnmore{
+    background-color: #FF385C;
+    border: none;
+    color: white;
+    width: 150px;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+.learnmore:hover{
+    cursor: pointer;
 }
