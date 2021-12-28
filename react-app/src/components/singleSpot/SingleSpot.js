@@ -18,9 +18,9 @@ function SingleSpot() {
 
   // const reviews = spot?.reviews
   // console.log(reviews)
-  // if(!spot){
-  //   history.push('/spots')
-  // }
+  if(!spots){
+    history.push('/spots')
+  }
 
   let spot;
   let spotReviews;
