@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 // import NavBar from "../NavBar.js";
 import "./SplashPage.css";
 import * as spotStore from "../../store/spot";
@@ -52,6 +52,34 @@ function SplashPage() {
             <li className="haunter bladefingers">Bladefingers</li>
           </ul>
         </div>
+      </div>
+      <div className="footer">
+        <p className="footer-name">Raymond Nehring</p>
+        <ul className="footer-list">
+          <li>
+            <Link
+              className="links"
+              to={{
+                pathname:
+                  "https://www.linkedin.com/in/raymond-nehring-553ba2206/",
+              }}
+              target="_blank"
+            >
+              <i class="fab fa-linkedin"></i>
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="links"
+              to={{
+                pathname: "https://github.com/Rayn89",
+              }}
+              target="_blank"
+            >
+              <i class="fab fa-github-square"></i>
+            </Link>
+          </li>
+        </ul>
       </div>
     </div>
   );

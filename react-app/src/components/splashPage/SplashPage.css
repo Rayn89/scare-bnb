@@ -13,7 +13,7 @@
 }
 
 .splash-page {
-    color: #FF5A5F
+    color: #FF385C
 }
 
 .splash-page-image-container{
@@ -91,6 +91,7 @@
     margin: 10px;
     padding: 10px;
     box-sizing: border-box;
+    box-shadow: 0 5px 5px -2px rgb(58, 58, 58);
 }
 
 .demon {
@@ -111,4 +112,37 @@
 .bladefingers {
     background-image: url("https://i.kym-cdn.com/photos/images/newsfeed/001/855/660/ca9.jpeg");
     background-size: 100% 100%;
+}
+
+.footer{
+    width: 100vw;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    bottom: -40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.fa-linkedin{
+    font-size: 30px;
+    color: #FF385C;
+    margin-right: 15px;
+}
+
+.fa-github-square{
+    font-size: 30px;
+    color: #FF385C;
+}
+
+.footer-list{
+    display: flex;
+    list-style-type: none;
+    /* margin-right: 15px; */
+    padding: 0px;
+}
+
+.footer-name{
+    color: #FF385C;
 }

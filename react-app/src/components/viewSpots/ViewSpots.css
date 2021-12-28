@@ -9,7 +9,7 @@ html {
 .background-container{
     min-height: 100vh;
     min-width: 100vw;
-    background-color: rgb(148, 36, 36);
+    /* background-color: rgb(148, 36, 36); */
     display: flex;
     flex-direction: column;
     align-items: center;
