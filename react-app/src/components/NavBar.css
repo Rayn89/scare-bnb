@@ -134,9 +134,17 @@
     padding-right: 10px;
 }
 
+.before:hover{
+    cursor: pointer;
+}
+
 .change{
     font-size: 20px;
     color: #FF385C;
     padding-right: 10px;
+}
+
+.change:hover{
+    cursor: pointer;
 }
 
