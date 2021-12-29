@@ -73,7 +73,7 @@ function SingleSpot() {
   );
 
   const postReview = async (spotId) => {
-    if (review) {
+    if (review.length < 300) {
       await dispatch(spotStore.thunk_postReview({ review, userId, spotId }));
       await dispatch(spotStore.thunk_getAllSpots());
     }

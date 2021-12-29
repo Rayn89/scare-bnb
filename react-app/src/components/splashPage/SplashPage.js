@@ -44,11 +44,12 @@ function SplashPage() {
       </div>
       <div className="splash-page-haunting-container">
         <h1 className="haunting-header">Choose your perfect haunting!</h1>
-        <div>
+        <div className="haunting-tiles">
           <ul className="splash-page-haunts">
             <li className="haunter ghoul">
               Ghouls
               <Link
+                className="haunt-link"
                 to={{ pathname: "https://en.wikipedia.org/wiki/Ghoul" }}
                 target="_blank"
               >
@@ -58,6 +59,7 @@ function SplashPage() {
             <li className="haunter spirit">
               Spirits
               <Link
+                className="haunt-link"
                 to={{ pathname: "https://en.wikipedia.org/wiki/Spirit" }}
                 target="_blank"
               >
@@ -67,6 +69,7 @@ function SplashPage() {
             <li className="haunter demon">
               Demons
               <Link
+                className="haunt-link"
                 to={{ pathname: "https://en.wikipedia.org/wiki/Demon" }}
                 target="_blank"
               >
@@ -76,6 +79,7 @@ function SplashPage() {
             <li className="haunter bladefingers">
               Bladefingers
               <Link
+                className="haunt-link"
                 to={{
                   pathname: "https://en.wikipedia.org/wiki/Freddy_Krueger",
                 }}
@@ -99,7 +103,7 @@ function SplashPage() {
               }}
               target="_blank"
             >
-              <i class="fab fa-linkedin"></i>
+              <i className="fab fa-linkedin"></i>
             </Link>
           </li>
           <li>
@@ -110,7 +114,7 @@ function SplashPage() {
               }}
               target="_blank"
             >
-              <i class="fab fa-github-square"></i>
+              <i className="fab fa-github-square"></i>
             </Link>
           </li>
         </ul>

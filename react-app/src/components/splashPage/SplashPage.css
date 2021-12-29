@@ -30,6 +30,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 35px;
 }
 
 .splash-page-span{
@@ -155,7 +156,7 @@
     background-color: #FF385C;
     border: none;
     color: white;
-    width: 150px;
+    width: 80%;
     height: 50px;
     border-radius: 15px;
     font-size: 20px;
@@ -163,4 +164,20 @@
 
 .learnmore:hover{
     cursor: pointer;
+}
+
+.footer{
+    position: relative;
+    bottom: -100px;
+    margin-bottom: 50px;
+}
+
+.haunting-tiles{
+    display: flex;
+}
+
+.haunt-link{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
 }
