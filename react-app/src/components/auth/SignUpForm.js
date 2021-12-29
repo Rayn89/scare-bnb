@@ -26,7 +26,7 @@ const SignUpForm = () => {
         "Please enter a valid Email address."
       );
     }
-    if (!password || username.length < 8 || username.length > 25) {
+    if (!password || password.length < 8 || password.length > 25) {
       validationErrors.push(
         "Please enter Password between 8 and 25 characters."
       );
