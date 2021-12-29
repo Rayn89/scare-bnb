@@ -6,7 +6,8 @@ ScareBnB, a loose AirBnB clone, is an application that allows users to host a sp
 <h4> Documentation: <a href="https://github.com/Rayn89/scare-bnb/wiki">ScareBnB Wiki</a></h4>
 
 Splash Page
-![splashpagegif](https://res.cloudinary.com/deaekdi5y/image/upload/v1640803830/updated_splash_zov2ln.gif)
+
+* ![splashpagegif](https://res.cloudinary.com/deaekdi5y/image/upload/v1640803830/updated_splash_zov2ln.gif)
 
 ### Features ###
 
