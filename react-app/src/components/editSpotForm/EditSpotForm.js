@@ -30,8 +30,9 @@ const EditSpotForm = () => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       })
-    await dispatch(spotActions.thunk_getAllSpots())
-    .then(history.push('/spots'))
+    await dispatch(spotActions.thunk_getAllSpots()).then(
+      (res) => res && history.push("/spots")
+    );
   };
 
 
@@ -39,8 +40,8 @@ const EditSpotForm = () => {
     <>
       <section>
         <div>
-          <form onSubmit={handleSubmit}>
-            <h3>Edit Spot</h3>
+          <form className="edit-form" onSubmit={handleSubmit}>
+            <h3 className="edit-header">Edit Spot</h3>
             <div>
               {errors.map((error, ind) => (
                 <div key={ind}>{error}</div>
@@ -48,7 +49,7 @@ const EditSpotForm = () => {
             </div>
             <div>
               <input
-                className=""
+                className="edit-spot-input"
                 name="name"
                 type="input"
                 placeholder="Spot Name"
@@ -57,7 +58,7 @@ const EditSpotForm = () => {
               ></input>
               <div>
                 <input
-                  className=""
+                  className="edit-spot-input"
                   name="price"
                   type="number"
                   placeholder="Price"
@@ -74,6 +75,7 @@ const EditSpotForm = () => {
                     value={haunting}
                     onChange={(e) => setHaunting(e.target.value)}
                   >
+                    <option value=""> </option>
                     <option value="Ghoul">Ghoul</option>
                     <option value="Demon">Demon</option>
                     <option value="Spirit">Spirit</option>
@@ -82,7 +84,7 @@ const EditSpotForm = () => {
                 </label>
               </div>
             </div>
-            <button type="submit">Submit</button>
+            <button className="edit-form-button" type="submit">Submit</button>
           </form>
         </div>
       </section>

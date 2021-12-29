@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import isEmail from "validator/lib/isEmail";
 import "./SignUpForm.css"
 
 const SignUpForm = () => {
@@ -15,11 +16,32 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data)
-      }
+    let validationErrors = []
+
+    if(!username || username.length < 5 || username.length > 20){
+      validationErrors.push("Please enter User Name between 5 and 20 characters.")
+    }
+    if (!isEmail(email)) {
+      validationErrors.push(
+        "Please enter a valid Email address."
+      );
+    }
+    if (!password || username.length < 8 || username.length > 25) {
+      validationErrors.push(
+        "Please enter Password between 8 and 25 characters."
+      );
+    }
+    if (password !== repeatPassword) {
+      validationErrors.push("Password and Confirm Password must match.")
+    }
+
+    setErrors(validationErrors)
+
+    if (!validationErrors.length) {
+      await dispatch(signUp(username, email, password));
+      // if (data) {
+      //   setErrors(data)
+      // }
     }
   };
 
@@ -46,10 +68,12 @@ const SignUpForm = () => {
   return (
     <form className="signup-form" onSubmit={onSignUp}>
       <h2 className="signup-header">Please Sign-Up</h2>
-      <div>
+      <div className="errors-container">
+        <ul className="error-list">
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <li key={ind}>{error}</li>
         ))}
+        </ul>
       </div>
       <div className="signup-username">
         {/* <label>User Name</label> */}

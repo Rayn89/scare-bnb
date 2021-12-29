@@ -82,8 +82,13 @@
 
 .errors{
     /* border: 1px solid red; */
-    background-color: rgba(255, 0, 0, 0.372);
+    /* background-color: rgba(255, 0, 0, 0.372); */
     margin-bottom: 5px;
     border-radius: 15px;
     padding: 5px;
+}
+
+.error-list-container{
+    display: flex;
+    justify-content: center;
 }
