@@ -14,6 +14,9 @@ function SingleSpot() {
   const user = useSelector((state) => state.session.user);
   const spots = useSelector((state) => state.spotReducer.allSpots)
   const [review, setReview] = useState('');
+  const [editedReview, setEditedReview] = useState('')
+  const [editReviewId, setEditReviewId] = useState('')
+  const [editSelected, setEditSelected] = useState([false, null])
   const userId = user?.id;
 
   // const reviews = spot?.reviews
@@ -52,25 +55,25 @@ function SingleSpot() {
   }
   
   
-  let reviewEdit = (
-    <div className="edit-comment-container">
+  let reviewEdit = 
+    <div className="edit-review-container">
       <textarea
-        id="comment-edit-input"
+        id="review-edit-input"
         type="text"
-        // value={editedComment}
-        // onChange={(e) => setEditedComment(e.target.value)}
+        value={editedReview}
+        onChange={(e) => setEditedReview(e.target.value)}
         placeholder=""
       ></textarea>
       <span>
         <button
-          id="edit-comment-submit"
-          // onClick={() => editComment(editedCommentId, editedComment)}
+          id="edit-review-submit"
+          onClick={() => editReview(editReviewId, editedReview)}
         >
           Update
         </button>
       </span>
     </div>
-  );
+  
 
   const postReview = async (spotId) => {
     if (review.length < 300) {
@@ -87,8 +90,13 @@ function SingleSpot() {
   };
 
   const editReview = async (id) => {
-    await dispatch(spotStore.thunk_editReview({id}))
+    let reviewId = editReviewId
+    let review = editedReview
+    if(editedReview){
+    await dispatch(spotStore.thunk_editReview({reviewId, review}))
     await dispatch(spotStore.thunk_getAllSpots());
+    }
+    setEditSelected([false,null])
   }
 
   const deleteReview = async (reviewId) => {
@@ -170,13 +178,17 @@ function SingleSpot() {
             <div className="review-container" key={key}>
               <div className="posted-review-container">
                 <p className="posted-by">{spot?.user.username}</p>
-                <p className="review-contents">{spot?.review}</p>
+                <div className="review-contents">{editSelected[0] && editSelected[1] == spot.id ? reviewEdit : spot?.review}</div>
               </div>
               {user?.id == spot?.userId && (
                 <div className="edit-delete-button-review">
                   <button
                     className="single-spot-button"
-                    onClick={() => reviewEdit}
+                    onClick={() => {
+                      setEditedReview(spot.review)
+                      setEditReviewId(spot.id)
+                      setEditSelected([!editSelected[0], spot.id])
+                    }}
                   >
                     Edit
                   </button>
