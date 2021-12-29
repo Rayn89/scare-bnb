@@ -30,8 +30,9 @@ const EditSpotForm = () => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       })
-    await dispatch(spotActions.thunk_getAllSpots())
-    .then(history.push('/spots'))
+    await dispatch(spotActions.thunk_getAllSpots()).then(
+      (res) => res && history.push("/spots")
+    );
   };
 
 

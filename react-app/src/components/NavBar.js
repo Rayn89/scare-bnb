@@ -1,12 +1,13 @@
 import { useSelector } from "react-redux";
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import LoginFormModal from './LoginFormModal';
 import SignUpFormModal from "./SignUpFormModal";
 import "./NavBar.css"
 
 const NavBar = ({isLoaded}) => {
+  const history = useHistory();
   const user = useSelector((state) => state.session.user)
   const [searchTerm, setSearchTerm] = useState('')
   let sessionLinks;
@@ -23,17 +24,33 @@ const NavBar = ({isLoaded}) => {
   if(!user) {
     sessionLinks = (
       <div className="logged-out-navbar">
-          <li>
-            <LoginFormModal />
-          </li>
-          <li>
-            <SignUpFormModal />
-          </li>
+        <li>
+          <i
+            onClick={() => history.push(`/spots/search`)}
+             className={
+              changeNavBar ? "fas fa-search change" : "fas fa-search before"
+            }
+          ></i>
+        </li>
+        <li>
+          <LoginFormModal />
+        </li>
+        <li>
+          <SignUpFormModal />
+        </li>
       </div>
     );
   }else{
     sessionLinks = (
       <div className="logged-in-navbar">
+        <li>
+          <i
+            onClick={() => history.push(`/spots/search`)}
+            className={
+              changeNavBar ? "fas fa-search change" : "fas fa-search before"
+            }
+          ></i>
+        </li>
         <li className="navbar-host">
           <NavLink
             className={changeNavBar ? "navlinks-change" : "navlinks"}

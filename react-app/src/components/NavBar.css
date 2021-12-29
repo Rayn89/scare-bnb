@@ -112,6 +112,8 @@
 .logged-out-navbar{
     display: flex;
     margin-right: 35px;
+    display: flex;
+    align-items: center;
 }
 
 .navbar-host{
@@ -120,5 +122,21 @@
 
 .navbar-browse{
     margin-left: 55px;
+}
+
+.fa-search{
+    margin-top: 5px;
+}
+
+.before{
+    font-size: 20px;
+    color: #ffffff;
+    padding-right: 10px;
+}
+
+.change{
+    font-size: 20px;
+    color: #FF385C;
+    padding-right: 10px;
 }
 

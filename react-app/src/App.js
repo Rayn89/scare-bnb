@@ -13,6 +13,7 @@ import CreateSpotForm from './components/postSpot/PostSpot'
 import SplashPage from './components/splashPage/SplashPage';
 import SingleSpot from './components/singleSpot/SingleSpot';
 import EditSpotForm from './components/editSpotForm/EditSpotForm';
+import SearchPage from './components/SearchPage/SearchPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -44,6 +45,9 @@ function App() {
         </Route>
         <Route path="/spots/new" exact={true}>
           <CreateSpotForm />
+        </Route>
+        <Route path="/spots/search" exact={true}>
+          <SearchPage />
         </Route>
         <Route path="/spots/:id" exact={true}>
           <SingleSpot />

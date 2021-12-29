@@ -114,10 +114,12 @@ const CreateSpotForm = () => {
       <div className="form-container">
         <form className="main-form-container" onSubmit={handleSubmit}>
           <h3 className="new-spot-header">Add a Spot</h3>
-          <div>
+          <div className="error-list-container">
+            <ul className="error-list">
             {errors.map((error, ind) => (
-              <div className="errors" key={ind}>{error}</div>
+              <li className="errors" key={ind}>{error}</li>
             ))}
+            </ul>
           </div>
           <div className="input-field-new">
             <input
