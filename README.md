@@ -7,59 +7,32 @@ ScareBnB, a loose AirBnB clone, is an application that allows users to host a sp
 
 Splash Page
 
-* ![splashpagegif](https://res.cloudinary.com/deaekdi5y/image/upload/v1640803830/updated_splash_zov2ln.gif)
+![splashpagegif](https://res.cloudinary.com/deaekdi5y/image/upload/v1640803830/updated_splash_zov2ln.gif)
+
+Sort by types of hauntings at a spot:
+
+![types](https://res.cloudinary.com/deaekdi5y/image/upload/v1640803959/updated_types_ujhpnm.gif)
+
+Look through all spots and associated reviews:
+
+![spots](https://res.cloudinary.com/deaekdi5y/image/upload/v1640804090/updated_spots_bhtrxu.gif)
 
 ### Features ###
 
 * Sign-up and login with credentials
-* Profile image added to user profiles
-* Follow other users so you can see their posts on your feed
-* Dynamic liking and commenting on posts
+* Unregisted users can view all spots and use search feature
+* View all spots and associated reviews
+* Dynamic reviews on all spots
 * Easy to use interface
-* Logged in user can create posts
-* Logged in user can comment on other users posts
-* Logged in user can edit/delete their own posts
-* Logged in user can edit/delete their own comments
+* Logged in user can host spots
+* Logged in user can post reviews on spots
+* Logged in user can edit/delete their own spots
+* Logged in user can edit/delete their own reviews
 
+## Tech Stack ##
 
-
-<h3>Contributors</h3>
-<ul>
-  <li>
-    <a href=https://github.com/patrickwellman>Patrick Wellman</a></li>
-  <li>
-    <a href=https://github.com/Rayn89>Ray Nehring</a></li>
-  <li>
-    <a href=https://github.com/gavinfitch>Gavin Fitch</a></li>
-  <li>
-    <a href=https://github.com/cloudiosx>John Kim</a></li>
-</ul>
-
-## Project-related Files ##
-
-
-* Scorecard (Google Doc)
-
-```
-https://docs.google.com/spreadsheets/d/13xKwRgh1cRTNI7h4AHEbCWFop8OVoLLfDrsmeyErqJk/edit#gid=1927083016
-```
-
-* Tables Image (Google Doc)
-
-```
-https://dbdiagram.io/d/61a811e48c901501c0dc5ee1
-```
-
-## GitHub Files ##
-
-* Wiki
-
-```
-https://github.com/PatrickWellman/Instagram-clone/wiki
-```
-
-* Kanban board
-
-```
-https://github.com/PatrickWellman/Instagram-clone/projects/1
-```
+* React
+* Redux
+* Python
+* Flask
+* SQLAlchemy
