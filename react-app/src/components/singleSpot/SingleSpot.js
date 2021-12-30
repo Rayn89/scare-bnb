@@ -151,6 +151,7 @@ function SingleSpot() {
       </div>
       {user && (
         <div className="post-reviews">
+          {user.id !== spot.userId && 
           <ul className="review-input">
             <li>
               <input
@@ -170,6 +171,7 @@ function SingleSpot() {
               </button>
             </li>
           </ul>
+          }
         </div>
       )}
       <div className="main-review-container">

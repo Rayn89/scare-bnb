@@ -35,13 +35,15 @@ const SignUpForm = () => {
       validationErrors.push("Password and Confirm Password must match.")
     }
 
+
+
     setErrors(validationErrors)
 
     if (!validationErrors.length) {
-      await dispatch(signUp(username, email, password));
-      // if (data) {
-      //   setErrors(data)
-      // }
+      const data = await dispatch(signUp(username, email, password));
+      if (data) {
+        setErrors(data)
+      }
     }
   };
 

@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from app.models import Spot, Image, User, Review, db
+from sqlalchemy import desc, or_
 
 spot_routes = Blueprint("spots", __name__)
 
@@ -7,7 +8,7 @@ spot_routes = Blueprint("spots", __name__)
 @spot_routes.route("/")
 def view_spots():
     spots = (Spot.query.join(User, User.id == Spot.userId)
-    .add_columns(User.username).all()
+    .add_columns(User.username).order_by(desc(Spot.created_at)).all()
     )
     returnList = []
     for spot in spots:
@@ -15,7 +16,7 @@ def view_spots():
         newDict["User"] = spot[1]
         image = Image.query.filter(Image.spotId == spot[0].id).all()
         newDict["images"] = [img.to_dict() for img in image]
-        review = Review.query.filter(Review.spotId == spot[0].id).all()
+        review = Review.query.filter(Review.spotId == spot[0].id).order_by(desc(Review.created_at)).all()
         newDict["reviews"] = [rev.to_dict() for rev in review]
         returnList.append(newDict)
     return jsonify(returnList)
