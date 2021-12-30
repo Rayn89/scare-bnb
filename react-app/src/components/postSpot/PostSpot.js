@@ -34,7 +34,7 @@ const CreateSpotForm = () => {
     setUrl({"1":image1, "2":image2, "3":image3})
     console.log("URL =======>", url)
     const validationErrors = []
-
+    console.log(url["1"])
     if(!name || name.length > 40){
       validationErrors.push("Spot name must be between 1 and 40 characters.")
     }
@@ -60,6 +60,9 @@ const CreateSpotForm = () => {
     }
     if(!isURL(image1) || !isURL(image2) || !isURL(image3)){
       validationErrors.push("Please input a valid image URL.")
+    }
+    if (!/\.(jpe?g|png|gif|bmp)$/gi.test(image1) || !/\.(jpe?g|png|gif|bmp)$/gi.test(image2) || !/\.(jpe?g|png|gif|bmp)$/gi.test(image3)) {
+      validationErrors.push("Must be a valid image url format (.jpeg, .png, .gif, .bmp");
     }
 
 
