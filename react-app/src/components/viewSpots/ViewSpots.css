@@ -83,6 +83,10 @@ html {
     width: 100%;
 }
 
+.review-color{
+    color: #FF385C;
+}
+
 .button-guy{
     margin-top: 30px;
     color: black;

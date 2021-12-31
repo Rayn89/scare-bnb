@@ -111,9 +111,9 @@ function ViewSpots() {
                   <span className="spot-name">{spot.name}</span>
                   {/* <ul> */}
                   <p>
-                    <i className="fas fa-star">
-                      {spot.reviews.length} review(s)
-                    </i>
+                    {/* <i className="fas fa-star"> */}
+                      <span className="review-color">{spot.reviews.length} review(s)</span>
+                    {/* </i> */}
                   </p>
                   <p>Haunted by: {spot.haunting}</p>
                   {/* </ul> */}
