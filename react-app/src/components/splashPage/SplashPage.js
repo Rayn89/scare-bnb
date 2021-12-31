@@ -14,7 +14,7 @@ function SplashPage() {
   let randomNum = Math.floor(Math.random() * (4 - 1) + 1);
   
   //   let allSpotsArr;
-  console.log(spots);
+  
 
   useEffect(() => {
     dispatch(spotStore.thunk_getAllSpots());
@@ -28,12 +28,12 @@ function SplashPage() {
   // <button onClick={() => history.push(`/spots/${randomNumber}`)}>
   //   Random
   // </button>;
-
+  
   return (
     <div className="splash-page-container">
       <div className="splash-page-image-container">
         <div className="splash-page-image">
-          <h1 className="splash-page-span">Not sure where to go? Perfect</h1>
+          <h1 className="splash-page-span">Not sure where to go? <span className="perfect">Perfect</span></h1>
           <button
             className="flexible-button"
             onClick={() => history.push(`/spots/${randomNumber}`)}

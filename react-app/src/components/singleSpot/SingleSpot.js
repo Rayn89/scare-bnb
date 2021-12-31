@@ -113,7 +113,7 @@ function SingleSpot() {
     <div className="single-post-container">
       <div className="single-spot-name">{spot?.name}</div>
       <div className="review-count">
-        <i className="fas fa-star">{spot?.reviews.length} reviews</i>
+        <span className="review-color">{spot?.reviews.length} review(s)</span>
       </div>
       <div className="spot-edit-delete">
         <div>
