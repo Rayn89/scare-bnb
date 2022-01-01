@@ -14,6 +14,7 @@ function ViewSpots() {
   const spotReducer = useSelector((state) => state.spotReducer);
   let spots = spotReducer?.allSpots
   const [spotState, setSpotState] = useState(spots);
+  const [isShown, setIsShown] = useState('');
 
   let ghoulArray = [];
   let demonArray = [];
@@ -42,7 +43,6 @@ function ViewSpots() {
   //   await dispatch(spotStore.thunk_getOneSpot(spotId))
   //   .then(history.push(`/spots/${spotId}`))
   // }
-
 
   if(!spots){
     dispatch(spotStore.thunk_getAllSpots());
@@ -99,7 +99,12 @@ function ViewSpots() {
         {/* <MapContainer /> */}
         {spotState &&
           spotState.map((spot, key) => (
-            <div className="spot-feed-container" key={key}>
+            <div
+              className="spot-feed-container"
+              key={key}
+              onMouseEnter={() => setIsShown(spot.id)}
+              onMouseLeave={() => setIsShown("")}
+            >
               <img
                 className="feed-image"
                 onClick={() => history.push(`/spots/${spot.id}`)}
@@ -112,11 +117,31 @@ function ViewSpots() {
                   {/* <ul> */}
                   <p>
                     {/* <i className="fas fa-star"> */}
-                      <span className="review-color">{spot.reviews.length} review(s)</span>
+                    <span className="review-color">
+                      {spot.reviews.length} review(s)
+                    </span>
                     {/* </i> */}
                   </p>
                   <p>Haunted by: {spot.haunting}</p>
                   {/* </ul> */}
+                </div>
+                <div
+                  className={
+                    isShown == spot.id
+                      ? "show-images-true"
+                      : "show-images-false"
+                  }
+                >
+                  <img
+                    className="smaller-image1"
+                    src={spot?.images[1]?.url}
+                    alt=""
+                  />
+                  <img
+                    className="smaller-image2"
+                    src={spot?.images[2]?.url}
+                    alt=""
+                  />
                 </div>
                 <div className="host-and-price">
                   <p>Hosted by: {spot.User}</p>
