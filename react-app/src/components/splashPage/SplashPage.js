@@ -33,7 +33,7 @@ function SplashPage() {
     <div className="splash-page-container">
       <div className="splash-page-image-container">
         <div className="splash-page-image">
-          <h1 className="splash-page-span">Not sure where to go? <span className="perfect">Perfect</span></h1>
+          <h1 className="splash-page-span">Not sure where to go?</h1><h1 className="perfect">Perfect</h1>
           <button
             className="flexible-button"
             onClick={() => history.push(`/spots/${randomNumber}`)}

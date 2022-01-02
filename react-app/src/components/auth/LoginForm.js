@@ -67,8 +67,13 @@ const LoginForm = () => {
         />
       </div>
       <div>
+        <button className="login-form-button" type="submit">
+          Login
+        </button>
+      </div>
+      <div>
         <button
-          className="login-form-button"
+          className="login-form-button demo-user"
           onClick={() => {
             setEmail("demo@aa.io");
             setPassword("password");
@@ -76,11 +81,6 @@ const LoginForm = () => {
           type="submit"
         >
           Login as Guest
-        </button>
-      </div>
-      <div>
-        <button className="login-form-button" type="submit">
-          Login
         </button>
       </div>
     </form>

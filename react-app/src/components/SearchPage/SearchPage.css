@@ -38,10 +38,105 @@
     box-shadow: 0 5px 15px -2px rgb(0, 0, 0);
 }
 
+.search-image:hover{
+    cursor: pointer;
+}
+
+
+
+.search-results-container-after{
+    border: 1px solid black;
+    margin-top: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px -2px rgb(0, 0, 0);
+}
+
+.search-image-after{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px -2px rgb(0, 0, 0);
+}
+
 .search-info{
     display: flex;
     justify-content: space-between;
     list-style-type: none;
     margin: 20px;
     padding: 0px;
+    -webkit-animation: goup 1s;
+       -moz-animation: goup 1s;
+        -ms-animation: goup 1s;
+         -o-animation: goup 1s;
+            animation: goup 1s;
+}
+
+@keyframes godown {
+    from { height: 0;}
+    to   { height: 1.20rem;}
+}
+
+@keyframes goup {
+    from { height: 5rem;}
+    to   { height: 1.2rem;}
+}
+
+.search-info-after{
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 20px;
+    padding: 0px;
+    /* height: 7rem; */
+    -webkit-animation: godown 1s;
+       -moz-animation: godown 1s;
+        -ms-animation: godown 1s;
+         -o-animation: godown 1s;
+            animation: godown 1s;
+
+}
+
+.hovered-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    
+    /* height: 150px; */
+}
+
+.hovered-ul{
+    list-style-type: none;
+    -webkit-animation: fadein 1s;
+       -moz-animation: fadein 1s;
+        -ms-animation: fadein 1s;
+         -o-animation: fadein 1s;
+            animation: fadein 1s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left:0px;
+    width: 100%;
+}
+
+.smaller-image{
+    width: 10rem;
+    height:8rem;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 5px 8px 15px -2px rgb(0, 0, 0);
+    /* margin: 10px; */
+}
+
+.little-images{
+    display: flex;
+    justify-content: space-evenly;
+    max-height: 200px;
+    margin-top:5px;
+    margin-bottom: 15px;
+    width: 80%;
+    align-items: center;
+    padding: 0;
+    height: 50%;
 }

@@ -34,28 +34,34 @@
 }
 
 .splash-page-span{
-    -webkit-animation: fadein 5s;
-       -moz-animation: fadein 5s;
-        -ms-animation: fadein 5s;
-         -o-animation: fadein 5s;
-            animation: fadein 5s;
+    -webkit-animation: fadein 3s;
+       -moz-animation: fadein 3s;
+        -ms-animation: fadein 3s;
+         -o-animation: fadein 3s;
+            animation: fadein 3s;
     color: white;
     font-family: 'Raleway', sans-serif;
 }
 
 .perfect{
-    -webkit-animation: fadein 8s;
-       -moz-animation: fadein 8s;
-        -ms-animation: fadein 8s;
-         -o-animation: fadein 8s;
-            animation: fadein 8s;
+    -webkit-animation: fadein-perfect 2s ease-in 0s;
+       -moz-animation: fadein-perfect 2s ease-in 0s;
+        -ms-animation: fadein-perfect 2s ease-in 0s;
+         -o-animation: fadein-perfect 2s ease-in 0s;
+    animation: fadein-perfect 2s ease-in 0s;
     color: #FF385C;
     font-family: 'Raleway', sans-serif;
 }
 
 @keyframes fadein {
     from { opacity: 0; }
-    to   { opacity: 1; }
+    to { opacity: 1; }
+}
+
+@keyframes fadein-perfect {
+    0% { opacity: 0;}
+    66% { opacity: 0;}
+    100% { opacity: 1;}
 }
 
 .flexible-button{
@@ -67,12 +73,12 @@
     border: none;
     font-size: 20px;
     font-family: 'Raleway', sans-serif;
-    margin-top: 15px;
-    -webkit-animation: fadein 8s;
-       -moz-animation: fadein 8s;
-        -ms-animation: fadein 8s;
-         -o-animation: fadein 8s;
-            animation: fadein 8s;
+    margin-top: 2rem;
+    -webkit-animation: fadein-perfect 4s ease-in 0s;
+       -moz-animation: fadein-perfect 4s ease-in 0s;
+        -ms-animation: fadein-perfect 4s ease-in 0s;
+         -o-animation: fadein-perfect 4s ease-in 0s;
+            animation: fadein-perfect 4s ease-in 0s;
 }
 
 .flexible-button:hover{
