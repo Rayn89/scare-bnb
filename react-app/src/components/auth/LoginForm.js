@@ -68,7 +68,7 @@ const LoginForm = () => {
       </div>
       <div>
         <button
-          className="login-form-button"
+          className="login-form-button demo-user"
           onClick={() => {
             setEmail("demo@aa.io");
             setPassword("password");

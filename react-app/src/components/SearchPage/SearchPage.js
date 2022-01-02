@@ -12,13 +12,14 @@ function SearchPage() {
   const user = useSelector((state) => state.session.user);
   const allSpots = useSelector(state => state.spotReducer.allSpots)
   const [searchTerm, setSearchTerm] = useState('')
+  const [hovered, setHovered] = useState(false)
 
   let spotsArr;
 
   if (allSpots) {
     spotsArr = Object.values(allSpots)
   }
-//   console.log("PLACES ====>", spotsArr[0]["state"])
+
 
   useEffect(() => {
     dispatch(spotStore.thunk_getAllSpots());
@@ -43,17 +44,48 @@ function SearchPage() {
                 }
             }).map((val, key) => {
                 return (
-                  <div key={key} className="search-results-container">
+                  <div
+                    onMouseEnter={() => setHovered(val.id)}
+                    onMouseLeave={() => setHovered("")}
+                    key={key}
+                    className="search-results-container"
+                  >
                     <img
                       onClick={() => history.push(`/spots/${val.id}`)}
+                      // onMouseEnter={() => setHovered(val.id)}
+                      // onMouseLeave={() => setHovered("")}
                       className="search-image"
                       src={val.images[0].url}
                       alt=""
                     />
-                    <ul className="search-info">
+                    <ul
+                      className={
+                        hovered == val.id ? "search-info-after" : "search-info"
+                      }
+                    >
                       <li>{val.name}</li>
                       <li>${val.price}/night</li>
                     </ul>
+                    {hovered == val.id && (
+                      <div className="hovered-div">
+                        <ul className="hovered-ul">
+                          <li>Hosted by: {val.User}</li>
+                          <li className="little-images">
+                            <img
+                              alt=""
+                              className="smaller-image"
+                              src={val.images[1].url}
+                            />
+                            <img
+                              alt=""
+                              className="smaller-image"
+                              src={val.images[2].url}
+                            />
+                          </li>
+                          <li>This spot is haunted by: {val.haunting}</li>
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 );
             })}

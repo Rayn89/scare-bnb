@@ -167,7 +167,6 @@ export const thunk_deleteReview =
 
     if (res.ok) {
       const deletedReview = await res.json();
-      console.log("Deleted review ====>", deletedReview)
       return "Deletion successful";
     }
   };
