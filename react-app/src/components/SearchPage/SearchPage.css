@@ -78,7 +78,7 @@
 }
 
 @keyframes goup {
-    from { height: 4rem;}
+    from { height: 5rem;}
     to   { height: 1.2rem;}
 }
 
@@ -134,7 +134,7 @@
     justify-content: space-evenly;
     max-height: 200px;
     margin-top:5px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     width: 100%;
     align-items: center;
     padding: 0;
