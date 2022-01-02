@@ -32,9 +32,7 @@ const CreateSpotForm = () => {
     e.preventDefault();
     const userId = user.id;
     setUrl({"1":image1, "2":image2, "3":image3})
-    console.log("URL =======>", url)
     const validationErrors = []
-    console.log(url["1"])
     if(!name || name.length > 40){
       validationErrors.push("Spot name must be between 1 and 40 characters.")
     }
@@ -228,7 +226,6 @@ const CreateSpotForm = () => {
                 placeholder="Additional Image"
                 onChange={(e) => {
                   setImage2(e.target.value);
-                  console.log(url);
                 }}
                 required
               />
@@ -241,7 +238,6 @@ const CreateSpotForm = () => {
                 placeholder="Additional Image"
                 onChange={(e) => {
                   setImage3(e.target.value);
-                  console.log(url);
                 }}
                 required
               />

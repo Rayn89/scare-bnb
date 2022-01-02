@@ -40,7 +40,6 @@ export const thunk_getAllSpots = () => async (dispatch) => {
 //GET ONE SPOT
 export const thunk_getOneSpot = (id) => async (dispatch) => {
   const res = await fetch(`/api/spots/${id}`);
-  console.log("ID ==============>", id);
 
   if (res.ok) {
     const spot = await res.json();
@@ -118,7 +117,6 @@ export const thunk_addSpot =
 
     if (res.ok) {
       const deletedSpot = await res.json();
-      console.log("=============>", deletedSpot)
       dispatch(deleteSpot(deletedSpot));
       return "Deletion successful";
     }
