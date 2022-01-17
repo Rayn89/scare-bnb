@@ -2,6 +2,15 @@
 
 ScareBnB, a loose AirBnB clone, is an application that allows users to host a spot and leave review on hosted spots.
 
+## Tech Stack ##
+
+* React
+* Redux
+* Python
+* Flask
+* SQLAlchemy
+
+
 <h4> Link to Live Application: <a href=https://scare-bnb-app.herokuapp.com/>ScareBnB</a></h4>
 <h4> Documentation: <a href="https://github.com/Rayn89/scare-bnb/wiki">ScareBnB Wiki</a></h4>
 
@@ -29,10 +38,4 @@ Look through all spots and associated reviews:
 * Logged in user can edit/delete their own spots
 * Logged in user can edit/delete their own reviews
 
-## Tech Stack ##
 
-* React
-* Redux
-* Python
-* Flask
-* SQLAlchemy
