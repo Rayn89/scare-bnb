@@ -38,4 +38,8 @@ Look through all spots and associated reviews:
 * Logged in user can edit/delete their own spots
 * Logged in user can edit/delete their own reviews
 
+## Future ##
 
+I plan on implementing profile pages for each user, allowing them to see all of their postings. The next step would be to 
+add AWS S3 for photo uploads to avoid having to use image URLs and hosting. Along with both of those features, adding bookings
+will be my third added feature. This is a constantly evolving process that I will be working on daily.
