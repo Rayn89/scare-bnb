@@ -185,7 +185,22 @@ html {
 }
 
 @media screen and (max-width: 600px){
+    .background-container{
+        width: 100vw;
+    }
+
     .feed-main-container{
-        padding: 20rem;
+        width: 100vw;
+    }
+
+    .feed-buttons{
+        margin-top: 4rem;
+    }
+
+    .buttons-container{
+        flex-direction: column;
+        align-items: center;
     }
 }
+
+
