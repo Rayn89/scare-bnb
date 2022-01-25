@@ -148,3 +148,28 @@
     cursor: pointer;
 }
 
+@media screen and (max-width: 600px){
+    .navbar-container{
+        height: fit-content;
+    }
+
+    .navbar-container-change{
+        height: fit-content;
+    }
+
+    .navbar-ul{
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+    }
+
+    .logged-in-navbar{
+        margin-right: 0px;
+    }
+
+    .navbar-browse{
+        margin-left: 0px;
+    }
+
+}
+

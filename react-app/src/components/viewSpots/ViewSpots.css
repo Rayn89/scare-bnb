@@ -183,3 +183,9 @@ html {
     border-radius: 10px;
     box-shadow: 5px 8px 15px -2px rgb(0, 0, 0);
 }
+
+@media screen and (max-width: 600px){
+    .feed-main-container{
+        padding: 20rem;
+    }
+}

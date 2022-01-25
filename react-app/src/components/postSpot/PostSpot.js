@@ -181,8 +181,9 @@ const CreateSpotForm = () => {
                 name="price"
                 type="number"
                 placeholder="Price"
-                min="1"
+                min="0"
                 max="1000"
+                step="50"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               ></input>
