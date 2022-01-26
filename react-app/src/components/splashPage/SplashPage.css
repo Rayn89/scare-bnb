@@ -5,11 +5,12 @@
 .splash-page-container{
     background-color: black;
     width: 100vw;
-    height: 1250px;
+    height: 80rem;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    /* padding-top: 15rem; */
 }
 
 .splash-page {
@@ -211,4 +212,33 @@
     display: flex;
     justify-content: center;
     text-decoration: none;
+}
+
+@media screen and (max-width: 600px){
+    .splash-page-haunts{
+        flex-direction: column;
+        width: 80vw;
+        align-items: center;
+    }
+
+    .haunter{
+        width: 100%;
+    }
+
+    .splash-page-container{
+        /* padding-top: 10rem; */
+        height: 150rem;
+    }
+
+    .splash-page-span{
+        text-align: center;
+    }
+
+    .haunting-header{
+        text-align: center;
+    }
+
+    .splash-page-image{
+        margin-top: 8rem;
+    }
 }

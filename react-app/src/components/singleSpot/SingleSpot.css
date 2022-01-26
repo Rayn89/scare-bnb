@@ -127,7 +127,7 @@
     margin-left: 15px;
     margin-bottom: 20px;
     box-sizing: border-box;
-    padding: 5px;
+    padding: 15px;
     margin-top: 15px;
     box-shadow: 0 5px 15px -2px rgb(201, 201, 201);
     display: flex;
@@ -231,4 +231,54 @@
 
 #edit-review-submit:hover{
     cursor: pointer;
+}
+
+@media screen and (max-width: 600px){
+    .images-container{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-image-container{
+        width: 80vw;
+        height: 50vh;
+        padding-right: 0px;
+    }
+
+    .small-images-container{
+        display: flex;
+        flex-direction: row;
+        width: 40vw;
+        height: 60vh;
+    }
+
+    #little-image-top{
+    padding-bottom: 0px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px -2px rgb(52, 52, 52);
+    }
+
+    #little-image-bottom{
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px -2px rgb(52, 52, 52);
+    }
+
+    .main-image{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px -2px rgb(52, 52, 52);
+    }
+
+    .small-image{
+        height: 100%;
+    }
+
+    .host-and-price-container{
+        margin-top: 2rem;
+    }
 }

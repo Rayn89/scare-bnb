@@ -16,6 +16,15 @@
     margin: 10px;
 }
 
+.login-form-input{
+    margin: 0px;
+    width: 20vw;
+    border: none;
+    box-shadow: 0 5px 15px -2px rgb(201, 201, 201);
+    height: 40px;
+    padding-left: 20px;
+}
+
 .login-password{
     margin-bottom: 10px;
 }
@@ -63,4 +72,14 @@
     display: flex;
     width:fit-content;
     padding: 5px;
+}
+
+@media screen and (max-width: 600px){
+    .login-form{
+        width: 60vw;
+    }
+
+    .login-form-input{
+        width: 90%;
+    }
 }

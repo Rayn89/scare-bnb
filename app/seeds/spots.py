@@ -4,42 +4,66 @@ from app.models import db, Spot
 # Adds a demo user, you can add other users here if you want
 def seed_spots():
     demoSpot = Spot(
-        name='Demo Spot',
+        name='House on Horror Hill',
         haunting='Demon',
         price=100,
         address='1000 Demon St.',
         city='Dark Town',
-        state='AR',
+        state='Arkansas',
         country='USA',
         userId=1
         )
 
     demoSpotTwo = Spot(
-        name='Demo Spot Two',
+        name='Ghoul House',
         haunting='Ghoul',
         price=150,
         address='1000 Ghoul St.',
         city='Ghoul Town',
-        state='AR',
+        state='Arkansas',
         country='USA',
-        userId=2
+        userId=1
         )
     
     demoSpotThree = Spot(
-        name='Demo Spot Three',
-        haunting='Ghoul',
+        name='Demon Haunter',
+        haunting='Demon',
         price=150,
         address='1000 Ghoul St.',
         city='Ghoul Town',
         state='AR',
         country='USA',
         userId=1
+        )
+
+    demoSpotFour = Spot(
+        name='Franky Kruger House',
+        haunting='Bladefingers',
+        price=150,
+        address='1000 Ghoul St.',
+        city='Ghoul Town',
+        state='Illinois',
+        country='USA',
+        userId=2
+        )
+
+    demoSpotFive = Spot(
+        name='Franky Kruger House',
+        haunting='Spirit',
+        price=150,
+        address='1000 Ghoul St.',
+        city='Ghoul Town',
+        state='Illinois',
+        country='USA',
+        userId=2
         )
 
 
     db.session.add(demoSpot)
     db.session.add(demoSpotTwo)
     db.session.add(demoSpotThree)
+    db.session.add(demoSpotFour)
+    db.session.add(demoSpotFive)
     db.session.commit()
 
 

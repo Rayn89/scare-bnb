@@ -72,15 +72,15 @@ const SignUpForm = () => {
       <h2 className="signup-header">Please Sign-Up</h2>
       <div className="errors-container">
         <ul className="error-list">
-        {errors.map((error, ind) => (
-          <li key={ind}>{error}</li>
-        ))}
+          {errors.map((error, ind) => (
+            <li key={ind}>{error}</li>
+          ))}
         </ul>
       </div>
       <div className="signup-username">
         {/* <label>User Name</label> */}
         <input
-          className="new-spot-input"
+          className="signup-form-input"
           type="text"
           name="username"
           placeholder="User Name"
@@ -91,7 +91,7 @@ const SignUpForm = () => {
       <div className="signup-email">
         {/* <label>Email</label> */}
         <input
-          className="new-spot-input"
+          className="signup-form-input"
           type="text"
           name="email"
           placeholder="Email"
@@ -102,7 +102,7 @@ const SignUpForm = () => {
       <div className="signup-password">
         {/* <label>Password</label> */}
         <input
-          className="new-spot-input"
+          className="signup-form-input"
           type="password"
           name="password"
           placeholder="Password"
@@ -113,7 +113,7 @@ const SignUpForm = () => {
       <div className="signup-username">
         {/* <label>Repeat Password</label> */}
         <input
-          className="new-spot-input"
+          className="signup-form-input"
           type="password"
           name="repeat_password"
           placeholder="Confirm Password"

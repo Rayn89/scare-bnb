@@ -57,3 +57,38 @@
     align-items: center;
     width: 100%;
 }
+
+.signup-form-input{
+    margin: 0px;
+    width: 20vw;
+    border: none;
+    box-shadow: 0 5px 15px -2px rgb(201, 201, 201);
+    height: 40px;
+    padding-left: 20px;
+}
+
+@media screen and (max-width: 600px){
+    .signup-form{
+        width: 60vw;
+        align-items: center;
+    }
+
+    .signup-form-input{
+        width: 90%;
+    }
+
+    .signup-username{
+        display: flex;
+        justify-content: center;
+    }
+
+    .signup-email{
+        display: flex;
+        justify-content: center;
+    }
+
+    .signup-password{
+        display: flex;
+        justify-content: center;
+    }
+}

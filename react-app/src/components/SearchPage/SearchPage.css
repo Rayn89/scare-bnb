@@ -140,3 +140,13 @@
     padding: 0;
     height: 50%;
 }
+
+@media screen and (max-width: 600px){
+    .results{
+        width: 80vw;
+    }
+
+    .search-input{
+        width: 80vw;
+    }
+}
