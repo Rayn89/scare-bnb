@@ -9,9 +9,16 @@ import "./NavBar.css"
 const NavBar = ({isLoaded}) => {
   const history = useHistory();
   const user = useSelector((state) => state.session.user)
+  const spotReducer = useSelector((state) => state.spotReducer);
+  
   const [searchTerm, setSearchTerm] = useState('')
-  let sessionLinks;
   const [changeNavBar, setChangeNavBar] = useState(false)
+
+  let spots = spotReducer?.allSpots;
+  let windowLocation = window.location.href.split("/")[3];
+
+  let sessionLinks;
+
   const navBarChange = () => {
     if(window.scrollY >= 0.5) {
       setChangeNavBar(true)
@@ -28,7 +35,7 @@ const NavBar = ({isLoaded}) => {
           <i
             onClick={() => history.push(`/spots/search`)}
              className={
-              changeNavBar ? "fas fa-search change" : "fas fa-search before"
+              changeNavBar || windowLocation === "spots" ? "fas fa-search change" : "fas fa-search before"
             }
           ></i>
         </li>
@@ -47,13 +54,19 @@ const NavBar = ({isLoaded}) => {
           <i
             onClick={() => history.push(`/spots/search`)}
             className={
-              changeNavBar ? "fas fa-search change" : "fas fa-search before"
+              changeNavBar || windowLocation === "spots"
+                ? "fas fa-search change"
+                : "fas fa-search before"
             }
           ></i>
         </li>
         <li className="navbar-host">
           <NavLink
-            className={changeNavBar ? "navlinks-change" : "navlinks"}
+            className={
+              changeNavBar || windowLocation === "spots"
+                ? "navlinks-change"
+                : "navlinks"
+            }
             to="/spots/new"
           >
             Become a Host
@@ -71,7 +84,11 @@ const NavBar = ({isLoaded}) => {
   window.addEventListener("scroll", navBarChange);
   return (
     <nav
-      className={changeNavBar ? "navbar-container-change" : "navbar-container"}
+      className={
+        changeNavBar || windowLocation === "spots"
+          ? "navbar-container-change"
+          : "navbar-container"
+      }
     >
       <ul className="navbar-ul">
         <div className="navbar-home">
@@ -84,11 +101,17 @@ const NavBar = ({isLoaded}) => {
             >
               <i
                 className={
-                  changeNavBar ? "fas fa-ghost ghost-after" : "fas fa-ghost"
+                  changeNavBar || windowLocation === "spots"
+                    ? "fas fa-ghost ghost-after"
+                    : "fas fa-ghost"
                 }
               ></i>
               <span
-                className={changeNavBar ? "home-title" : "home-title-change"}
+                className={
+                  changeNavBar || windowLocation === "spots"
+                    ? "home-title"
+                    : "home-title-change"
+                }
               >
                 scarebnb
               </span>
@@ -99,7 +122,7 @@ const NavBar = ({isLoaded}) => {
           <li>
             <NavLink
               className={
-                changeNavBar
+                changeNavBar || windowLocation === "spots"
                   ? "navlinks-change no-blood"
                   : "navlinks blood"
               }
