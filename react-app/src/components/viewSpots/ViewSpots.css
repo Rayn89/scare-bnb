@@ -9,7 +9,6 @@ html {
 .background-container{
     height:fit-content;
     width: 100vw;
-    /* background-color: rgb(148, 36, 36); */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,8 +31,6 @@ html {
     margin-right: .5rem;
     margin-bottom: 25px;
     height: 50%;
-    /* position:relative;
-    z-index:-1; */
 }
 
 .spot-feed-container{
@@ -42,9 +39,6 @@ html {
     margin-top: 50px;
     display: flex;
     border-radius: 10px;
-    /* border-top: 1px solid #FF385C; */
-    /* padding-top: 45px; */
-    /* border: 1px solid black; */
     box-shadow: 0 5px 15px -2px rgb(0, 0, 0);
     transition: transform .5s;
     background: white;
@@ -52,13 +46,11 @@ html {
 }
 
 .spot-feed-container:hover{
-    /* opacity: 0.8; */
     transform: scale(1.05);
-    /* z-index: 1; */
 }
 
 .feed-image{
-    width: 50%;
+    min-width: 50%;
     height: auto;
     object-fit: cover;
     border-radius: 10px;
@@ -69,9 +61,7 @@ html {
 }
 
 .spot-name{
-    /* background-color: black; */
     font-size: 1.5rem;
-    /* margin-left: 30px; */
 }
 
 .feed-buttons{
@@ -103,9 +93,7 @@ html {
 }
 
 .button-guy:hover{
-    /* opacity: 0.8; */
     transform: scale(1.05);
-    /* z-index: 1; */
 }
 
 .button-guy:hover{
@@ -130,8 +118,6 @@ html {
     display: flex;
     list-style-type: none;
     justify-content: space-between;
-    /* justify-self: flex-end; */
-    /* padding: 10px; */
 }
 
 .spot-details{
@@ -141,7 +127,6 @@ html {
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
-    /* align-items: */
     box-sizing: border-box;
 }
 
@@ -213,8 +198,7 @@ html {
 
 .map-and-feed{
     display: flex;
-    /* height: 500px;
-    overflow: scroll; */
+    width: 90vw;
 }
 
 .map-div{
@@ -232,6 +216,10 @@ html {
     width: 50%;
     padding-bottom: 5%;
     box-sizing: border-box;
+}
+
+.feed-div::-webkit-scrollbar {
+    display: none;
 }
 
 

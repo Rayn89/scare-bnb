@@ -20,43 +20,16 @@ function ViewSpots() {
   const [isShown, setIsShown] = useState('');
   const [ latt, setLatt] = useState(41)
   const [ long, setLong ] = useState(-89)
-  const [ markers, setMarkers ] = useState([])
-  // const [ geocode1, setGeoCode1 ] = useState('')
-  // const [ city, setCity ] = useState()
-  // const [ address, setAddress ] = useState("")
-  // const [ state, setState ] = useState("")
+  const [ markers, setMarkers ] = useState(["default"])
 
 
   Geocode.setApiKey("AIzaSyD_5YtdRpkDxZO39dKy6QVEAaxec3a61Po");
   let checker;
-  if(spots){
-  // checker = `${spots[0]?.address},${spots[0]?.city},${spots[0]?.state}`
-  // console.log(checker)
-  // if(checker !== "undefined"){
-  Geocode.fromAddress(
-    `${spots[0]?.address},${spots[0]?.city},${spots[0]?.state}`
-  ).then(
-    (response) => {
-      const { lat, lng } = response.results[0].geometry.location;
-      console.log(lat, lng);
-      setLatt(+lat);
-      setLong(+lng);
-    },
-    (error) => {
-      console.error(error);
-    }
-  );
-  // }
-  }
-  
-  
-  
 
   const position ={
     lat: latt,
     lng: long
   }
-
 
   let ghoulArray = [];
   let demonArray = [];
@@ -81,15 +54,14 @@ function ViewSpots() {
   }
 
   const mapStyles = {        
-    height: "50vh",
-    width: "40vw"
+    height: "70vh",
+    width: "47vw",
+    borderRadius: "10px"
   };
 
   if(!spots){
     dispatch(spotStore.thunk_getAllSpots());
-    // setSpotState(spots)
   }
-
 
   useEffect(() => {
     dispatch(spotStore.thunk_getAllSpots());
@@ -144,10 +116,25 @@ function ViewSpots() {
                   key={key}
                   onMouseEnter={() => setIsShown(spot.id)}
                   onMouseLeave={() => setIsShown("")}
+                  onMouseOver={() => {
+                       Geocode.fromAddress(
+                        `${spot?.address},${spot?.city},${spot?.state}`
+                      ).then(
+                        (response) => {
+                          const { lat, lng } =
+                            response.results[0].geometry.location;
+                          setLatt(+lat);
+                          setLong(+lng);
+                        },
+                        (error) => {
+                          console.error(error);
+                        }
+                      );
+                  }}
                 >
+                  
                   <img
                     className="feed-image"
-                    // onMouseOver={setCity(spot.city)}
                     onClick={() => history.push(`/spots/${spot.id}`)}
                     src={spot.images[0]?.url}
                     alt=""
@@ -155,16 +142,12 @@ function ViewSpots() {
                   <div className="spot-details">
                     <div>
                       <span className="spot-name">{spot.name}</span>
-                      {/* <ul> */}
                       <p>
-                        {/* <i className="fas fa-star"> */}
                         <span className="review-color">
                           {spot.reviews.length} review(s)
                         </span>
-                        {/* </i> */}
                       </p>
                       <p>Haunted by: {spot.haunting}</p>
-                      {/* </ul> */}
                     </div>
                     <div
                       className={
