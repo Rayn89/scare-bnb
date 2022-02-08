@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.models import Spot, Image, User, Review, db
 from sqlalchemy import desc, or_
+import os;
 
 spot_routes = Blueprint("spots", __name__)
 
@@ -90,3 +91,8 @@ def deletePost(id):
     db.session.delete(spotToDelete)
     db.session.commit()
     return jsonify(spotToDelete.to_dict())
+
+@spot_routes.route("/api", methods=["GET"])
+def apiKey():
+    key = os.environ.get('REACT_APP_GOOGLE_MAPS_API_KEY')
+    return jsonify(key)

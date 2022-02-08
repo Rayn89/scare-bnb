@@ -5,6 +5,9 @@ import NavBar from "../NavBar.js";
 import "./ViewSpots.css";
 import * as spotStore from "../../store/spot";
 import MapContainer from "../MapContainer.js";
+import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { Marker } from "@react-google-maps/api";
+import Geocode from "react-geocode";
 
 
 function ViewSpots() {
@@ -15,6 +18,19 @@ function ViewSpots() {
   let spots = spotReducer?.allSpots
   const [spotState, setSpotState] = useState(spots);
   const [isShown, setIsShown] = useState('');
+  const [ latt, setLatt] = useState(41)
+  const [ long, setLong ] = useState(-89)
+  const [ markers, setMarkers ] = useState(["default"])
+  const [key, setKey] = useState();
+
+
+  Geocode.setApiKey("AIzaSyD_5YtdRpkDxZO39dKy6QVEAaxec3a61Po");
+  let checker;
+
+  const position ={
+    lat: latt,
+    lng: long
+  }
 
   let ghoulArray = [];
   let demonArray = [];
@@ -38,22 +54,18 @@ function ViewSpots() {
     });
   }
 
-  // const clickImage = async (spotId) => {
-  //   await dispatch(spotStore.thunk_getAllSpots())
-  //   await dispatch(spotStore.thunk_getOneSpot(spotId))
-  //   .then(history.push(`/spots/${spotId}`))
-  // }
+  const mapStyles = {        
+    height: "70vh",
+    width: "47vw",
+    borderRadius: "10px"
+  };
 
   if(!spots){
     dispatch(spotStore.thunk_getAllSpots());
-    // setSpotState(spots)
   }
-
 
   useEffect(() => {
     dispatch(spotStore.thunk_getAllSpots());
-    // dispatch(spotStore.thunk_getOneSpot());
-    // setSpotState(spots)
   }, [dispatch]);
 
   let spotreturn = spots?.map((spot) => checkHaunting(spot));
@@ -96,60 +108,85 @@ function ViewSpots() {
             </button>
           </div>
         </div>
-        {/* <MapContainer /> */}
-        {spotState &&
-          spotState.map((spot, key) => (
-            <div
-              className="spot-feed-container"
-              key={key}
-              onMouseEnter={() => setIsShown(spot.id)}
-              onMouseLeave={() => setIsShown("")}
-            >
-              <img
-                className="feed-image"
-                onClick={() => history.push(`/spots/${spot.id}`)}
-                src={spot.images[0]?.url}
-                alt=""
-              />
-              <div className="spot-details">
-                <div>
-                  <span className="spot-name">{spot.name}</span>
-                  {/* <ul> */}
-                  <p>
-                    {/* <i className="fas fa-star"> */}
-                    <span className="review-color">
-                      {spot.reviews.length} review(s)
-                    </span>
-                    {/* </i> */}
-                  </p>
-                  <p>Haunted by: {spot.haunting}</p>
-                  {/* </ul> */}
-                </div>
+        <div className="map-and-feed">
+          <div className="feed-div">
+            {spotState &&
+              spotState.map((spot, key) => (
                 <div
-                  className={
-                    isShown == spot.id
-                      ? "show-images-true"
-                      : "show-images-false"
-                  }
+                  className="spot-feed-container"
+                  key={key}
+                  onMouseEnter={() => setIsShown(spot.id)}
+                  onMouseLeave={() => setIsShown("")}
+                  onMouseOver={() => {
+                    Geocode.fromAddress(
+                      `${spot?.address},${spot?.city},${spot?.state}`
+                    ).then(
+                      (response) => {
+                        const { lat, lng } =
+                          response.results[0].geometry.location;
+                        setLatt(+lat);
+                        setLong(+lng);
+                      },
+                      (error) => {
+                        console.error(error);
+                      }
+                    );
+                  }}
                 >
                   <img
-                    className="smaller-image1"
-                    src={spot?.images[1]?.url}
+                    className="feed-image"
+                    onClick={() => history.push(`/spots/${spot.id}`)}
+                    src={spot.images[0]?.url}
                     alt=""
                   />
-                  <img
-                    className="smaller-image2"
-                    src={spot?.images[2]?.url}
-                    alt=""
-                  />
+                  <div className="spot-details">
+                    <div>
+                      <span className="spot-name">{spot.name}</span>
+                      <p>
+                        <span className="review-color">
+                          {spot.reviews.length} review(s)
+                        </span>
+                      </p>
+                      <p>Haunted by: {spot.haunting}</p>
+                    </div>
+                    <div
+                      className={
+                        isShown == spot.id
+                          ? "show-images-true"
+                          : "show-images-false"
+                      }
+                    >
+                      <img
+                        className="smaller-image1"
+                        src={spot?.images[1]?.url}
+                        alt=""
+                      />
+                      <img
+                        className="smaller-image2"
+                        src={spot?.images[2]?.url}
+                        alt=""
+                      />
+                    </div>
+                    <div className="host-and-price">
+                      <p>Hosted by: {spot.User}</p>
+                      <p>{"$" + spot.price}/night</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="host-and-price">
-                  <p>Hosted by: {spot.User}</p>
-                  <p>{"$" + spot.price}/night</p>
-                </div>
-              </div>
-            </div>
-          ))}
+              ))}
+          </div>
+          <div className="map-div">
+            <LoadScript googleMapsApiKey="AIzaSyApQbHfmqkVv0ApEPVVAfWUnRxj45FViF0">
+              <GoogleMap
+                mapContainerStyle={mapStyles}
+                zoom={13}
+                center={{ lat: latt, lng: long }}
+              >
+                <Marker position={position} />
+              </GoogleMap>
+            </LoadScript>
+          </div>
+        </div>
       </div>
     </section>
   );

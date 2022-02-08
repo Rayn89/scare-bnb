@@ -36,6 +36,17 @@ export const thunk_getAllSpots = () => async (dispatch) => {
   }
 };
 
+//GET ALL SPOTS
+export const thunk_getAPI = () => async (dispatch) => {
+  const res = await fetch(`/api/api/`);
+
+  if (res.ok) {
+    const spots = await res.json();
+    // dispatch(allSpots(spots));
+    return spots;
+  }
+};
+
 
 //GET ONE SPOT
 export const thunk_getOneSpot = (id) => async (dispatch) => {
