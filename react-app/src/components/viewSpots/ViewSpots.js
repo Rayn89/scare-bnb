@@ -21,6 +21,7 @@ function ViewSpots() {
   const [ latt, setLatt] = useState(41)
   const [ long, setLong ] = useState(-89)
   const [ markers, setMarkers ] = useState(["default"])
+  const [key, setKey] = useState();
 
 
   Geocode.setApiKey("AIzaSyD_5YtdRpkDxZO39dKy6QVEAaxec3a61Po");
@@ -117,22 +118,21 @@ function ViewSpots() {
                   onMouseEnter={() => setIsShown(spot.id)}
                   onMouseLeave={() => setIsShown("")}
                   onMouseOver={() => {
-                       Geocode.fromAddress(
-                        `${spot?.address},${spot?.city},${spot?.state}`
-                      ).then(
-                        (response) => {
-                          const { lat, lng } =
-                            response.results[0].geometry.location;
-                          setLatt(+lat);
-                          setLong(+lng);
-                        },
-                        (error) => {
-                          console.error(error);
-                        }
-                      );
+                    Geocode.fromAddress(
+                      `${spot?.address},${spot?.city},${spot?.state}`
+                    ).then(
+                      (response) => {
+                        const { lat, lng } =
+                          response.results[0].geometry.location;
+                        setLatt(+lat);
+                        setLong(+lng);
+                      },
+                      (error) => {
+                        console.error(error);
+                      }
+                    );
                   }}
                 >
-                  
                   <img
                     className="feed-image"
                     onClick={() => history.push(`/spots/${spot.id}`)}
