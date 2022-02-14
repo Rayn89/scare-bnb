@@ -29,6 +29,11 @@ const LoginForm = () => {
           setPasswordError(data[0])
           setEmailError(null)
         }
+      }else{
+        if(data[0].includes("email") && data[1].includes("password")){
+          setEmailError(data[0])
+          setPasswordError(data[1])
+        }
       }
     }
   };
