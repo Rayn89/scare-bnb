@@ -92,20 +92,26 @@ const LoginForm = () => {
         />
         }
         <div className="login-demo-buttons">
-          <button className="login-form-button" type="submit">
-            Login
-          </button>
-      
-          <button
-            className="login-form-button demo-user"
-            onClick={() => {
-              setEmail("demo@aa.io");
-              setPassword("password");
-            }}
-            type="submit"
-          >
-            Login as Guest
-          </button>
+        <Button style={{
+          borderRadius: 10,
+          backgroundColor: "#FF385C",
+          marginBottom: 20,
+          }} 
+          className="MUI-login-button" 
+          type="submit" variant="contained">Login
+        </Button>
+        <Button style={{
+          borderRadius: 10,
+          backgroundColor: "#FF385C",
+          marginBottom: 20,
+          }}
+          className="MUI-login-button" 
+          onClick={() => {
+                setEmail("demo@aa.io");
+                setPassword("password");
+              }} 
+          type="submit" variant="contained">Login as Guest
+        </Button>
         </div>
         </Box>
       </div>

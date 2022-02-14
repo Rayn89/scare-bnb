@@ -85,6 +85,13 @@
     align-items: center;
 }
 
+.MUI-login-button{
+    width: 100%;
+    border-radius: 10px;
+    background-color: #FF385C;
+    margin-top: 10px;
+}
+
 @media screen and (max-width: 600px){
     .login-form{
         width: 60vw;

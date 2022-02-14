@@ -68,64 +68,121 @@ const SignUpForm = () => {
   }
 
   return (
-    <form className="signup-form" onSubmit={onSignUp}>
-      <h2 className="signup-header">Please Sign-Up</h2>
-      <div className="errors-container">
-        <ul className="error-list">
-          {errors.map((error, ind) => (
-            <li key={ind}>{error}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="signup-username">
-        {/* <label>User Name</label> */}
-        <input
-          className="signup-form-input"
-          type="text"
-          name="username"
-          placeholder="User Name"
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div className="signup-email">
-        {/* <label>Email</label> */}
-        <input
-          className="signup-form-input"
-          type="text"
-          name="email"
-          placeholder="Email"
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div className="signup-password">
-        {/* <label>Password</label> */}
-        <input
-          className="signup-form-input"
+    <div className="login-form">
+      <h2 className="login-header">Please Log-in</h2>
+      <div className="login-email">
+        <Box
+          component="form"
+          // onSubmit={onLogin}
+          sx={{
+            '& > :not(style)': { m: 1, width: '100%' },
+          }}
+          // noValidate
+          className="login-email"
+          autoComplete="off"
+        >
+        {errors ? <TextField fullWidth id="outlined-basic" label="Email" variant="outlined" /> : 
+        
+        <TextField
+          error
+          // value={email}
+          // onChange={updateEmail}
+          id="outlined-error-helper-text"
+          label="Email"
+          // helperText={emailError}
+        />
+        }
+        {errors ? <TextField fullWidth id="outlined-basic" label="Password" variant="outlined" /> : 
+        
+        <TextField
+          error
           type="password"
-          name="password"
-          placeholder="Password"
-          onChange={updatePassword}
-          value={password}
-        ></input>
+          // value={password}
+          // onChange={updatePassword}
+          id="outlined-error-helper-text"
+          label="Password"
+          // helperText={passwordError}
+        />
+        }
+        <div className="login-demo-buttons">
+        <Button style={{
+          borderRadius: 10,
+          backgroundColor: "#FF385C",
+          marginBottom: 20,
+          }} 
+          className="MUI-login-button" 
+          type="submit" variant="contained">Login
+        </Button>
+        <Button style={{
+          borderRadius: 10,
+          backgroundColor: "#FF385C",
+          marginBottom: 20,
+          }}
+          className="MUI-login-button" 
+          onClick={() => {
+                // setEmail("demo@aa.io");
+                // setPassword("password");
+              }} 
+          type="submit" variant="contained">Login as Guest
+        </Button>
+        </div>
+        </Box>
       </div>
-      <div className="signup-username">
-        {/* <label>Repeat Password</label> */}
-        <input
-          className="signup-form-input"
-          type="password"
-          name="repeat_password"
-          placeholder="Confirm Password"
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button className="signup-form-button" type="submit">
-        Sign Up
-      </button>
-    </form>
+    </div>
+    // <form className="signup-form" onSubmit={onSignUp}>
+    //   <h2 className="signup-header">Please Sign-Up</h2>
+    //   <div className="errors-container">
+    //     <ul className="error-list">
+    //       {errors.map((error, ind) => (
+    //         <li key={ind}>{error}</li>
+    //       ))}
+    //     </ul>
+    //   </div>
+    //   <div className="signup-username">
+    //     <input
+    //       className="signup-form-input"
+    //       type="text"
+    //       name="username"
+    //       placeholder="User Name"
+    //       onChange={updateUsername}
+    //       value={username}
+    //     ></input>
+    //   </div>
+    //   <div className="signup-email">
+    //     <input
+    //       className="signup-form-input"
+    //       type="text"
+    //       name="email"
+    //       placeholder="Email"
+    //       onChange={updateEmail}
+    //       value={email}
+    //     ></input>
+    //   </div>
+    //   <div className="signup-password">
+    //     <input
+    //       className="signup-form-input"
+    //       type="password"
+    //       name="password"
+    //       placeholder="Password"
+    //       onChange={updatePassword}
+    //       value={password}
+    //     ></input>
+    //   </div>
+    //   <div className="signup-username">
+    //     <input
+    //       className="signup-form-input"
+    //       type="password"
+    //       name="repeat_password"
+    //       placeholder="Confirm Password"
+    //       onChange={updateRepeatPassword}
+    //       value={repeatPassword}
+    //       required={true}
+    //     ></input>
+    //   </div>
+    //   <button className="signup-form-button" type="submit">
+    //     Sign Up
+    //   </button>
+    // </form>
   );
 };
 
