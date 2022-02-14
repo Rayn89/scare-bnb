@@ -7,6 +7,9 @@ import * as postActions from "../../store/spot";
 import isURL from "validator/lib/isURL";
 import isCurrency from "validator/lib/isCurrency";
 import "./PostSpot.css"
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 const CreateSpotForm = () => {
   const [errors, setErrors] = useState([]);
@@ -123,15 +126,27 @@ const CreateSpotForm = () => {
             </ul>
           </div>
           <div className="input-field-new">
-            <input
+            {/* <input
               className="new-spot-input"
               name="name"
               type="input"
               placeholder="Spot Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-            ></input>
+            ></input> */}
+            
           </div>
+           <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '40ch' },
+            }}
+            noValidate
+            autoComplete="off"
+            onChange={(e) => setName(e.target.value)}
+          >
+          <TextField id="outlined-basic" label="Spot Name" variant="outlined" />
+          </Box>
           <div className="input-field-new">
             <input
               className="new-spot-input"
@@ -244,9 +259,15 @@ const CreateSpotForm = () => {
               />
             </div>
           </div>
-          <button className="post-spot-form-button" type="submit">
+          {/* <button className="post-spot-form-button" type="submit">
             Submit Spot
-          </button>
+          </button> */}
+          <Button style={{
+        borderRadius: 10,
+        backgroundColor: "#FF385C",
+        marginTop: 20,
+        marginBottom: 20,
+        }} type="submit" variant="contained">Submit Spot</Button>
         </form>
       </div>
     </section>
