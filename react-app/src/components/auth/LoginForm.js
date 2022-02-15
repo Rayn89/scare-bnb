@@ -66,7 +66,7 @@ const LoginForm = () => {
           className="login-email"
           autoComplete="off"
         >
-        {!emailError.length ? <TextField value={email}
+        {!emailError ? <TextField value={email}
           onChange={updateEmail} fullWidth id="outlined-basic" label="Email" variant="outlined" /> : 
         
         <TextField

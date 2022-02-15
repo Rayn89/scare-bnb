@@ -4,9 +4,14 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import isEmail from "validator/lib/isEmail";
 import "./SignUpForm.css"
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import LoginFormModal from '../LoginFormModal';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
+  // const [moreErrors, setMoreErrors] = useState([])
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,7 +24,7 @@ const SignUpForm = () => {
     let validationErrors = []
 
     if(!username || username.length < 5 || username.length > 20){
-      validationErrors.push("Please enter User Name between 5 and 20 characters.")
+      validationErrors.push("Please enter Username between 5 and 20 characters.")
     }
     if (!isEmail(email)) {
       validationErrors.push(
@@ -36,7 +41,7 @@ const SignUpForm = () => {
     }
 
 
-
+    // setMoreErrors(validationErrors)
     setErrors(validationErrors)
 
     if (!validationErrors.length) {
@@ -69,11 +74,11 @@ const SignUpForm = () => {
 
   return (
     <div className="login-form">
-      <h2 className="login-header">Please Log-in</h2>
+      <h2 className="login-header">Please Signup</h2>
       <div className="login-email">
         <Box
           component="form"
-          // onSubmit={onLogin}
+          onSubmit={onSignUp}
           sx={{
             '& > :not(style)': { m: 1, width: '100%' },
           }}
@@ -81,27 +86,54 @@ const SignUpForm = () => {
           className="login-email"
           autoComplete="off"
         >
-        {errors ? <TextField fullWidth id="outlined-basic" label="Email" variant="outlined" /> : 
+        {errors ? <TextField value={username}
+          onChange={updateUsername} fullWidth id="outlined-basic" label="Username" variant="outlined" /> : 
         
         <TextField
           error
-          // value={email}
-          // onChange={updateEmail}
+          value={username}
+          onChange={updateUsername}
           id="outlined-error-helper-text"
-          label="Email"
-          // helperText={emailError}
+          label="Username"
+          helperText="Please enter valid username."
         />
         }
-        {errors ? <TextField fullWidth id="outlined-basic" label="Password" variant="outlined" /> : 
+        {errors ? <TextField value={email}
+          onChange={updateEmail} fullWidth id="outlined-basic" label="Email" variant="outlined" /> : 
+        
+        <TextField
+          error
+          value={email}
+          onChange={updateEmail}
+          id="outlined-error-helper-text"
+          label="Email"
+          helperText="Valid"
+        />
+        }
+        {errors ? <TextField value={password}
+          onChange={updatePassword} fullWidth id="outlined-basic" label="Password" variant="outlined" /> : 
         
         <TextField
           error
           type="password"
-          // value={password}
-          // onChange={updatePassword}
+          value={password}
+          onChange={updatePassword}
           id="outlined-error-helper-text"
           label="Password"
-          // helperText={passwordError}
+          helperText="Valid"
+        />
+        }
+        {!errors.includes("Password") ? <TextField value={repeatPassword}
+          onChange={updateRepeatPassword} fullWidth id="outlined-basic" label="Confirm Password" variant="outlined" /> : 
+        
+        <TextField
+          error
+          type="password"
+          value={repeatPassword}
+          onChange={updateRepeatPassword}
+          id="outlined-error-helper-text"
+          label="Confirm Password"
+          helperText="Please enter valid"
         />
         }
         <div className="login-demo-buttons">
@@ -110,8 +142,11 @@ const SignUpForm = () => {
           backgroundColor: "#FF385C",
           marginBottom: 20,
           }} 
+          onClick={() => {
+                {console.log(errors)}
+              }} 
           className="MUI-login-button" 
-          type="submit" variant="contained">Login
+          type="submit" variant="contained">Signup
         </Button>
         <Button style={{
           borderRadius: 10,
@@ -120,8 +155,7 @@ const SignUpForm = () => {
           }}
           className="MUI-login-button" 
           onClick={() => {
-                // setEmail("demo@aa.io");
-                // setPassword("password");
+                <LoginFormModal />
               }} 
           type="submit" variant="contained">Login as Guest
         </Button>
