@@ -170,60 +170,6 @@ const SignUpForm = () => {
         </Box>
       </div>
     </div>
-    // <form className="signup-form" onSubmit={onSignUp}>
-    //   <h2 className="signup-header">Please Sign-Up</h2>
-    //   <div className="errors-container">
-    //     <ul className="error-list">
-    //       {errors.map((error, ind) => (
-    //         <li key={ind}>{error}</li>
-    //       ))}
-    //     </ul>
-    //   </div>
-    //   <div className="signup-username">
-    //     <input
-    //       className="signup-form-input"
-    //       type="text"
-    //       name="username"
-    //       placeholder="User Name"
-    //       onChange={updateUsername}
-    //       value={username}
-    //     ></input>
-    //   </div>
-    //   <div className="signup-email">
-    //     <input
-    //       className="signup-form-input"
-    //       type="text"
-    //       name="email"
-    //       placeholder="Email"
-    //       onChange={updateEmail}
-    //       value={email}
-    //     ></input>
-    //   </div>
-    //   <div className="signup-password">
-    //     <input
-    //       className="signup-form-input"
-    //       type="password"
-    //       name="password"
-    //       placeholder="Password"
-    //       onChange={updatePassword}
-    //       value={password}
-    //     ></input>
-    //   </div>
-    //   <div className="signup-username">
-    //     <input
-    //       className="signup-form-input"
-    //       type="password"
-    //       name="repeat_password"
-    //       placeholder="Confirm Password"
-    //       onChange={updateRepeatPassword}
-    //       value={repeatPassword}
-    //       required={true}
-    //     ></input>
-    //   </div>
-    //   <button className="signup-form-button" type="submit">
-    //     Sign Up
-    //   </button>
-    // </form>
   );
 };
 
