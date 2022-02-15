@@ -79,7 +79,7 @@ const LoginForm = () => {
         />
         }
         {!passwordError ? <TextField value={password}
-          onChange={updatePassword} fullWidth id="outlined-basic" label="Password" variant="outlined" /> : 
+          onChange={updatePassword} type="password" fullWidth id="outlined-basic" label="Password" variant="outlined" /> : 
         
         <TextField
           error
