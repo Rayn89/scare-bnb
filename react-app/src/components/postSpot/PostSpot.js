@@ -16,6 +16,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputAdornment from '@mui/material/InputAdornment';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import UploadImageForm from './imagesPost.js'
 
 const CreateSpotForm = () => {
   const [errors, setErrors] = useState([]);
@@ -222,6 +223,7 @@ const CreateSpotForm = () => {
             label="Amount"
           />
         </FormControl>
+        {/* <UploadImageForm image1={image1} image2={image2} image3={image3}/> */}
 
         <div className="login-demo-buttons">
         <Button style={{
@@ -237,6 +239,45 @@ const CreateSpotForm = () => {
         </Button>
         
         </div>
+                  <h2 className="new-post-photo-header">Please add three images:</h2>
+          <div className="new-post-photo-container">
+            <div className="content1-container">
+              {content}
+              <input
+                type="url"
+                placeholder="Main image URL"
+                className="new-spot-input"
+                onChange={(e) => {
+                  setImage1(e.target.value);
+                }}
+                required
+              />
+            </div>
+            <div className="content1-container">
+              {content2}
+              <input
+                type="url"
+                className="new-spot-input"
+                placeholder="Additional Image"
+                onChange={(e) => {
+                  setImage2(e.target.value);
+                }}
+                required
+              />
+            </div>
+            <div className="content1-container">
+              {content3}
+              <input
+                type="url"
+                className="new-spot-input"
+                placeholder="Additional Image"
+                onChange={(e) => {
+                  setImage3(e.target.value);
+                }}
+                required
+              />
+            </div>
+          </div>
         </Box>
       </div>
     </div>
@@ -335,45 +376,45 @@ const CreateSpotForm = () => {
     //           </select>
     //         </label>
     //       </div>
-    //       <h2 className="new-post-photo-header">Please add three images:</h2>
-    //       <div className="new-post-photo-container">
-    //         <div className="content1-container">
-    //           {content}
-    //           <input
-    //             type="url"
-    //             placeholder="Main image URL"
-    //             className="new-spot-input"
-    //             onChange={(e) => {
-    //               setImage1(e.target.value);
-    //             }}
-    //             required
-    //           />
-    //         </div>
-    //         <div className="content1-container">
-    //           {content2}
-    //           <input
-    //             type="url"
-    //             className="new-spot-input"
-    //             placeholder="Additional Image"
-    //             onChange={(e) => {
-    //               setImage2(e.target.value);
-    //             }}
-    //             required
-    //           />
-    //         </div>
-    //         <div className="content1-container">
-    //           {content3}
-    //           <input
-    //             type="url"
-    //             className="new-spot-input"
-    //             placeholder="Additional Image"
-    //             onChange={(e) => {
-    //               setImage3(e.target.value);
-    //             }}
-    //             required
-    //           />
-    //         </div>
-    //       </div>
+          // <h2 className="new-post-photo-header">Please add three images:</h2>
+          // <div className="new-post-photo-container">
+          //   <div className="content1-container">
+          //     {content}
+          //     <input
+          //       type="url"
+          //       placeholder="Main image URL"
+          //       className="new-spot-input"
+          //       onChange={(e) => {
+          //         setImage1(e.target.value);
+          //       }}
+          //       required
+          //     />
+          //   </div>
+          //   <div className="content1-container">
+          //     {content2}
+          //     <input
+          //       type="url"
+          //       className="new-spot-input"
+          //       placeholder="Additional Image"
+          //       onChange={(e) => {
+          //         setImage2(e.target.value);
+          //       }}
+          //       required
+          //     />
+          //   </div>
+          //   <div className="content1-container">
+          //     {content3}
+          //     <input
+          //       type="url"
+          //       className="new-spot-input"
+          //       placeholder="Additional Image"
+          //       onChange={(e) => {
+          //         setImage3(e.target.value);
+          //       }}
+          //       required
+          //     />
+          //   </div>
+          // </div>
     //       <button className="post-spot-form-button" type="submit">
     //         Submit Spot
     //       </button>
