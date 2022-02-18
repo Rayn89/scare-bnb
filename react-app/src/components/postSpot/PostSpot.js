@@ -36,13 +36,15 @@ const CreateSpotForm = () => {
   const history = useHistory();
 
   //useState variables for specific field errors
-  // const [spotnameError, setSpotnameError] = useState("");
-  // const [addressError, setAddressError] = useState(""); 
-  // const [cityError, setCityError] = useState("");
-  // const [stateError, setStateError] = useState("");
-  // const [countryError, setCountryError] = useState("");
-  // const [hauntingError, setHauntingError] = useState("");
-  // const [amountError, setPriceError] = useState("");
+  const [spotnameError, setSpotnameError] = useState("");
+  const [addressError, setAddressError] = useState(""); 
+  const [cityError, setCityError] = useState("");
+  const [stateError, setStateError] = useState("");
+  const [countryError, setCountryError] = useState("");
+  const [hauntingError, setHauntingError] = useState("");
+  const [amountError, setPriceError] = useState("");
+  const [UrlError, setUrlError] = useState("");
+  const [ImgError, setImgError] = useState("");
 
   if(!user) {
     history.push('/spots')
@@ -76,7 +78,7 @@ const CreateSpotForm = () => {
     if(haunting.length < 2){
       validationErrors.push("Please select a valid haunting.")
     }
-    if (!price || !isCurrency(price) || price > 1000) {
+    if (!price || !isCurrency(price) || price > 1000 || price <= 0) {
       validationErrors.push(
         "Please enter a valid price between $1 and $1,000"
       );
@@ -88,6 +90,16 @@ const CreateSpotForm = () => {
       validationErrors.push("Must be a valid image url format (.jpeg, .png, .gif, .bmp");
     }
 
+    //checking for specific errors to set input errors
+    validationErrors.includes("Spot name must be between 1 and 40 characters.") ? setSpotnameError("Spot name must be between 1 and 40 characters.") : setSpotnameError("")
+    validationErrors.includes("Address must be between 1 and 40 characters.") ? setAddressError("Address must be between 1 and 40 characters.") : setAddressError("")
+    validationErrors.includes("City must be between 1 and 20 characters.") ? setCityError("City must be between 1 and 20 characters.") : setCityError("")
+    validationErrors.includes("Please enter valid state.") ? setStateError("Please enter valid state.") : setStateError("")
+    validationErrors.includes("Country must be between 1 and 20 characters.") ? setCountryError("Country must be between 1 and 20 characters.") : setCountryError("")
+    validationErrors.includes("Please select a valid haunting.") ? setHauntingError("Please select a valid haunting.") : setHauntingError("")
+    validationErrors.includes("Please enter a valid price between $1 and $1,000") ? setPriceError("Please enter a valid price between $1 and $1,000") : setPriceError("")
+    validationErrors.includes("Please input a valid image URL.") ? setUrlError("Please input a valid image URL.") : setUrlError("")
+    validationErrors.includes("Must be a valid image url format (.jpeg, .png, .gif, .bmp") ? setImgError("Must be a valid image url format (.jpeg, .png, .gif, .bmp") : setImgError("")
 
     setErrors(validationErrors);
 
@@ -151,7 +163,7 @@ const CreateSpotForm = () => {
           }}
           autoComplete="off"
         >
-        {errors ? <TextField value={name}
+        {spotnameError.length === 0 ? <TextField value={name}
           onChange={(e) => setName(e.target.value)} fullWidth id="outlined-basic" label="Spot Name" variant="outlined" /> : 
         
         <TextField
@@ -160,10 +172,10 @@ const CreateSpotForm = () => {
           onChange={(e) => setName(e.target.value)}
           id="outlined-error-helper-text"
           label="Spot Name"
-          // helperText={usernameError}
+          helperText={spotnameError}
         />
         }
-        {errors ? <TextField value={address}
+        {addressError.length === 0 ? <TextField value={address}
           onChange={(e) => setAddress(e.target.value)} fullWidth id="outlined-basic" label="Address" variant="outlined" /> : 
         
         <TextField
@@ -172,46 +184,46 @@ const CreateSpotForm = () => {
           onChange={(e) => setAddress(e.target.value)}
           id="outlined-error-helper-text"
           label="Address"
-          // helperText={emailError}
+          helperText={addressError}
         />
         }
-        {errors ? <TextField type="password" value={city}
+        {cityError.length === 0 ? <TextField value={city}
           onChange={(e) => setCity(e.target.value)} fullWidth id="outlined-basic" label="City" variant="outlined" /> : 
         
         <TextField
           error
-          name="password"
+          name="city"
           value={city}
           onChange={(e) => setCity(e.target.value)}
           id="outlined-error-helper-text"
           label="City"
-          // helperText={passwordError}
+          helperText={cityError}
         />
         }
-        {errors ? <TextField type="password" value={state}
+        {stateError.length === 0 ? <TextField value={state}
           onChange={(e) => setState(e.target.value)} fullWidth id="outlined-basic" label="State" variant="outlined" /> : 
         
         <TextField
           error
-          name="password"
+          name="state"
           value={state}
           onChange={(e) => setState(e.target.value)}
           id="outlined-error-helper-text"
           label="State"
-          // helperText={repeatError}
+          helperText={stateError}
         />
         }
-        {errors ? <TextField value={country}
+        {countryError.length === 0 ? <TextField value={country}
           onChange={(e) => setCountry(e.target.value)} fullWidth id="outlined-basic" label="Country" variant="outlined" /> : 
         
         <TextField
           error
-          name="password"
+          name="country"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
           id="outlined-error-helper-text"
           label="Country"
-          // helperText={repeatError}
+          helperText={countryError}
         />
         }
         <FormControl fullWidth>
@@ -231,20 +243,30 @@ const CreateSpotForm = () => {
         </Select>
         </FormControl>
 
-        <FormControl fullWidth sx={{ m: 1 }}>
-          <InputLabel htmlFor="outlined-adornment-amount">Price</InputLabel>
-          <OutlinedInput
+          {amountError.length === 0 ? 
+          <TextField
             id="outlined-adornment-amount"
             type="Number"
+            value={price}
             inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-            // onChange={handleChange('amount')}
+            onChange={(e) => setPrice(e.target.value)}
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+            label="Amount"
+          /> : 
+          <TextField
+            id="outlined-adornment-amount"
+            error
+            helperText={amountError}
+            type="Number"
+            value={price}
+            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            onChange={(e) => setPrice(e.target.value)}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
             label="Amount"
           />
-        </FormControl>
-        {/* <UploadImageForm image1={image1} image2={image2} image3={image3}/> */}
+          }
 
-        
+        {/* Three image boxes */}
         <h2 className="new-post-photo-header">Please add three images:</h2>
         <div className="new-post-photo-container">
           <div className="content1-container">
@@ -300,146 +322,6 @@ const CreateSpotForm = () => {
         </Box>
       </div>
     </div>
-    // <section className="section-container">
-    //   <div className="form-container">
-    //     <form className="main-form-container" onSubmit={handleSubmit}>
-    //       <h3 className="new-spot-header">Add a Spot</h3>
-    //       <div className="error-list-container">
-    //         <ul className="error-list">
-    //         {errors.map((error, ind) => (
-    //           <li className="errors" key={ind}>{error}</li>
-    //         ))}
-    //         </ul>
-    //       </div>
-    //       <div className="input-field-new">
-    //         <input
-    //           className="new-spot-input"
-    //           name="name"
-    //           type="input"
-    //           placeholder="Spot Name"
-    //           value={name}
-    //           onChange={(e) => setName(e.target.value)}
-    //         ></input>
-            
-    //       </div>
-    //       <div className="input-field-new">
-    //         <input
-    //           className="new-spot-input"
-    //           name="address"
-    //           type="input"
-    //           placeholder="Address"
-    //           value={address}
-    //           onChange={(e) => setAddress(e.target.value)}
-    //         ></input>
-    //       </div>
-    //       <div className="input-field-new">
-    //         <input
-    //           className="new-spot-input"
-    //           name="city"
-    //           type="input"
-    //           placeholder="City"
-    //           value={city}
-    //           onChange={(e) => setCity(e.target.value)}
-    //         ></input>
-    //       </div>
-    //       <div className="input-field-new">
-    //         <input
-    //           className="new-spot-input"
-    //           name="state"
-    //           type="input"
-    //           placeholder="State"
-    //           value={state}
-    //           onChange={(e) => setState(e.target.value)}
-    //         ></input>
-    //       </div>
-
-    //       <div className="input-field-new">
-    //         <input
-    //           className="new-spot-input"
-    //           name="country"
-    //           type="input"
-    //           placeholder="Country"
-    //           value={country}
-    //           onChange={(e) => setCountry(e.target.value)}
-    //         ></input>
-    //       </div>
-    //       <div>
-    //         <label>
-    //           Please select price per night:
-    //           <input
-    //             className="price-per-night"
-    //             name="price"
-    //             type="number"
-    //             placeholder="Price"
-    //             min="0"
-    //             max="1000"
-    //             step="50"
-    //             value={price}
-    //             onChange={(e) => setPrice(e.target.value)}
-    //           ></input>
-    //         </label>
-    //       </div>
-    //       <div>
-    //         <label>
-    //           Select type of Haunting:
-    //           <select
-    //             className="price-per-night"
-    //             value={haunting}
-    //             onChange={(e) => setHaunting(e.target.value)}
-    //           >
-    //             <option value=""> </option>
-    //             <option value="Ghoul">Ghoul</option>
-    //             <option value="Demon">Demon</option>
-    //             <option value="Spirit">Spirit</option>
-    //             <option value="Bladefingers">BladeFingers</option>
-    //           </select>
-    //         </label>
-    //       </div>
-          // <h2 className="new-post-photo-header">Please add three images:</h2>
-          // <div className="new-post-photo-container">
-          //   <div className="content1-container">
-          //     {content}
-          //     <input
-          //       type="url"
-          //       placeholder="Main image URL"
-          //       className="new-spot-input"
-          //       onChange={(e) => {
-          //         setImage1(e.target.value);
-          //       }}
-          //       required
-          //     />
-          //   </div>
-          //   <div className="content1-container">
-          //     {content2}
-          //     <input
-          //       type="url"
-          //       className="new-spot-input"
-          //       placeholder="Additional Image"
-          //       onChange={(e) => {
-          //         setImage2(e.target.value);
-          //       }}
-          //       required
-          //     />
-          //   </div>
-          //   <div className="content1-container">
-          //     {content3}
-          //     <input
-          //       type="url"
-          //       className="new-spot-input"
-          //       placeholder="Additional Image"
-          //       onChange={(e) => {
-          //         setImage3(e.target.value);
-          //       }}
-          //       required
-          //     />
-          //   </div>
-          // </div>
-    //       <button className="post-spot-form-button" type="submit">
-    //         Submit Spot
-    //       </button>
-    //     </form>
-    //   </div>
-    // </section>
   );
 };
 
