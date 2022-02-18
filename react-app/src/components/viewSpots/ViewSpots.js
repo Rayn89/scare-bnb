@@ -117,21 +117,21 @@ function ViewSpots() {
                   key={key}
                   onMouseEnter={() => setIsShown(spot.id)}
                   onMouseLeave={() => setIsShown("")}
-                  // onMouseOver={() => {
-                  //   Geocode.fromAddress(
-                  //     `${spot?.address},${spot?.city},${spot?.state}`
-                  //   ).then(
-                  //     (response) => {
-                  //       const { lat, lng } =
-                  //         response.results[0].geometry.location;
-                  //       setLatt(+lat);
-                  //       setLong(+lng);
-                  //     },
-                  //     (error) => {
-                  //       console.error(error);
-                  //     }
-                  //   );
-                  // }}
+                  onMouseOver={() => {
+                    Geocode.fromAddress(
+                      `${spot?.address},${spot?.city},${spot?.state}`
+                    ).then(
+                      (response) => {
+                        const { lat, lng } =
+                          response.results[0].geometry.location;
+                        setLatt(+lat);
+                        setLong(+lng);
+                      },
+                      (error) => {
+                        console.error(error);
+                      }
+                    );
+                  }}
                 >
                   <img
                     className="feed-image"
@@ -176,7 +176,7 @@ function ViewSpots() {
               ))}
           </div>
           <div className="map-div">
-            {/* <LoadScript googleMapsApiKey="AIzaSyApQbHfmqkVv0ApEPVVAfWUnRxj45FViF0">
+            <LoadScript googleMapsApiKey="AIzaSyApQbHfmqkVv0ApEPVVAfWUnRxj45FViF0">
               <GoogleMap
                 mapContainerStyle={mapStyles}
                 zoom={13}
@@ -184,7 +184,7 @@ function ViewSpots() {
               >
                 <Marker position={position} />
               </GoogleMap>
-            </LoadScript> */}
+            </LoadScript>
           </div>
         </div>
       </div>
