@@ -34,14 +34,29 @@ const CreateSpotForm = () => {
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
-  
+
+  //useState variables for specific field errors
+  // const [spotnameError, setSpotnameError] = useState("");
+  // const [addressError, setAddressError] = useState(""); 
+  // const [cityError, setCityError] = useState("");
+  // const [stateError, setStateError] = useState("");
+  // const [countryError, setCountryError] = useState("");
+  // const [hauntingError, setHauntingError] = useState("");
+  // const [amountError, setPriceError] = useState("");
+
   if(!user) {
     history.push('/spots')
   }
+
+  //On submit check to see if there are any errors
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userId = user.id;
+
+    //setting images 1-3 to urls submitted on a spot
     setUrl({"1":image1, "2":image2, "3":image3})
+
+    //front-end validations
     const validationErrors = []
     if(!name || name.length > 40){
       validationErrors.push("Spot name must be between 1 and 40 characters.")
@@ -76,6 +91,7 @@ const CreateSpotForm = () => {
 
     setErrors(validationErrors);
 
+    //checking for back-end validations
     if (!validationErrors.length) {
       await dispatch(
         postActions.thunk_addSpot({
@@ -98,12 +114,15 @@ const CreateSpotForm = () => {
       );
     }
   };
-    
+  
+  //useEffect to render whenever image is updated
   useEffect(() => {
       dispatch(spotStore.thunk_getAllSpots());
       setUrl({ 1: image1, 2: image2, 3: image3 });
     }, [dispatch, image1, image2, image3]);
 
+
+  //Set images for preview
   let content;
   let content2;
   let content3;
@@ -121,17 +140,15 @@ const CreateSpotForm = () => {
   }
 
   return (
-    <div className="login-form">
-      <h2 className="login-header">Please Signup</h2>
-      <div className="login-email">
+    <div className="newspot-container">
+      <h2 className="nespot-header">New Spot</h2>
+      <div className="newspot-form">
         <Box
           component="form"
-          // onSubmit={onSignUp}
+          onSubmit={handleSubmit}
           sx={{
             '& > :not(style)': { m: 1, width: '100%' },
           }}
-          // noValidate
-          // className="login-email"
           autoComplete="off"
         >
         {errors ? <TextField value={name}
@@ -198,25 +215,27 @@ const CreateSpotForm = () => {
         />
         }
         <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-label">Haunting</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          // value={age}
-          label="Age"
-          // onChange={handleChange}
+          value={haunting}
+          label="Haunting"
+          onChange={(e) => setHaunting(e.target.value)}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value=""></MenuItem>
+          <MenuItem value="Ghoul">Ghoul</MenuItem>
+          <MenuItem value="Demon">Demon</MenuItem>
+          <MenuItem value="Spirit">Spirit</MenuItem>
+          <MenuItem value="Bladefingers">Bladefingers</MenuItem>
         </Select>
         </FormControl>
 
         <FormControl fullWidth sx={{ m: 1 }}>
-          <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+          <InputLabel htmlFor="outlined-adornment-amount">Price</InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
-            // value={values.amount}
+            type="Number"
             inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
             // onChange={handleChange('amount')}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
@@ -225,7 +244,47 @@ const CreateSpotForm = () => {
         </FormControl>
         {/* <UploadImageForm image1={image1} image2={image2} image3={image3}/> */}
 
-        <div className="login-demo-buttons">
+        
+        <h2 className="new-post-photo-header">Please add three images:</h2>
+        <div className="new-post-photo-container">
+          <div className="content1-container">
+            {content}
+            <input
+              type="url"
+              placeholder="Main image URL"
+              className="new-spot-input"
+              onChange={(e) => {
+                setImage1(e.target.value);
+              }}
+              required
+            />
+          </div>
+          <div className="content1-container">
+            {content2}
+            <input
+              type="url"
+              className="new-spot-input"
+              placeholder="Additional Image"
+              onChange={(e) => {
+                setImage2(e.target.value);
+              }}
+              required
+            />
+          </div>
+          <div className="content1-container">
+            {content3}
+            <input
+              type="url"
+              className="new-spot-input"
+              placeholder="Additional Image"
+              onChange={(e) => {
+                setImage3(e.target.value);
+              }}
+              required
+            />
+          </div>
+        </div>
+          <div className="login-demo-buttons">
         <Button style={{
           borderRadius: 10,
           backgroundColor: "#FF385C",
@@ -235,49 +294,9 @@ const CreateSpotForm = () => {
                 {console.log(errors)}
               }} 
           className="MUI-login-button" 
-          type="submit" variant="contained">Signup
+          type="submit" variant="contained">Post Spot
         </Button>
-        
         </div>
-                  <h2 className="new-post-photo-header">Please add three images:</h2>
-          <div className="new-post-photo-container">
-            <div className="content1-container">
-              {content}
-              <input
-                type="url"
-                placeholder="Main image URL"
-                className="new-spot-input"
-                onChange={(e) => {
-                  setImage1(e.target.value);
-                }}
-                required
-              />
-            </div>
-            <div className="content1-container">
-              {content2}
-              <input
-                type="url"
-                className="new-spot-input"
-                placeholder="Additional Image"
-                onChange={(e) => {
-                  setImage2(e.target.value);
-                }}
-                required
-              />
-            </div>
-            <div className="content1-container">
-              {content3}
-              <input
-                type="url"
-                className="new-spot-input"
-                placeholder="Additional Image"
-                onChange={(e) => {
-                  setImage3(e.target.value);
-                }}
-                required
-              />
-            </div>
-          </div>
         </Box>
       </div>
     </div>

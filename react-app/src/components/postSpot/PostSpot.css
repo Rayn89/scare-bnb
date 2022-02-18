@@ -13,6 +13,24 @@
     padding-top: 100px;
 }
 
+.newspot-container{
+    display: flex;
+    flex-direction: column;
+    padding-top: 150px;
+    align-items: center;
+    width: 100%;
+    margin-right: 0px;
+}
+
+.newspot-form{
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4%;
+}
+
 .post-image-preview{
     height: 25vh;
     width: 25vw;
