@@ -14,6 +14,10 @@
 
 .login-email{
     margin: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+    align-items:center;
 }
 
 .login-form-input{
@@ -27,6 +31,7 @@
 
 .login-password{
     margin-bottom: 10px;
+    width: 100%;
 }
 
 .login-header{
@@ -72,6 +77,19 @@
     display: flex;
     width:fit-content;
     padding: 5px;
+}
+
+.login-demo-buttons{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+.MUI-login-button{
+    width: 100%;
+    border-radius: 10px;
+    background-color: #FF385C;
+    margin-top: 10px;
 }
 
 @media screen and (max-width: 600px){

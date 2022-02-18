@@ -7,6 +7,16 @@ import * as postActions from "../../store/spot";
 import isURL from "validator/lib/isURL";
 import isCurrency from "validator/lib/isCurrency";
 import "./PostSpot.css"
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import InputAdornment from '@mui/material/InputAdornment';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import UploadImageForm from './imagesPost.js'
 
 const CreateSpotForm = () => {
   const [errors, setErrors] = useState([]);
@@ -24,14 +34,31 @@ const CreateSpotForm = () => {
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
-  
+
+  //useState variables for specific field errors
+  const [spotnameError, setSpotnameError] = useState("");
+  const [addressError, setAddressError] = useState(""); 
+  const [cityError, setCityError] = useState("");
+  const [stateError, setStateError] = useState("");
+  const [countryError, setCountryError] = useState("");
+  const [hauntingError, setHauntingError] = useState("");
+  const [amountError, setPriceError] = useState("");
+  const [UrlError, setUrlError] = useState("");
+  const [ImgError, setImgError] = useState("");
+
   if(!user) {
     history.push('/spots')
   }
+
+  //On submit check to see if there are any errors
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userId = user.id;
+
+    //setting images 1-3 to urls submitted on a spot
     setUrl({"1":image1, "2":image2, "3":image3})
+
+    //front-end validations
     const validationErrors = []
     if(!name || name.length > 40){
       validationErrors.push("Spot name must be between 1 and 40 characters.")
@@ -51,7 +78,7 @@ const CreateSpotForm = () => {
     if(haunting.length < 2){
       validationErrors.push("Please select a valid haunting.")
     }
-    if (!price || !isCurrency(price) || price > 1000) {
+    if (!price || !isCurrency(price) || price > 1000 || price <= 0) {
       validationErrors.push(
         "Please enter a valid price between $1 and $1,000"
       );
@@ -63,9 +90,20 @@ const CreateSpotForm = () => {
       validationErrors.push("Must be a valid image url format (.jpeg, .png, .gif, .bmp");
     }
 
+    //checking for specific errors to set input errors
+    validationErrors.includes("Spot name must be between 1 and 40 characters.") ? setSpotnameError("Spot name must be between 1 and 40 characters.") : setSpotnameError("")
+    validationErrors.includes("Address must be between 1 and 40 characters.") ? setAddressError("Address must be between 1 and 40 characters.") : setAddressError("")
+    validationErrors.includes("City must be between 1 and 20 characters.") ? setCityError("City must be between 1 and 20 characters.") : setCityError("")
+    validationErrors.includes("Please enter valid state.") ? setStateError("Please enter valid state.") : setStateError("")
+    validationErrors.includes("Country must be between 1 and 20 characters.") ? setCountryError("Country must be between 1 and 20 characters.") : setCountryError("")
+    validationErrors.includes("Please select a valid haunting.") ? setHauntingError("Please select a valid haunting.") : setHauntingError("")
+    validationErrors.includes("Please enter a valid price between $1 and $1,000") ? setPriceError("Please enter a valid price between $1 and $1,000") : setPriceError("")
+    validationErrors.includes("Please input a valid image URL.") ? setUrlError("Please input a valid image URL.") : setUrlError("")
+    validationErrors.includes("Must be a valid image url format (.jpeg, .png, .gif, .bmp") ? setImgError("Must be a valid image url format (.jpeg, .png, .gif, .bmp") : setImgError("")
 
     setErrors(validationErrors);
 
+    //checking for back-end validations
     if (!validationErrors.length) {
       await dispatch(
         postActions.thunk_addSpot({
@@ -88,12 +126,15 @@ const CreateSpotForm = () => {
       );
     }
   };
-    
+  
+  //useEffect to render whenever image is updated
   useEffect(() => {
       dispatch(spotStore.thunk_getAllSpots());
       setUrl({ 1: image1, 2: image2, 3: image3 });
     }, [dispatch, image1, image2, image3]);
 
+
+  //Set images for preview
   let content;
   let content2;
   let content3;
@@ -111,145 +152,176 @@ const CreateSpotForm = () => {
   }
 
   return (
-    <section className="section-container">
-      <div className="form-container">
-        <form className="main-form-container" onSubmit={handleSubmit}>
-          <h3 className="new-spot-header">Add a Spot</h3>
-          <div className="error-list-container">
-            <ul className="error-list">
-            {errors.map((error, ind) => (
-              <li className="errors" key={ind}>{error}</li>
-            ))}
-            </ul>
-          </div>
-          <div className="input-field-new">
-            <input
-              className="new-spot-input"
-              name="name"
-              type="input"
-              placeholder="Spot Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            ></input>
-          </div>
-          <div className="input-field-new">
-            <input
-              className="new-spot-input"
-              name="address"
-              type="input"
-              placeholder="Address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            ></input>
-          </div>
-          <div className="input-field-new">
-            <input
-              className="new-spot-input"
-              name="city"
-              type="input"
-              placeholder="City"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-            ></input>
-          </div>
-          <div className="input-field-new">
-            <input
-              className="new-spot-input"
-              name="state"
-              type="input"
-              placeholder="State"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-            ></input>
-          </div>
+    <div className="newspot-container">
+      <h2 className="nespot-header">New Spot</h2>
+      <div className="newspot-form">
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{
+            '& > :not(style)': { m: 1, width: '100%' },
+          }}
+          autoComplete="off"
+        >
+        {spotnameError.length === 0 ? <TextField value={name}
+          onChange={(e) => setName(e.target.value)} fullWidth id="outlined-basic" label="Spot Name" variant="outlined" /> : 
+        
+        <TextField
+          error
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          id="outlined-error-helper-text"
+          label="Spot Name"
+          helperText={spotnameError}
+        />
+        }
+        {addressError.length === 0 ? <TextField value={address}
+          onChange={(e) => setAddress(e.target.value)} fullWidth id="outlined-basic" label="Address" variant="outlined" /> : 
+        
+        <TextField
+          error
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          id="outlined-error-helper-text"
+          label="Address"
+          helperText={addressError}
+        />
+        }
+        {cityError.length === 0 ? <TextField value={city}
+          onChange={(e) => setCity(e.target.value)} fullWidth id="outlined-basic" label="City" variant="outlined" /> : 
+        
+        <TextField
+          error
+          name="city"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          id="outlined-error-helper-text"
+          label="City"
+          helperText={cityError}
+        />
+        }
+        {stateError.length === 0 ? <TextField value={state}
+          onChange={(e) => setState(e.target.value)} fullWidth id="outlined-basic" label="State" variant="outlined" /> : 
+        
+        <TextField
+          error
+          name="state"
+          value={state}
+          onChange={(e) => setState(e.target.value)}
+          id="outlined-error-helper-text"
+          label="State"
+          helperText={stateError}
+        />
+        }
+        {countryError.length === 0 ? <TextField value={country}
+          onChange={(e) => setCountry(e.target.value)} fullWidth id="outlined-basic" label="Country" variant="outlined" /> : 
+        
+        <TextField
+          error
+          name="country"
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+          id="outlined-error-helper-text"
+          label="Country"
+          helperText={countryError}
+        />
+        }
+        <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Haunting</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={haunting}
+          label="Haunting"
+          onChange={(e) => setHaunting(e.target.value)}
+        >
+          <MenuItem value=""></MenuItem>
+          <MenuItem value="Ghoul">Ghoul</MenuItem>
+          <MenuItem value="Demon">Demon</MenuItem>
+          <MenuItem value="Spirit">Spirit</MenuItem>
+          <MenuItem value="Bladefingers">Bladefingers</MenuItem>
+        </Select>
+        </FormControl>
 
-          <div className="input-field-new">
+          {amountError.length === 0 ? 
+          <TextField
+            id="outlined-adornment-amount"
+            type="Number"
+            value={price}
+            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            onChange={(e) => setPrice(e.target.value)}
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+            label="Amount"
+          /> : 
+          <TextField
+            id="outlined-adornment-amount"
+            error
+            helperText={amountError}
+            type="Number"
+            value={price}
+            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            onChange={(e) => setPrice(e.target.value)}
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+            label="Amount"
+          />
+          }
+
+        {/* Three image boxes */}
+        <h2 className="new-post-photo-header">Please add three images:</h2>
+        <div className="new-post-photo-container">
+          <div className="content1-container">
+            {content}
             <input
+              type="url"
+              placeholder="Main image URL"
               className="new-spot-input"
-              name="country"
-              type="input"
-              placeholder="Country"
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-            ></input>
+              onChange={(e) => {
+                setImage1(e.target.value);
+              }}
+              required
+            />
           </div>
-          <div>
-            <label>
-              Please select price per night:
-              <input
-                className="price-per-night"
-                name="price"
-                type="number"
-                placeholder="Price"
-                min="0"
-                max="1000"
-                step="50"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-              ></input>
-            </label>
+          <div className="content1-container">
+            {content2}
+            <input
+              type="url"
+              className="new-spot-input"
+              placeholder="Additional Image"
+              onChange={(e) => {
+                setImage2(e.target.value);
+              }}
+              required
+            />
           </div>
-          <div>
-            <label>
-              Select type of Haunting:
-              <select
-                className="price-per-night"
-                value={haunting}
-                onChange={(e) => setHaunting(e.target.value)}
-              >
-                <option value=""> </option>
-                <option value="Ghoul">Ghoul</option>
-                <option value="Demon">Demon</option>
-                <option value="Spirit">Spirit</option>
-                <option value="Bladefingers">BladeFingers</option>
-              </select>
-            </label>
+          <div className="content1-container">
+            {content3}
+            <input
+              type="url"
+              className="new-spot-input"
+              placeholder="Additional Image"
+              onChange={(e) => {
+                setImage3(e.target.value);
+              }}
+              required
+            />
           </div>
-          <h2 className="new-post-photo-header">Please add three images:</h2>
-          <div className="new-post-photo-container">
-            <div className="content1-container">
-              {content}
-              <input
-                type="url"
-                placeholder="Main image URL"
-                className="new-spot-input"
-                onChange={(e) => {
-                  setImage1(e.target.value);
-                }}
-                required
-              />
-            </div>
-            <div className="content1-container">
-              {content2}
-              <input
-                type="url"
-                className="new-spot-input"
-                placeholder="Additional Image"
-                onChange={(e) => {
-                  setImage2(e.target.value);
-                }}
-                required
-              />
-            </div>
-            <div className="content1-container">
-              {content3}
-              <input
-                type="url"
-                className="new-spot-input"
-                placeholder="Additional Image"
-                onChange={(e) => {
-                  setImage3(e.target.value);
-                }}
-                required
-              />
-            </div>
-          </div>
-          <button className="post-spot-form-button" type="submit">
-            Submit Spot
-          </button>
-        </form>
+        </div>
+          <div className="login-demo-buttons">
+        <Button style={{
+          borderRadius: 10,
+          backgroundColor: "#FF385C",
+          marginBottom: 20,
+          }} 
+          onClick={() => {
+                {console.log(errors)}
+              }} 
+          className="MUI-login-button" 
+          type="submit" variant="contained">Post Spot
+        </Button>
+        </div>
+        </Box>
       </div>
-    </section>
+    </div>
   );
 };
 
